@@ -21,20 +21,23 @@ class PlayState extends FlxState
 		_mWalls.setTileProperties(1, FlxObject.NONE);
 		_mWalls.setTileProperties(2, FlxObject.ANY);
 		add(_mWalls);
-		 _player = new FlxTypedGroup<Player>();
-		 add(_player);
-		_map.loadEntities(placeEntities, "entities");
+		_player = new FlxTypedGroup<Player>();
 		add(_player);
+		_map.loadEntities(placeEntities, "entities");
 		super.create();
 	}
 
 	override public function update(elapsed:Float):Void
 	{
+		if (FlxG.keys.justPressed.R) {
+			reset();
+		}
 		super.update(elapsed);
 		FlxG.collide(_player, _mWalls);
+		FlxG.overlap(_player, _player, joined);
 	}
 	
-	 private function placeEntities(entityName:String, entityData:Xml):Void
+	private function placeEntities(entityName:String, entityData:Xml):Void
 	{
 		 var x:Int = Std.parseInt(entityData.get("x"));
 		 var y:Int = Std.parseInt(entityData.get("y"));
@@ -42,5 +45,17 @@ class PlayState extends FlxState
 		 {
 			_player.add(new Player(x, y));
 		 }
+	}
+	
+	private function joined(Block1:Player, Block2:Player):Void {
+		Block1.kill();
+		Block2.kill();
+	}
+	
+	private function reset():Void {
+		for (blocks in _player) {
+			blocks.destroy();
+		}
+		_map.loadEntities(placeEntities, "entities");
 	}
 }
