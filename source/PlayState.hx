@@ -33,7 +33,7 @@ class PlayState extends FlxState
 			reset();
 		}
 		super.update(elapsed);
-		FlxG.collide(_player, _mWalls);
+		FlxG.collide(_mWalls, _player);
 		FlxG.overlap(_player, _player, joined);
 	}
 	
