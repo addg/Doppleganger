@@ -15,9 +15,9 @@ class Player extends FlxSprite
 		reverse = R;
 		super(X, Y);
 		loadGraphic(AssetPaths.blocks__png, true, 25, 25);
-		maxVelocity.x = 200;
-		maxVelocity.y = 200;
-		acceleration.y = 400;
+		maxVelocity.x = 500;
+		maxVelocity.y = 350;
+		acceleration.y = 800;
 		drag.x = drag.y = 1000;
 		if (R == 1) {
 			animation.add("normal", [0], 6, false);
@@ -40,13 +40,13 @@ class Player extends FlxSprite
 	{
 		acceleration.x = 0;
 		if (FlxG.keys.anyPressed([LEFT,A])) {
-			acceleration.x = -maxVelocity.x*4*reverse;
+			acceleration.x = -maxVelocity.x*reverse;
 		}
 		if (FlxG.keys.anyPressed([RIGHT,D])) {
-			acceleration.x = maxVelocity.x*4*reverse;
+			acceleration.x = maxVelocity.x*reverse;
 		}
 		if ((FlxG.keys.anyPressed([UP, "SPACE", W])) && isTouching(FlxObject.FLOOR)) {
-			velocity.y = -400;
+			velocity.y = -acceleration.y;
 		}
 	}
 }
