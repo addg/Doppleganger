@@ -1,23 +1,23 @@
 <?xml version="1.0"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <OgmoVersion>2.1.0.6</OgmoVersion>
-  <Name>Blocks</Name>
+  <Name>New Project</Name>
   <BackgroundColor A="255" R="125" G="160" B="255" />
   <GridColor A="255" R="255" G="240" B="90" />
   <LevelDefaultSize>
-    <Width>640</Width>
-    <Height>480</Height>
+    <Width>700</Width>
+    <Height>500</Height>
   </LevelDefaultSize>
   <LevelMinimumSize>
-    <Width>640</Width>
-    <Height>480</Height>
+    <Width>700</Width>
+    <Height>500</Height>
   </LevelMinimumSize>
   <LevelMaximumSize>
-    <Width>640</Width>
-    <Height>480</Height>
+    <Width>700</Width>
+    <Height>500</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\Tony\Documents\too-many-blocks\assets\data\Level.oep</Filename>
-  <AngleMode>Degrees</AngleMode>
+  <Filename>C:\Users\Tony\Documents\too-many-blocks\assets\data\Level Design.oep</Filename>
+  <AngleMode>Radians</AngleMode>
   <CameraEnabled>false</CameraEnabled>
   <CameraSize>
     <Width>640</Width>
@@ -31,8 +31,8 @@
     <LayerDefinition xsi:type="TileLayerDefinition">
       <Name>walls</Name>
       <Grid>
-        <Width>16</Width>
-        <Height>16</Height>
+        <Width>25</Width>
+        <Height>25</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>
@@ -43,8 +43,8 @@
     <LayerDefinition xsi:type="EntityLayerDefinition">
       <Name>entities</Name>
       <Grid>
-        <Width>16</Width>
-        <Height>16</Height>
+        <Width>25</Width>
+        <Height>25</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>
@@ -55,10 +55,10 @@
   <Tilesets>
     <Tileset>
       <Name>tiles</Name>
-      <FilePath>..\images\tiles.png</FilePath>
+      <FilePath>..\images\tiles2.png</FilePath>
       <TileSize>
-        <Width>16</Width>
-        <Height>16</Height>
+        <Width>25</Width>
+        <Height>25</Height>
       </TileSize>
       <TileSep>0</TileSep>
     </Tileset>
@@ -66,8 +66,8 @@
   <EntityDefinitions>
     <EntityDefinition Name="player" Limit="2" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
-        <Width>16</Width>
-        <Height>16</Height>
+        <Width>25</Width>
+        <Height>25</Height>
       </Size>
       <Origin>
         <X>0</X>
