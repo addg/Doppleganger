@@ -43,7 +43,12 @@ class PlayState extends FlxState
 		 var y:Int = Std.parseInt(entityData.get("y"));
 		 if (entityName == "player")
 		 {
-			_player.add(new Player(x, y));
+			var normal:Int = Std.parseInt(entityData.get("normal"));
+			if (normal == 1) {
+				_player.add(new Player(x, y, 1));
+			} else {
+				_player.add(new Player(x, y, -1));
+			}
 		 }
 	}
 	
