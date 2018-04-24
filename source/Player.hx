@@ -12,13 +12,13 @@ class Player extends FlxSprite
 	public function new(?X:Float=0, ?Y:Float=0) 
 	{
 		super(X, Y);
-		loadGraphic(AssetPaths.player__png, true, 16, 16);
-		maxVelocity.x = 100;
+		loadGraphic(AssetPaths.blocks__png, true, 25, 25);
+		maxVelocity.x = 200;
 		maxVelocity.y = 200;
 		acceleration.y = 400;
 		drag.x = drag.y = 1000;
-		setSize(8, 14);
-		offset.set(4, 2);
+		//setSize(24, 25);
+		//offset.set(0, 0);
 	}
 	
 	override public function update(elapsed:Float):Void 

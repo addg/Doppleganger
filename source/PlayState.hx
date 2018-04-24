@@ -16,7 +16,7 @@ class PlayState extends FlxState
 	override public function create():Void
 	{
 		_map = new FlxOgmoLoader(AssetPaths.room_001__oel);
-		_mWalls = _map.loadTilemap(AssetPaths.tiles__png, 16, 16, "walls");
+		_mWalls = _map.loadTilemap(AssetPaths.tiles2__png, 25, 25, "walls");
 		_mWalls.follow();
 		_mWalls.setTileProperties(1, FlxObject.NONE);
 		_mWalls.setTileProperties(2, FlxObject.ANY);
