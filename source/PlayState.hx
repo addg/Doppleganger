@@ -5,15 +5,18 @@ import flixel.FlxObject;
 import flixel.FlxState;
 import flixel.addons.editors.ogmo.FlxOgmoLoader;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.text.FlxText;
 import flixel.tile.FlxTilemap;
 
 class PlayState extends FlxState
 {
+	private var failCounter:Int = 0;
 	private var _player:FlxTypedGroup<Player>;
 	private var _enemy:FlxTypedGroup<Player>;
 	private var _spikes:FlxTypedGroup<Spikes>;
 	private var _map:FlxOgmoLoader;
 	private var _mWalls:FlxTilemap;
+	private var failures:FlxText;
 	
 	override public function create():Void
 	{
@@ -33,12 +36,17 @@ class PlayState extends FlxState
 		_enemy = new FlxTypedGroup<Player>();
 		add(_enemy);
 		_map.loadEntities(placeEntities, "entities");
+		failures = new FlxText(2, 2, 80);
+		failures.text = "Attempts: " + failCounter;
+		add(failures);
 		super.create();
 	}
 
 	override public function update(elapsed:Float):Void
 	{
 		if (FlxG.keys.justPressed.R) {
+			failCounter++;
+			failures.text = "Attempts: " + failCounter;
 			FlxG.resetState();
 		}
 		super.update(elapsed);
@@ -54,6 +62,8 @@ class PlayState extends FlxState
 		for (blocks in _player) {
 			if (blocks.y > FlxG.height) {
 				FlxG.resetState();
+				failCounter++;
+				failures.text = "Attempts: " + failCounter;
 			}
 		}
 	}
