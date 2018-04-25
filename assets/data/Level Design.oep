@@ -16,7 +16,7 @@
     <Width>700</Width>
     <Height>500</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\Tony\Documents\too-many-blocks\assets\data\Level Design.oep</Filename>
+  <Filename>C:\Users\addgr\Desktop\CSE481\Game\assets\data\Level Design.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>false</CameraEnabled>
   <CameraSize>
@@ -96,6 +96,21 @@
       <ValueDefinitions>
         <ValueDefinition xsi:type="IntValueDefinition" Name="normal" Default="1" Min="0" Max="1" ShowSlider="false" />
       </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="spikes" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>25</Width>
+        <Height>8</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>-17</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\images\spikes.png" Tiled="false">
+        <RectColor A="255" R="255" G="255" B="255" />
+      </ImageDefinition>
+      <ValueDefinitions />
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>
   </EntityDefinitions>

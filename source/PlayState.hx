@@ -11,6 +11,7 @@ class PlayState extends FlxState
 {
 	private var _player:FlxTypedGroup<Player>;
 	private var _enemy:FlxTypedGroup<Player>;
+	private var _spikes:FlxTypedGroup<Spikes>;
 	private var _map:FlxOgmoLoader;
 	private var _mWalls:FlxTilemap;
 	
@@ -19,7 +20,7 @@ class PlayState extends FlxState
 		// Change to your level here by editing this value
 		//                                         |
 		//                                         V
-		_map = new FlxOgmoLoader(AssetPaths.room_002__oel);
+		_map = new FlxOgmoLoader(AssetPaths.room_003__oel);
 		_mWalls = _map.loadTilemap(AssetPaths.tiles2__png, 25, 25, "walls");
 		_mWalls.follow();
 		_mWalls.setTileProperties(1, FlxObject.NONE);
@@ -27,6 +28,8 @@ class PlayState extends FlxState
 		add(_mWalls);
 		_player = new FlxTypedGroup<Player>();
 		add(_player);
+		_spikes = new FlxTypedGroup<Spikes>();
+		add(_spikes);
 		_enemy = new FlxTypedGroup<Player>();
 		add(_enemy);
 		_map.loadEntities(placeEntities, "entities");
@@ -46,6 +49,7 @@ class PlayState extends FlxState
 	
 		FlxG.overlap(_player, _player, joined);
 		FlxG.overlap(_player, _enemy, failed);
+		FlxG.overlap(_player, _spikes, failed);
 	}
 	
 	private function placeEntities(entityName:String, entityData:Xml):Void
@@ -73,6 +77,8 @@ class PlayState extends FlxState
 			} else {
 				_enemy.add(new Player(x, y, 5));
 			}
+		 } else if (entityName == "spikes") {
+			 _spikes.add(new Spikes(x, y + 17));
 		 }
 	}
 	
