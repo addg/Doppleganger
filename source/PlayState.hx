@@ -7,6 +7,7 @@ import flixel.addons.editors.ogmo.FlxOgmoLoader;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
 import flixel.tile.FlxTilemap;
+import flixel.util.FlxTimer;
 
 class PlayState extends FlxState
 {
@@ -17,9 +18,13 @@ class PlayState extends FlxState
 	private var _map:FlxOgmoLoader;
 	private var _mWalls:FlxTilemap;
 	private var failures:FlxText;
+	private var time:FlxText;
+	private var Timer:FlxTimer;
+	private var started:Bool = false;
 	
 	override public function create():Void
 	{
+		Timer = new FlxTimer();
 		// Change to your level here by editing this value
 		//                                         |
 		//                                         V
@@ -36,18 +41,27 @@ class PlayState extends FlxState
 		_enemy = new FlxTypedGroup<Player>();
 		add(_enemy);
 		_map.loadEntities(placeEntities, "entities");
-		failures = new FlxText(2, 2, 80);
-		failures.text = "Attempts: " + failCounter;
+		failures = new FlxText(2, 2, 200);
+		failures.size = 20;
+		failures.text = "Attempts: " + Data.attempts;
 		add(failures);
+		time = new FlxText(50, 50, 200);
+		time.text = "Current time: " + 0.00;
+		add(time);
 		super.create();
 	}
 
 	override public function update(elapsed:Float):Void
 	{
+		if (FlxG.keys.anyJustPressed(["UP", "LEFT", "RIGHT"]) && !started) {
+			started = true;
+			Timer.start();
+		}
+		if (started) {
+			time.text = "Current time: " + 1 + Timer.elapsedTime;
+		}
 		if (FlxG.keys.justPressed.R) {
-			failCounter++;
-			failures.text = "Attempts: " + failCounter;
-			FlxG.resetState();
+			failed();
 		}
 		super.update(elapsed);
 		
@@ -61,9 +75,7 @@ class PlayState extends FlxState
 		
 		for (blocks in _player) {
 			if (blocks.y > FlxG.height) {
-				FlxG.resetState();
-				failCounter++;
-				failures.text = "Attempts: " + failCounter;
+				failed();
 			}
 		}
 	}
@@ -105,6 +117,7 @@ class PlayState extends FlxState
 	
 	private function failed(?Block1:Player, ?Block2:Player):Void {
 		// Display message here and wait for them to click retry? Maybe instantly restart?
+		Data.attempts++;
 		FlxG.resetState();
 	}
 }
