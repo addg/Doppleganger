@@ -25,7 +25,7 @@ class Player extends FlxSprite
 		drag.x = drag.y = 2000;
 		animation.add("type", [R], 6, false);
 		animation.play("type");
-		//setSize(24, 25);
+		//setSize(23, 25);
 		//offset.set(0, 0);
 	}
 	

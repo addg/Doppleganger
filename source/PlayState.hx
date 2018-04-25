@@ -20,7 +20,7 @@ class PlayState extends FlxState
 		// Change to your level here by editing this value
 		//                                         |
 		//                                         V
-		_map = new FlxOgmoLoader(AssetPaths.room_003__oel);
+		_map = new FlxOgmoLoader(AssetPaths.room_004__oel);
 		_mWalls = _map.loadTilemap(AssetPaths.tiles3__png, 25, 25, "walls");
 		_mWalls.follow();
 		_mWalls.setTileProperties(1, FlxObject.NONE);
@@ -39,7 +39,7 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		if (FlxG.keys.justPressed.R) {
-			reset();
+			FlxG.resetState();
 		}
 		super.update(elapsed);
 		
@@ -50,6 +50,12 @@ class PlayState extends FlxState
 		FlxG.overlap(_player, _player, joined);
 		FlxG.overlap(_player, _enemy, failed);
 		FlxG.overlap(_player, _spikes, failed);
+		
+		for (blocks in _player) {
+			if (blocks.y > FlxG.height) {
+				FlxG.resetState();
+			}
+		}
 	}
 	
 	private function placeEntities(entityName:String, entityData:Xml):Void
@@ -87,21 +93,8 @@ class PlayState extends FlxState
 		Block2.destroy();
 	}
 	
-	private function reset():Void {
-		for (blocks in _player) {
-			blocks.destroy();
-		}
-		for (blocks in _enemy) {
-			blocks.destroy();
-		}
-		for (spikes in _spikes) {
-			spikes.destroy();
-		}
-		_map.loadEntities(placeEntities, "entities");
-	}
-	
-	private function failed(Block1:Player, Block2:Player):Void {
+	private function failed(?Block1:Player, ?Block2:Player):Void {
 		// Display message here and wait for them to click retry? Maybe instantly restart?
-		reset();
+		FlxG.resetState();
 	}
 }
