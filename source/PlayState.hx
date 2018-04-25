@@ -56,19 +56,17 @@ class PlayState extends FlxState
 		currTime.text = "Current time: " + 0.00;
 		add(currTime);
 		
-		/* Currently working on
 		bestTime = new FlxText(FlxG.width/2 - 200, 2, 200);
 		bestTime.size = 16;
-		bestTime.text = "Best time: " + 90.00;
+		bestTime.text = "Best time: " + Data.bestTime;
 		add(bestTime);
-		*/
 		
 		super.create();
 	}
 
 	override public function update(elapsed:Float):Void
 	{
-		if (FlxG.keys.anyJustPressed(["UP", "LEFT", "RIGHT"]) && !started) {
+		if (FlxG.keys.anyJustPressed([UP, LEFT, RIGHT, W, A, D, SPACE]) && !started) {
 			started = true;
 			Timer.start(100, null, 0);
 		}
@@ -79,7 +77,8 @@ class PlayState extends FlxState
 			currTime.text = "Current time: " + num;
 		}
 		if (FlxG.keys.justPressed.R) {
-			failed();
+			Data.attempts++;
+			FlxG.resetState();
 		}
 		super.update(elapsed);
 		
@@ -131,6 +130,14 @@ class PlayState extends FlxState
 	private function joined(Block1:Player, Block2:Player):Void {
 		Block1.destroy();
 		Block2.destroy();
+		if (_player.countLiving() == 0) {
+			Timer.cancel();
+			var num:Float = Timer.elapsedTime;
+			num = num * Math.pow(10, 2);
+			num = Math.round(num) / Math.pow(10, 2);
+			Data.bestTime = Math.min(num, Data.bestTime);
+			bestTime.text = "Best time: " + Data.bestTime;
+		}
 	}
 	
 	private function failed(?Block1:Player, ?Block2:Player):Void {
