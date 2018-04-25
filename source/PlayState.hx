@@ -56,9 +56,13 @@ class PlayState extends FlxState
 		if (FlxG.keys.anyJustPressed(["UP", "LEFT", "RIGHT"]) && !started) {
 			started = true;
 			Timer.start();
+			//Timer.start(100, Void, 0);
 		}
 		if (started) {
-			time.text = "Current time: " + 1 + Timer.elapsedTime;
+			var num = Timer.elapsedTime;
+			num = num * Math.pow(10, 2);
+			num = Math.round(num) / Math.pow(10, 2);
+			time.text = "Current time: " + num;
 		}
 		if (FlxG.keys.justPressed.R) {
 			failed();
