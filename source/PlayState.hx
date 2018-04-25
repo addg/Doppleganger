@@ -11,14 +11,14 @@ import flixel.util.FlxTimer;
 
 class PlayState extends FlxState
 {
-	private var failCounter:Int = 0;
 	private var _player:FlxTypedGroup<Player>;
 	private var _enemy:FlxTypedGroup<Player>;
 	private var _spikes:FlxTypedGroup<Spikes>;
 	private var _map:FlxOgmoLoader;
 	private var _mWalls:FlxTilemap;
 	private var failures:FlxText;
-	private var time:FlxText;
+	private var currTime:FlxText;
+	private var bestTime:FlxText;
 	private var Timer:FlxTimer;
 	private var started:Bool = false;
 	
@@ -34,20 +34,35 @@ class PlayState extends FlxState
 		_mWalls.setTileProperties(1, FlxObject.NONE);
 		_mWalls.setTileProperties(2, FlxObject.ANY);
 		add(_mWalls);
+		
 		_player = new FlxTypedGroup<Player>();
 		add(_player);
+		
 		_spikes = new FlxTypedGroup<Spikes>();
 		add(_spikes);
+		
 		_enemy = new FlxTypedGroup<Player>();
 		add(_enemy);
+		
 		_map.loadEntities(placeEntities, "entities");
+		
 		failures = new FlxText(2, 2, 200);
-		failures.size = 20;
+		failures.size = 16;
 		failures.text = "Attempts: " + Data.attempts;
 		add(failures);
-		time = new FlxText(50, 50, 200);
-		time.text = "Current time: " + 0.00;
-		add(time);
+		
+		currTime = new FlxText(FlxG.width - 200, 2, 200);
+		currTime.size = 16;
+		currTime.text = "Current time: " + 0.00;
+		add(currTime);
+		
+		/* Currently working on
+		bestTime = new FlxText(FlxG.width/2 - 200, 2, 200);
+		bestTime.size = 16;
+		bestTime.text = "Best time: " + 90.00;
+		add(bestTime);
+		*/
+		
 		super.create();
 	}
 
@@ -55,14 +70,13 @@ class PlayState extends FlxState
 	{
 		if (FlxG.keys.anyJustPressed(["UP", "LEFT", "RIGHT"]) && !started) {
 			started = true;
-			Timer.start();
-			//Timer.start(100, Void, 0);
+			Timer.start(100, null, 0);
 		}
 		if (started) {
 			var num = Timer.elapsedTime;
 			num = num * Math.pow(10, 2);
 			num = Math.round(num) / Math.pow(10, 2);
-			time.text = "Current time: " + num;
+			currTime.text = "Current time: " + num;
 		}
 		if (FlxG.keys.justPressed.R) {
 			failed();
