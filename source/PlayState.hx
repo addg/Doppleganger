@@ -21,7 +21,7 @@ class PlayState extends FlxState
 		//                                         |
 		//                                         V
 		_map = new FlxOgmoLoader(AssetPaths.room_003__oel);
-		_mWalls = _map.loadTilemap(AssetPaths.tiles2__png, 25, 25, "walls");
+		_mWalls = _map.loadTilemap(AssetPaths.tiles3__png, 25, 25, "walls");
 		_mWalls.follow();
 		_mWalls.setTileProperties(1, FlxObject.NONE);
 		_mWalls.setTileProperties(2, FlxObject.ANY);
@@ -93,6 +93,9 @@ class PlayState extends FlxState
 		}
 		for (blocks in _enemy) {
 			blocks.destroy();
+		}
+		for (spikes in _spikes) {
+			spikes.destroy();
 		}
 		_map.loadEntities(placeEntities, "entities");
 	}
