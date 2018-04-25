@@ -15,20 +15,16 @@ class Player extends FlxSprite
 	public function new(?X:Float=0, ?Y:Float=0, ?R:Int=1) 
 	{
 		jumpSpeed = 1000;
-		reverse = R;
+		// Checks to see if block should have reverse movement or not
+		reverse = R % 2 == 1 ? -1 : 1;
 		super(X, Y);
 		loadGraphic(AssetPaths.blocks__png, true, 25, 25);
 		maxVelocity.x = 250;
 		maxVelocity.y = 600;
 		acceleration.y = 2500;
 		drag.x = drag.y = 2000;
-		if (R == 1) {
-			animation.add("normal", [0], 6, false);
-			animation.play("normal");
-		} else {
-			animation.add("reversed", [1], 6, false);
-			animation.play("reversed");
-		}
+		animation.add("type", [R], 6, false);
+		animation.play("type");
 		//setSize(24, 25);
 		//offset.set(0, 0);
 	}
