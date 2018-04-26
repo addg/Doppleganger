@@ -81,7 +81,7 @@
       </ValueDefinitions>
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>
-    <EntityDefinition Name="enemy" Limit="1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+    <EntityDefinition Name="enemy" Limit="2" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
         <Width>25</Width>
         <Height>25</Height>
