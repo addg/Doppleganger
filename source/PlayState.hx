@@ -76,7 +76,8 @@ class PlayState extends FlxState
 		currTime.text = "Current time: " + 0.00;
 		add(currTime);
 		
-		bestTime = new FlxText(FlxG.width/2 - 200, 2, 200);
+		bestTime = new FlxText(0, 2, 200);
+		bestTime.screenCenter(X);
 		bestTime.size = 16;
 		bestTime.text = "Best time: " + Data.bestTimes[Data.currLevel];
 		add(bestTime);
