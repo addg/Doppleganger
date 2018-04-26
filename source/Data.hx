@@ -4,7 +4,7 @@ class Data
 {	
 	public static var attempts:Int = 0;
 	public static var currLevel:Int = 1;
-	public static var amtLevels:Int = 5;
+	public static var amtLevels:Int = 6;
 	public static var bestTimes:Array<Float> = new Array();
 	
 	public static function resetBestTimes() {
