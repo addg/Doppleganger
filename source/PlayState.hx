@@ -22,13 +22,35 @@ class PlayState extends FlxState
 	private var Timer:FlxTimer;
 	private var started:Bool = false;
 	
+
+	// This is how many levels we have
+	private var amtLevels:Int = 5;
+	
 	override public function create():Void
 	{
 		Timer = new FlxTimer();
+		// Old way
 		// Change to your level here by editing this value
-		//                                         |
-		//                                         V
-		_map = new FlxOgmoLoader(AssetPaths.room_004__oel);
+		//                                           |
+		//                                           V
+		// _map = new FlxOgmoLoader(AssetPaths.room_001__oel);
+		
+		// Since we are using a string instead of AssetPaths.blabla,
+		// we have to give the file path as a string
+		var _roomNumber:String = "assets/data/room-";
+		
+		// This just figures out how many 0's we need for our level
+		if (Data.currLevel < 100) {
+			if (Data.currLevel < 10) {
+				_roomNumber += "00";
+			} else {
+				_roomNumber += "0";
+			}
+		}
+		
+		_roomNumber += "" + Data.currLevel + ".oel";
+		
+		_map = new FlxOgmoLoader(_roomNumber);
 		_mWalls = _map.loadTilemap(AssetPaths.tiles3__png, 25, 25, "walls");
 		_mWalls.follow();
 		_mWalls.setTileProperties(1, FlxObject.NONE);
@@ -66,6 +88,14 @@ class PlayState extends FlxState
 
 	override public function update(elapsed:Float):Void
 	{
+		if (FlxG.keys.justPressed.O) {
+			updateLevel(-1);
+		}
+		
+		if (FlxG.keys.justPressed.P) {
+			updateLevel(1);
+		}
+		
 		if (FlxG.keys.anyJustPressed([UP, LEFT, RIGHT, W, A, D, SPACE]) && !started) {
 			started = true;
 			Timer.start(100, null, 0);
@@ -144,5 +174,19 @@ class PlayState extends FlxState
 		// Display message here and wait for them to click retry? Maybe instantly restart?
 		Data.attempts++;
 		FlxG.resetState();
+	}
+	
+	// i SHOULD always be either -1 or 1, but you can input any value
+	// bounds checks: currLevel must be between 1 and amtLevels, inclusive on both
+	// function adds i to currLevel and then tries to load that level
+	private function updateLevel(i:Int):Void {
+		Data.currLevel += i;
+		if (Data.currLevel < 1) {
+			Data.currLevel = 1;
+		} else if (Data.currLevel > amtLevels) {
+			Data.currLevel = amtLevels;
+		}
+		
+		FlxG.switchState(new PlayState());
 	}
 }
