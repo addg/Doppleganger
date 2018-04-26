@@ -13,6 +13,7 @@ class MenuState extends FlxState
 		_btnPlay = new FlxButton(0, 0, "Play", clickPlay);
 		add(_btnPlay);
 		_btnPlay.screenCenter();
+		Data.resetBestTimes();
 		super.create();
 	}
 

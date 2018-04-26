@@ -22,9 +22,6 @@ class PlayState extends FlxState
 	private var Timer:FlxTimer;
 	private var started:Bool = false;
 	
-
-	// This is how many levels we have
-	private var amtLevels:Int = 5;
 	
 	override public function create():Void
 	{
@@ -80,7 +77,7 @@ class PlayState extends FlxState
 		
 		bestTime = new FlxText(FlxG.width/2 - 200, 2, 200);
 		bestTime.size = 16;
-		bestTime.text = "Best time: " + Data.bestTime;
+		bestTime.text = "Best time: " + Data.bestTimes[Data.currLevel];
 		add(bestTime);
 		
 		super.create();
@@ -165,8 +162,8 @@ class PlayState extends FlxState
 			var num:Float = Timer.elapsedTime;
 			num = num * Math.pow(10, 2);
 			num = Math.round(num) / Math.pow(10, 2);
-			Data.bestTime = Math.min(num, Data.bestTime);
-			bestTime.text = "Best time: " + Data.bestTime;
+			Data.bestTimes[Data.currLevel] = Math.min(num, Data.bestTimes[Data.currLevel]);
+			bestTime.text = "Best time: " + Data.bestTimes[Data.currLevel];
 		}
 	}
 	
@@ -183,10 +180,10 @@ class PlayState extends FlxState
 		Data.currLevel += i;
 		if (Data.currLevel < 1) {
 			Data.currLevel = 1;
-		} else if (Data.currLevel > amtLevels) {
-			Data.currLevel = amtLevels;
+		} else if (Data.currLevel > Data.amtLevels) {
+			Data.currLevel = Data.amtLevels;
 		}
-		
+		Data.attempts = 0;
 		FlxG.switchState(new PlayState());
 	}
 }
