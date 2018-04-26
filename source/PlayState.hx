@@ -25,6 +25,7 @@ class PlayState extends FlxState
 	
 	override public function create():Void
 	{
+		
 		Timer = new FlxTimer();
 		// Old way
 		// Change to your level here by editing this value
