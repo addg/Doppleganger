@@ -179,8 +179,8 @@ class PlayState extends FlxState
 		} else {
 			if (Block1.exists && Block2.exists) {
 				FlxObject.separate(Block1, Block2);
-				Block1.setPosition(Block1.x, Math.ffloor(Block1.y) + 0.347);
-				Block2.setPosition(Block2.x, Math.ffloor(Block2.y) + 0.347);
+				Block1.setPosition(Block1.x, Math.ffloor(Block1.y) + 0.611);
+				Block2.setPosition(Block2.x, Math.ffloor(Block2.y) + 0.611);
 			}
 		}
 	}
