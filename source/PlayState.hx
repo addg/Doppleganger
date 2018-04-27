@@ -136,7 +136,7 @@ class PlayState extends FlxState
 	
 	private function placeEntities(entityName:String, entityData:Xml):Void
 	{
-		// currently 0,1 orange, 2,3 blue, 4,5 bad
+		// currently 0,1 orange, 2,3 blue, 4,5 bad, 6 = sleepy orange, 7 = sleepy blue
 		// normal determines whether its a reverse block or not
 		 var x:Int = Std.parseInt(entityData.get("x"));
 		 var y:Int = Std.parseInt(entityData.get("y"));
@@ -146,7 +146,10 @@ class PlayState extends FlxState
 			// Possibly var color:Int = Std.parseInt(entityData.get("color"));
 			var color:Int = Std.parseInt(entityData.get("color"));
 			var normal:Int = Std.parseInt(entityData.get("normal"));
-			if (normal == 1) {
+			var sleepy:Int = Std.parseInt(entityData.get("sleepy"));
+			if (sleepy == 1) {
+				_player.add(new Player(x, y, 6 + color, color, 0));
+			} else if (normal == 1) {
 				_player.add(new Player(x, y, 0 + color * 2, color));
 			} else {
 				_player.add(new Player(x, y, 1 + color * 2, color));

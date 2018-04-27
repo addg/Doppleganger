@@ -11,10 +11,12 @@ class Player extends FlxSprite
 	private var reverse:Int;
 	private var jumpSpeed:Int;
 	public var thisColor:Int;
+	public var movementAllowed:Bool;
 	
 	
-	public function new(?X:Float=0, ?Y:Float=0, ?R:Int=1, ?Color:Int=0) 
+	public function new(?X:Float=0, ?Y:Float=0, ?R:Int=1, ?Color:Int=0, ?CanMove:Int = 1) 
 	{
+		movementAllowed = CanMove == 1 ? true : false;
 		thisColor = Color;
 		jumpSpeed = 1000;
 		// Checks to see if block should have reverse movement or not
@@ -33,7 +35,9 @@ class Player extends FlxSprite
 	
 	override public function update(elapsed:Float):Void 
 	{
-		movement();
+		if (movementAllowed) {
+			movement();
+		}
 		super.update(elapsed);
 	}
 	
