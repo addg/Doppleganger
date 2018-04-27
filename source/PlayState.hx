@@ -8,6 +8,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
 import flixel.tile.FlxTilemap;
 import flixel.util.FlxTimer;
+import flixel.addons.ui.FlxUIPopup;
 
 class PlayState extends FlxState
 {
@@ -21,7 +22,7 @@ class PlayState extends FlxState
 	private var bestTime:FlxText;
 	private var Timer:FlxTimer;
 	private var started:Bool = false;
-	
+	private var popup:FlxUIPopup;
 	
 	override public function create():Void
 	{
@@ -84,16 +85,17 @@ class PlayState extends FlxState
 		bestTime.text = "Best time: " + Data.bestTimes[Data.currLevel];
 		add(bestTime);
 		
-		for (blocks in _player) {
-			FlxG.watch.add(blocks, "y");
-		}
+		//for (blocks in _player) {
+		//	FlxG.watch.add(blocks, "y");
+		//}
 		super.create();
 	}
 
 	override public function update(elapsed:Float):Void
 	{
+		
 		if (FlxG.keys.justPressed.O) {
-			updateLevel(-1);
+			updateLevel(-1);	
 		}
 		
 		if (FlxG.keys.justPressed.P) {
@@ -172,13 +174,12 @@ class PlayState extends FlxState
 			Block1.destroy();
 			Block2.destroy();
 			if (_player.countLiving() == 0) {
-			Timer.cancel();
-			var num:Float = Timer.elapsedTime;
-			num = num * Math.pow(10, 2);
-			num = Math.round(num) / Math.pow(10, 2);
-			Data.bestTimes[Data.currLevel] = Math.min(num, Data.bestTimes[Data.currLevel]);
-			bestTime.text = "Best time: " + Data.bestTimes[Data.currLevel];
-		}
+				Timer.cancel();
+				var num = formatTime(Timer.elapsedTime);
+				Data.bestTimes[Data.currLevel] = Math.min(num, Data.bestTimes[Data.currLevel]);
+				bestTime.text = "Best time: " + Data.bestTimes[Data.currLevel];
+				winScreen();
+			}
 		} else {
 			if (Block1.exists && Block2.exists) {
 				FlxObject.separate(Block1, Block2);
@@ -206,5 +207,17 @@ class PlayState extends FlxState
 		}
 		Data.attempts = 0;
 		FlxG.switchState(new PlayState());
+	}
+	
+	private function formatTime(time:Float, ?numDecimals:Int=2):Float {
+		time = time * Math.pow(10, numDecimals);
+		time = Math.round(time) / Math.pow(10, numDecimals);
+		return time;
+	}
+	
+	private function winScreen() {
+		popup = new Popup_Simple(); //create the popup
+		popup.quickSetup("You beat the level!", "You beat the level in " + formatTime(Timer.elapsedTime) + " seconds. Good Job!", ["Main Menu", "Retry", "Next Level"]);
+		openSubState(popup);
 	}
 }
