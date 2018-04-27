@@ -10,10 +10,12 @@ class Player extends FlxSprite
 	//public var speed:Float = 200;
 	private var reverse:Int;
 	private var jumpSpeed:Int;
+	public var thisColor:Int;
 	
 	
-	public function new(?X:Float=0, ?Y:Float=0, ?R:Int=1) 
+	public function new(?X:Float=0, ?Y:Float=0, ?R:Int=1, ?Color:Int=0) 
 	{
+		thisColor = Color;
 		jumpSpeed = 1000;
 		// Checks to see if block should have reverse movement or not
 		reverse = R % 2 == 1 ? -1 : 1;

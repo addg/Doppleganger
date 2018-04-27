@@ -64,7 +64,7 @@
     </Tileset>
   </Tilesets>
   <EntityDefinitions>
-    <EntityDefinition Name="player" Limit="2" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+    <EntityDefinition Name="player" Limit="4" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
         <Width>25</Width>
         <Height>25</Height>
@@ -78,6 +78,7 @@
       </ImageDefinition>
       <ValueDefinitions>
         <ValueDefinition xsi:type="IntValueDefinition" Name="normal" Default="1" Min="0" Max="1" ShowSlider="false" />
+        <ValueDefinition xsi:type="IntValueDefinition" Name="color" Default="0" Min="0" Max="1" ShowSlider="false" />
       </ValueDefinitions>
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>

@@ -25,7 +25,6 @@ class PlayState extends FlxState
 	
 	override public function create():Void
 	{
-		
 		Timer = new FlxTimer();
 		// Old way
 		// Change to your level here by editing this value
@@ -109,13 +108,14 @@ class PlayState extends FlxState
 			Data.attempts++;
 			FlxG.resetState();
 		}
-		super.update(elapsed);
+		
 		
 		// Collisions for the blocks
 		FlxG.collide(_mWalls, _player);
 		FlxG.collide(_mWalls, _enemy);
 	
-		FlxG.overlap(_player, _player, joined);
+		
+		FlxG.overlap(_player, _player, collide);
 		FlxG.overlap(_player, _enemy, failed);
 		FlxG.overlap(_player, _spikes, failed);
 		
@@ -124,6 +124,8 @@ class PlayState extends FlxState
 				failed();
 			}
 		}
+		
+		super.update(elapsed);
 	}
 	
 	private function placeEntities(entityName:String, entityData:Xml):Void
@@ -132,16 +134,16 @@ class PlayState extends FlxState
 		// normal determines whether its a reverse block or not
 		 var x:Int = Std.parseInt(entityData.get("x"));
 		 var y:Int = Std.parseInt(entityData.get("y"));
-		 if (entityName == "player")
-		 {
+		 if (entityName == "player") {
 			// Creating an orange block
 			// We probably want to name the other colored block or have an value to change here
 			// Possibly var color:Int = Std.parseInt(entityData.get("color"));
+			var color:Int = Std.parseInt(entityData.get("color"));
 			var normal:Int = Std.parseInt(entityData.get("normal"));
 			if (normal == 1) {
-				_player.add(new Player(x, y, 0));
+				_player.add(new Player(x, y, 0 + color * 2, color));
 			} else {
-				_player.add(new Player(x, y, 1));
+				_player.add(new Player(x, y, 1 + color * 2, color));
 			}
 		 } else if (entityName == "enemy") {
 			// Creating an enemy block
@@ -156,9 +158,13 @@ class PlayState extends FlxState
 		 }
 	}
 	
-	private function joined(Block1:Player, Block2:Player):Void {
-		Block1.destroy();
-		Block2.destroy();
+	private function collide(Block1:Player, Block2:Player):Void {
+		if (Block1.thisColor == Block2.thisColor) {
+			Block1.destroy();
+			Block2.destroy();
+		} else {
+			FlxG.collide(Block1, Block2);
+		}
 		if (_player.countLiving() == 0) {
 			Timer.cancel();
 			var num:Float = Timer.elapsedTime;
