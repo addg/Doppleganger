@@ -20,6 +20,7 @@ class PlayState extends FlxState
 	private var failures:FlxText;
 	private var currTime:FlxText;
 	private var bestTime:FlxText;
+	private var levelCount:FlxText;
 	private var Timer:FlxTimer;
 	private var started:Bool = false;
 	private var popup:FlxUIPopup;
@@ -74,16 +75,21 @@ class PlayState extends FlxState
 		failures.text = "Attempts: " + Data.attempts;
 		add(failures);
 		
-		currTime = new FlxText(FlxG.width - 200, 2, 200);
+		currTime = new FlxText(FlxG.width - 200, 2 + 25, 200);
 		currTime.size = 16;
 		currTime.text = "Current time: " + 0.00;
 		add(currTime);
 		
-		bestTime = new FlxText(0, 2, 200);
-		bestTime.screenCenter(X);
+		bestTime = new FlxText(FlxG.width - 200, 2, 200);
 		bestTime.size = 16;
 		bestTime.text = "Best time: " + Data.bestTimes[Data.currLevel];
 		add(bestTime);
+		
+		levelCount = new FlxText(0, 2, 200);
+		levelCount.size = 16;
+		levelCount.screenCenter(X);
+		levelCount.text = "Level " + Data.currLevel;
+		add(levelCount);
 		
 		//for (blocks in _player) {
 		//	FlxG.watch.add(blocks, "y");
