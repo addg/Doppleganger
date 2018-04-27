@@ -26,6 +26,8 @@ class PlayState extends FlxState
 	override public function create():Void
 	{
 		Timer = new FlxTimer();
+		FlxObject.SEPARATE_BIAS = 15;
+		FlxG.worldBounds.set(500,500);
 		// Old way
 		// Change to your level here by editing this value
 		//                                           |
@@ -52,6 +54,7 @@ class PlayState extends FlxState
 		_mWalls.follow();
 		_mWalls.setTileProperties(1, FlxObject.NONE);
 		_mWalls.setTileProperties(2, FlxObject.ANY);
+		_mWalls.immovable = true;
 		add(_mWalls);
 		
 		_player = new FlxTypedGroup<Player>();
@@ -81,6 +84,9 @@ class PlayState extends FlxState
 		bestTime.text = "Best time: " + Data.bestTimes[Data.currLevel];
 		add(bestTime);
 		
+		for (blocks in _player) {
+			FlxG.watch.add(blocks, "y");
+		}
 		super.create();
 	}
 
@@ -109,19 +115,19 @@ class PlayState extends FlxState
 			FlxG.resetState();
 		}
 		
+		FlxG.overlap(_player, _player, collide);
+		FlxG.overlap(_player, _enemy, failed);
+		FlxG.overlap(_player, _spikes, failed);
 		
 		// Collisions for the blocks
 		FlxG.collide(_mWalls, _player);
 		FlxG.collide(_mWalls, _enemy);
 	
 		
-		FlxG.overlap(_player, _player, collide);
-		FlxG.overlap(_player, _enemy, failed);
-		FlxG.overlap(_player, _spikes, failed);
-		
 		for (blocks in _player) {
 			if (blocks.y > FlxG.height) {
 				failed();
+				break;
 			}
 		}
 		
@@ -162,16 +168,20 @@ class PlayState extends FlxState
 		if (Block1.thisColor == Block2.thisColor) {
 			Block1.destroy();
 			Block2.destroy();
-		} else {
-			FlxG.collide(Block1, Block2);
-		}
-		if (_player.countLiving() == 0) {
+			if (_player.countLiving() == 0) {
 			Timer.cancel();
 			var num:Float = Timer.elapsedTime;
 			num = num * Math.pow(10, 2);
 			num = Math.round(num) / Math.pow(10, 2);
 			Data.bestTimes[Data.currLevel] = Math.min(num, Data.bestTimes[Data.currLevel]);
 			bestTime.text = "Best time: " + Data.bestTimes[Data.currLevel];
+		}
+		} else {
+			if (Block1.exists && Block2.exists) {
+				FlxObject.separate(Block1, Block2);
+				Block1.setPosition(Block1.x, Math.ffloor(Block1.y) + 0.347);
+				Block2.setPosition(Block2.x, Math.ffloor(Block2.y) + 0.347);
+			}
 		}
 	}
 	
