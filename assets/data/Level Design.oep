@@ -16,7 +16,7 @@
     <Width>700</Width>
     <Height>500</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\JoTo\Desktop\CSE481\assets\data\Level Design.oep</Filename>
+  <Filename>C:\Users\addgr\Desktop\CSE481\Game\assets\data\Level Design.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>false</CameraEnabled>
   <CameraSize>
@@ -113,6 +113,40 @@
         <RectColor A="255" R="255" G="255" B="255" />
       </ImageDefinition>
       <ValueDefinitions />
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="lock" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>25</Width>
+        <Height>25</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\images\Locks.png" Tiled="false">
+        <RectColor A="255" R="255" G="128" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="IntValueDefinition" Name="color" Default="0" Min="0" Max="3" ShowSlider="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="key" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>25</Width>
+        <Height>15</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\images\Keys.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="IntValueDefinition" Name="color" Default="0" Min="0" Max="3" ShowSlider="false" />
+      </ValueDefinitions>
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>
   </EntityDefinitions>
