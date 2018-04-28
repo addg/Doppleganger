@@ -52,10 +52,10 @@ class MenuState extends FlxState
 		_txtRestart.screenCenter(X);
 		add(_txtRestart);
 		
-		_txtControls = new FlxText(_btnPlay.x - offset * 0.25, 20 + offset * 4.5, 0, "Move: \nJump: ", font_size - 15);
-		_sprUp = new FlxSprite(_btnPlay.x + offset * 2.25, 20 + offset * 5.0, "assets/images/up_arrow.png");
-		_sprLeft = new FlxSprite(_btnPlay.x + offset * 2, 20 + offset * 4.5, "assets/images/left_arrow.png");
-		_sprRight = new FlxSprite(_btnPlay.x + offset * 2.5, 20 + offset * 4.5, "assets/images/right_arrow.png");
+		_txtControls = new FlxText(_btnPlay.x - offset * 0.25, 20 + offset * 4.5, 0, "Jump: \nMove: ", font_size - 15);
+		_sprUp = new FlxSprite(_btnPlay.x + offset * 2.25, 20 + offset * 4.5, "assets/images/up_arrow.png");
+		_sprLeft = new FlxSprite(_btnPlay.x + offset * 2, 20 + offset * 5.0, "assets/images/left_arrow.png");
+		_sprRight = new FlxSprite(_btnPlay.x + offset * 2.5, 20 + offset * 5.0, "assets/images/right_arrow.png");
 		//_txtMove.loadGraphic("assets/images/keyboard_arrows.png");
 		//_txtJump.loadGraphic("assets/images/keyboard_arrow_up.png");
 		add(_txtControls);
