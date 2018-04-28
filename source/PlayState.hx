@@ -249,8 +249,14 @@ class PlayState extends FlxState
 	}
 	
 	private function winScreen() {
+		updateCompletedLevel();
 		popup = new Popup_Simple(); //create the popup
 		popup.quickSetup("You beat the level!", "You beat the level in " + formatTime(Timer.elapsedTime) + " seconds. Good Job!", ["Main Menu", "Retry", "Next Level"]);
 		openSubState(popup);
+	}
+	
+	// This is currently called in winScreen()
+	private function updateCompletedLevel() {
+		Data.completedLevel[Data.currLevel] = true;
 	}
 }

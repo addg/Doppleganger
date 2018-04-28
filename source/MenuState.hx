@@ -62,7 +62,6 @@ class MenuState extends FlxState
 		add(_sprUp);
 		add(_sprLeft);
 		add(_sprRight);
-		Data.resetBestTimes();
 		super.create();
 	}
 

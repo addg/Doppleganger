@@ -9,5 +9,7 @@ class Main extends Sprite
 	{
 		super();
 		addChild(new FlxGame(700, 500, MenuState));
+		Data.resetBestTimes();
+		Data.resetLevelCompletionStatus();
 	}
 }
