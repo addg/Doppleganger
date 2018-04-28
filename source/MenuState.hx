@@ -78,6 +78,6 @@ class MenuState extends FlxState
 	
 	private function clickLevel():Void
 	{
-		//go to level screen
+		FlxG.switchState(new LevelState());
 	}
 }
