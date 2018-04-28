@@ -16,6 +16,9 @@ class Lock extends FlxSprite
 	
 	public function new(?X:Float=0, ?Y:Float=0, color:Int) 
 	{
+		moves = false;
+		immovable = true;
+		thisColor = color;
 		super(X, Y);
 		loadGraphic(AssetPaths.Locks__png, true, 25, 25);
 		animation.add("type", [color], 6, false);

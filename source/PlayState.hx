@@ -15,6 +15,8 @@ class PlayState extends FlxState
 	private var _player:FlxTypedGroup<Player>;
 	private var _enemy:FlxTypedGroup<Player>;
 	private var _spikes:FlxTypedGroup<Spikes>;
+	private var _lock:FlxTypedGroup<Lock>;
+	private var _key:FlxTypedGroup<Key>;
 	private var _map:FlxOgmoLoader;
 	private var _mWalls:FlxTilemap;
 	private var failures:FlxText;
@@ -56,7 +58,6 @@ class PlayState extends FlxState
 		_mWalls.follow();
 		_mWalls.setTileProperties(1, FlxObject.NONE);
 		_mWalls.setTileProperties(2, FlxObject.ANY);
-		_mWalls.immovable = true;
 		add(_mWalls);
 		
 		_player = new FlxTypedGroup<Player>();
@@ -67,6 +68,12 @@ class PlayState extends FlxState
 		
 		_enemy = new FlxTypedGroup<Player>();
 		add(_enemy);
+		
+		_lock = new FlxTypedGroup<Lock>();
+		add(_lock);
+		
+		_key = new FlxTypedGroup<Key>();
+		add(_key);
 		
 		_map.loadEntities(placeEntities, "entities");
 		
@@ -123,13 +130,16 @@ class PlayState extends FlxState
 			FlxG.resetState();
 		}
 		
-		FlxG.overlap(_player, _player, collide);
+		FlxG.overlap(_player, _player, blocksCollide);
 		FlxG.overlap(_player, _enemy, failed);
 		FlxG.overlap(_player, _spikes, failed);
+		FlxG.overlap(_player, _key, playerCollideKey);
 		
 		// Collisions for the blocks
 		FlxG.collide(_mWalls, _player);
 		FlxG.collide(_mWalls, _enemy);
+		FlxG.collide(_player, _lock);
+		FlxG.collide(_lock, _enemy);
 	
 		
 		for (blocks in _player) {
@@ -172,10 +182,16 @@ class PlayState extends FlxState
 			}
 		 } else if (entityName == "spikes") {
 			 _spikes.add(new Spikes(x, y + 17));
+		 } else if (entityName == "lock") {
+			 var color:Int = Std.parseInt(entityData.get("color"));
+			 _lock.add(new Lock(x, y, color));
+		 } else if (entityName == "key") {
+			 var color:Int = Std.parseInt(entityData.get("color"));
+			 _key.add(new Key(x, y, color));
 		 }
 	}
 	
-	private function collide(Block1:Player, Block2:Player):Void {
+	private function blocksCollide(Block1:Player, Block2:Player):Void {
 		if (Block1.thisColor == Block2.thisColor) {
 			Block1.destroy();
 			Block2.destroy();
@@ -199,6 +215,16 @@ class PlayState extends FlxState
 		// Display message here and wait for them to click retry? Maybe instantly restart?
 		Data.attempts++;
 		FlxG.resetState();
+	}
+	
+	private function playerCollideKey(player:Player, key:Key):Void {
+		var keyColor:Int = key.thisColor;
+		key.destroy();
+		for (lock in _lock.members) {
+			if (lock.thisColor == keyColor) {
+				lock.destroy();
+			}
+		}
 	}
 	
 	// i SHOULD always be either -1 or 1, but you can input any value
