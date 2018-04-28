@@ -217,6 +217,7 @@ class PlayState extends FlxState
 		FlxG.resetState();
 	}
 	
+	// Stores the key's color, then destroys the key and all locks with the same color
 	private function playerCollideKey(player:Player, key:Key):Void {
 		var keyColor:Int = key.thisColor;
 		key.destroy();

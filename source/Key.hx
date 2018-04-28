@@ -6,7 +6,7 @@ import flixel.FlxSprite;
 class Key extends FlxSprite 
 {
 	
-	// Color:
+	// Color: SET THIS IN OGMO
 	// 0 = Yellow
 	// 1 = Green
 	// 2 = Red
@@ -16,8 +16,9 @@ class Key extends FlxSprite
 	
 	public function new(?X:Float=0, ?Y:Float=0, color:Int) 
 	{
-		thisColor = color;
 		super(X, Y);
+		
+		thisColor = color;
 		loadGraphic(AssetPaths.Keys__png, true, 25, 15);
 		animation.add("type", [color], 6, false);
 		animation.play("type");

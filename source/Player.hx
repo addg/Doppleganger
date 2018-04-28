@@ -16,12 +16,15 @@ class Player extends FlxSprite
 	
 	public function new(?X:Float=0, ?Y:Float=0, ?R:Int=1, ?Color:Int=0, ?CanMove:Int = 1) 
 	{
+		
+		super(X, Y);
+		
 		movementAllowed = CanMove == 1 ? true : false;
+		
 		thisColor = Color;
 		jumpSpeed = 1000;
 		// Checks to see if block should have reverse movement or not
 		reverse = R % 2 == 1 ? -1 : 1;
-		super(X, Y);
 		loadGraphic(AssetPaths.blocks__png, true, 25, 25);
 		maxVelocity.x = 250;
 		maxVelocity.y = 600;
