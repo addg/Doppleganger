@@ -20,7 +20,7 @@
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1</walls>
   <entities>
-    <player id="2" x="250" y="375" normal="1" />
-    <player id="0" x="300" y="375" normal="1" />
+    <player id="2" x="250" y="375" normal="1" color="0" sleepy="0" />
+    <player id="0" x="300" y="375" normal="1" color="0" sleepy="0" />
   </entities>
 </level>
