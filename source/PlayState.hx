@@ -25,7 +25,8 @@ class PlayState extends FlxState
 	private var levelCount:FlxText;
 	private var Timer:FlxTimer;
 	private var started:Bool = false;
-	private var popup:FlxUIPopup;
+	private var beatLevelPopup:FlxUIPopup;
+	private var pauseMenuPopup:FlxUIPopup;
 	
 	override public function create():Void
 	{
@@ -115,6 +116,10 @@ class PlayState extends FlxState
 			updateLevel(1);
 		}
 		
+		if (FlxG.keys.justPressed.ESCAPE) {
+			pauseMenu();
+		}
+		
 		if (FlxG.keys.anyJustPressed([UP, LEFT, RIGHT, W, A, D, SPACE]) && !started) {
 			started = true;
 			Timer.start(100, null, 0);
@@ -128,6 +133,12 @@ class PlayState extends FlxState
 		if (FlxG.keys.justPressed.R) {
 			Data.attempts++;
 			FlxG.resetState();
+		}
+		
+		// If the game is ever paused, it sets the timer to be inactive
+		// Popup_Pause.hx functions set Data.paused to be false for resuming
+		if (!Timer.active && !Data.paused) {
+			Timer.active = true;
 		}
 		
 		FlxG.overlap(_player, _player, blocksCollide);
@@ -250,13 +261,21 @@ class PlayState extends FlxState
 	
 	private function winScreen() {
 		updateCompletedLevel();
-		popup = new Popup_Simple(); //create the popup
-		popup.quickSetup("You beat the level!", "You beat the level in " + formatTime(Timer.elapsedTime) + " seconds. Good Job!", ["Main Menu", "Retry", "Next Level"]);
-		openSubState(popup);
+		beatLevelPopup = new Popup_Simple(); //create the popup
+		beatLevelPopup.quickSetup("You beat the level!", "You beat the level in " + formatTime(Timer.elapsedTime) + " seconds. Good Job!", ["Main Menu", "Retry", "Next Level"]);
+		openSubState(beatLevelPopup);
 	}
 	
 	// This is currently called in winScreen()
 	private function updateCompletedLevel() {
 		Data.completedLevel[Data.currLevel] = true;
+	}
+	
+	private function pauseMenu():Void {
+		Data.paused = true;
+		Timer.active = false;
+		pauseMenuPopup = new Popup_Pause(); //create the popup
+		pauseMenuPopup.quickSetup("Pause Menu", "", ["Main Menu", "Retry", "Unpause"]);
+		openSubState(pauseMenuPopup);
 	}
 }

@@ -11,6 +11,8 @@ class Data
 	
 	public static var completedLevel:Array<Bool> = new Array();
 	
+	public static var paused:Bool = false;
+	
 	// Currently called in Main.hx
 	public static function resetBestTimes() {
 		// Index 1 = level 1
