@@ -5,6 +5,10 @@ class Popup_Simple extends FlxUIPopup
 {
 	public override function create():Void
 	{
+		
+		//FlxG.mouse.enabled = true;
+		FlxG.mouse.visible = true;
+		
 		// These do unneccessary things
 		//_xml_id = "default_popup";
 		super.create();

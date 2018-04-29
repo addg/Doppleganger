@@ -39,6 +39,9 @@ class PlayState extends FlxState
 	{
 		super.create();
 		
+		//FlxG.mouse.enabled = false;
+		FlxG.mouse.visible = false;
+		
 		Data.incAttempt();
 		
 		Timer = new FlxTimer();
@@ -71,6 +74,10 @@ class PlayState extends FlxState
 		_mWalls.setTileProperties(1, FlxObject.NONE);
 		_mWalls.setTileProperties(2, FlxObject.ANY);
 		_mWalls.setTileProperties(3, FlxObject.ANY);
+		_mWalls.setTileProperties(4, FlxObject.NONE);
+		_mWalls.setTileProperties(5, FlxObject.NONE);
+		_mWalls.setTileProperties(6, FlxObject.NONE);
+		_mWalls.setTileProperties(7, FlxObject.NONE);
 		add(_mWalls);
 		
 		_player = new FlxTypedGroup<Player>();

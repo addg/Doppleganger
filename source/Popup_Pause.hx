@@ -9,6 +9,8 @@ class Popup_Pause extends FlxUIPopup
 {
 	public override function create():Void
 	{
+		//FlxG.mouse.enabled = true;
+		FlxG.mouse.visible = true;
 		// These do unneccessary things
 		//_xml_id = "default_popup";
 		super.create();
@@ -57,11 +59,13 @@ class Popup_Pause extends FlxUIPopup
 		Main.LOGGER.logLevelAction(LoggingActions.RESTART, {time: Date.now().toString(), reason: "Manual"});
 		Data.paused = false;
 		Data.attempts += 1;
+		FlxG.mouse.visible = false;
 		FlxG.switchState(new PlayState());
 	}
 	
 	private function closePauseMenu() {
 		Data.paused = false;
+		FlxG.mouse.visible = false;
 		close();
 	}
 }

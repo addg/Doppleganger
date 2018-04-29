@@ -25,6 +25,10 @@ class MenuState extends FlxState
 	
 	override public function create():Void
 	{
+		
+		//FlxG.mouse.enabled = true;
+		FlxG.mouse.visible = true;
+		
 		_txtTitle = new FlxText(20, 20, 0, "Too Many Blocks!", font_size);
 		_txtTitle.alignment = CENTER;
 		_txtTitle.screenCenter(X);
