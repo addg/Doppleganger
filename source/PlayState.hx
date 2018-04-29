@@ -269,6 +269,10 @@ class PlayState extends FlxState
 	// This is currently called in winScreen()
 	private function updateCompletedLevel() {
 		Data.completedLevel[Data.currLevel] = true;
+		
+		if (Data.currLevel + 1 <= Data.amtLevels) {
+			Data.canPlayLevel[Data.currLevel + 1] = true;
+		}
 	}
 	
 	// Creates the pause menu, sets timer to inactive and Data.paused to true

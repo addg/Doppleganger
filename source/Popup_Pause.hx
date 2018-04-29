@@ -37,12 +37,17 @@ class Popup_Pause extends FlxUIPopup
 		if (FlxG.keys.justPressed.ESCAPE) {
 			closePauseMenu();
 		}
+		
+		if (FlxG.keys.justPressed.R) {
+			loadCurrentLevel();
+		}
+		
 		super.update(elapsed);
 	}
 	
 	private function loadMainMenu():Void {
 		Data.paused = false;
-		Data.attempts = 0;
+		Data.attempts = 1;
 		FlxG.switchState(new MenuState());
 	}
 	

@@ -32,13 +32,21 @@ class Popup_Simple extends FlxUIPopup
 		}
 	}
 	
+	override public function update(elapsed:Float):Void {
+		
+		if (FlxG.keys.justPressed.R) {
+			loadCurrentLevel();
+		}
+		
+		super.update(elapsed);
+	}
+	
 	private function loadMainMenu():Void {
-		Data.attempts = 0;
+		Data.attempts = 1;
 		FlxG.switchState(new MenuState());
 	}
 	
 	private function loadCurrentLevel():Void {
-		Data.attempts = 0;
 		FlxG.switchState(new PlayState());
 	}
 	
@@ -49,7 +57,7 @@ class Popup_Simple extends FlxUIPopup
 			Data.currLevel = Data.amtLevels;
 		}
 		
-		Data.attempts = 0;
+		Data.attempts = 1;
 		FlxG.switchState(new PlayState());
 	}
 }
