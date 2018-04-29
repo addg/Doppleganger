@@ -55,7 +55,7 @@ class Player extends FlxSprite
 			Main.LOGGER.logLevelAction(LoggingActions.PLAYER_MOVE, {direction: "right"});
 			acceleration.x = maxVelocity.x * reverse * 10;
 		}
-		if ((FlxG.keys.anyPressed([UP, "SPACE", W])) && isTouching(FlxObject.DOWN)) {
+		if ((FlxG.keys.anyJustPressed([UP, "SPACE", W])) && isTouching(FlxObject.DOWN)) {
 			Main.LOGGER.logLevelAction(LoggingActions.PLAYER_MOVE, {direction: "jump"});
 			velocity.y = -jumpSpeed;
 		}
