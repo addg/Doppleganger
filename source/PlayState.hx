@@ -31,6 +31,7 @@ class PlayState extends FlxState
 	private var pauseMenuPopup:FlxUIPopup;
 	
 	private var fellOffMap:Bool = false;
+	private var die:Bool = false;
 	
 	private var _emitter:FlxEmitter;
 	
@@ -69,6 +70,7 @@ class PlayState extends FlxState
 		_mWalls.follow();
 		_mWalls.setTileProperties(1, FlxObject.NONE);
 		_mWalls.setTileProperties(2, FlxObject.ANY);
+		_mWalls.setTileProperties(3, FlxObject.ANY);
 		add(_mWalls);
 		
 		_player = new FlxTypedGroup<Player>();
@@ -108,10 +110,7 @@ class PlayState extends FlxState
 		levelCount.screenCenter(X);
 		levelCount.text = "Level " + Data.currLevel;
 		add(levelCount);
-		
-		//for (blocks in _player) {
-		//	FlxG.watch.add(blocks, "y");
-		//}
+
 		
 		_emitter = new FlxEmitter(FlxG.width / 2, FlxG.height / 2, 200);
 		_emitter.lifespan.set(0.1, 0.8);
@@ -262,13 +261,17 @@ class PlayState extends FlxState
 		
 		// Display message here and wait for them to click retry? Maybe instantly restart?
 		Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, {time: Date.now().toString(), reason: "Enemy", enemyCoord: "" + Enemy.x + " " + Enemy.y});
-		resetLevel();
+		if (!die) {
+			die = true;
+			resetLevel();
+		}
+		
 		//Data.attempts++;
 		//FlxG.resetState();
 	}
 	
 	private function failedSpike(?Block:Player, ?Spike:Spikes):Void {
-		
+		FlxG.log.add("SPIKES COLLIDE");
 		var x:Float = Block.x + (Block.width / 2);
 		var y:Float = Block.y + (Block.height / 2);
 		Block.destroy();
@@ -276,8 +279,10 @@ class PlayState extends FlxState
 		
 		// Display message here and wait for them to click retry? Maybe instantly restart?
 		Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, {time: Date.now().toString(), reason: "Spikes", spikeCoord: "" + Spike.x + " " + Spike.y});
-		
-		resetLevel();
+		if (!die) {
+			die = true;
+			resetLevel();
+		}
 		//Data.attempts++;
 		//FlxG.resetState();
 	}
@@ -303,7 +308,7 @@ class PlayState extends FlxState
 		} else if (Data.currLevel > Data.amtLevels) {
 			Data.currLevel = Data.amtLevels;
 		}
-		Data.attempts = 0;
+		Data.attempts = 1;
 		FlxG.switchState(new PlayState());
 	}
 	
