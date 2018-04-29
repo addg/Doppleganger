@@ -4,6 +4,8 @@ import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxState;
 import flixel.addons.editors.ogmo.FlxOgmoLoader;
+import flixel.effects.particles.FlxEmitter;
+import flixel.util.FlxColor;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
 import flixel.tile.FlxTilemap;
@@ -28,9 +30,16 @@ class PlayState extends FlxState
 	private var beatLevelPopup:FlxUIPopup;
 	private var pauseMenuPopup:FlxUIPopup;
 	
+	private var fellOffMap:Bool = false;
+	
+	private var _emitter:FlxEmitter;
+	
 	override public function create():Void
 	{
+		super.create();
+		
 		Data.incAttempt();
+		
 		Timer = new FlxTimer();
 		FlxObject.SEPARATE_BIAS = 15;
 		FlxG.worldBounds.set(500,500);
@@ -103,7 +112,15 @@ class PlayState extends FlxState
 		//for (blocks in _player) {
 		//	FlxG.watch.add(blocks, "y");
 		//}
-		super.create();
+		
+		_emitter = new FlxEmitter(FlxG.width / 2, FlxG.height / 2, 200);
+		_emitter.lifespan.set(0.1, 0.8);
+		_emitter.launchAngle.set(-150, -30);
+		_emitter.acceleration.start.min.y = 200;
+		_emitter.acceleration.start.max.y = 400;
+		_emitter.acceleration.end.min.y = 200;
+		_emitter.acceleration.end.max.y = 400;
+		add(_emitter);
 	}
 
 	override public function update(elapsed:Float):Void
@@ -154,13 +171,20 @@ class PlayState extends FlxState
 		FlxG.collide(_player, _lock);
 		FlxG.collide(_lock, _enemy);
 	
-		
-		for (blocks in _player) {
-			if (blocks.y > FlxG.height) {
-				Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, {time: Date.now().toString(), reason: "Fell off"});
-				Data.attempts++;
-				FlxG.resetState();
-				break;
+		// When the player would fall off the map, this for loop
+		// would keep getting called causing the death animation
+		// to be called many times. This makes it so once a player
+		// falls off, this stops getting run through
+		if (!fellOffMap) {
+			for (blocks in _player) {
+				if (blocks.y > FlxG.height) {
+					fellOffMap = true;
+					var x:Float = blocks.x;
+					blocks.destroy();
+					spawnParticles(x, FlxG.height - 10, FlxColor.RED);
+					Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, {time: Date.now().toString(), reason: "Fell off"});
+					resetLevel();
+				}
 			}
 		}
 		
@@ -208,8 +232,11 @@ class PlayState extends FlxState
 	
 	private function blocksCollide(Block1:Player, Block2:Player):Void {
 		if (Block1.thisColor == Block2.thisColor) {
+			var x:Float = (Block1.x + Block2.x) / 2 + 12.5;
+			var y:Float = (Block1.y + Block2.y) / 2;
 			Block1.destroy();
 			Block2.destroy();
+			spawnParticles(x, y, FlxColor.YELLOW);
 			if (_player.countLiving() == 0) {
 				Timer.cancel();
 				var num = formatTime(Timer.elapsedTime);
@@ -227,17 +254,32 @@ class PlayState extends FlxState
 	}
 	
 	private function failedEnemy(?Block1:Player, ?Enemy:Player):Void {
+		
+		var x:Float = Block1.x;
+		var y:Float = Block1.y;
+		Block1.destroy();
+		spawnParticles(x, y, FlxColor.RED);
+		
 		// Display message here and wait for them to click retry? Maybe instantly restart?
 		Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, {time: Date.now().toString(), reason: "Enemy", enemyCoord: "" + Enemy.x + " " + Enemy.y});
-		Data.attempts++;
-		FlxG.resetState();
+		resetLevel();
+		//Data.attempts++;
+		//FlxG.resetState();
 	}
 	
 	private function failedSpike(?Block:Player, ?Spike:Spikes):Void {
+		
+		var x:Float = Block.x + (Block.width / 2);
+		var y:Float = Block.y + (Block.height / 2);
+		Block.destroy();
+		spawnParticles(x, y, FlxColor.RED);
+		
 		// Display message here and wait for them to click retry? Maybe instantly restart?
 		Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, {time: Date.now().toString(), reason: "Spikes", spikeCoord: "" + Spike.x + " " + Spike.y});
-		Data.attempts++;
-		FlxG.resetState();
+		
+		resetLevel();
+		//Data.attempts++;
+		//FlxG.resetState();
 	}
 	
 	// Stores the key's color, then destroys the key and all locks with the same color
@@ -273,6 +315,14 @@ class PlayState extends FlxState
 	
 	private function winScreen() {
 		updateCompletedLevel();
+		
+		stopMovement();
+		var endLevelTimer:FlxTimer = new FlxTimer();
+		endLevelTimer.start(1, winScreenCallback, 1);
+	}
+	
+	// Don't call this
+	private function winScreenCallback(timer:FlxTimer) {
 		beatLevelPopup = new Popup_Simple(); //create the popup
 		beatLevelPopup.quickSetup("You beat the level!", "You beat the level in " + formatTime(Timer.elapsedTime) + " seconds. Good Job!", ["Main Menu", "Retry", "Next Level"]);
 		openSubState(beatLevelPopup);
@@ -294,5 +344,44 @@ class PlayState extends FlxState
 		pauseMenuPopup = new Popup_Pause(); //create the popup
 		pauseMenuPopup.quickSetup("Pause Menu", "", ["Main Menu", "Retry", "Unpause"]);
 		openSubState(pauseMenuPopup);
+	}
+	
+	// Spawns particles at x, y
+	private function spawnParticles(x:Float, y:Float, ?color:FlxColor = FlxColor.WHITE):Void {
+		_emitter.x = x;
+		_emitter.y = y;
+		_emitter.makeParticles(2, 2, color, 200);
+		_emitter.start(true, 0.01, 0);
+	}
+	
+	// Call when you want to reset the level, 0.5 sec delay
+	private function resetLevel() {
+		stopMovement();
+		var endLevelTimer:FlxTimer = new FlxTimer();
+		endLevelTimer.start(0.5, resetLevelCallback, 1);
+	}
+	
+	// Don't call this
+	private function resetLevelCallback(timer:FlxTimer):Void {
+		Data.attempts++;
+		FlxG.resetState();
+	}
+	
+	// Makes it so all players and enemies can't move
+	private function stopMovement():Void {
+		for (player in _player) {
+			if (player.exists) {
+				player.movementAllowed = false;
+				player.velocity.x = 0;
+				player.acceleration.x = 0;
+			}
+		}
+		for (enemy in _enemy) {
+			if (enemy.exists) {
+				enemy.movementAllowed = false;
+				enemy.velocity.x = 0;
+				enemy.acceleration.x = 0;
+			}
+		}
 	}
 }
