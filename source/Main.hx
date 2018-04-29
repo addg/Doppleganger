@@ -38,6 +38,7 @@ class Main extends Sprite
 		Data.resetBestTimes();
 		Data.resetLevelCompletionStatus();
 		Data.resetCanPlayLevel();
+		Data.resetAmountPlayed();
 	}
 
 }
