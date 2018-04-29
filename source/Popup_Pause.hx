@@ -1,6 +1,10 @@
 import flixel.addons.ui.FlxUIPopup;
 import flixel.FlxG;
 
+
+// Popup for a pause menu. Currently the body is empty, if we want to write anything there we can.
+// To write to the body you have to edit PlayState.hx near where this class is instantiated in the quicksetup method.
+
 class Popup_Pause extends FlxUIPopup
 {
 	public override function create():Void
@@ -13,13 +17,10 @@ class Popup_Pause extends FlxUIPopup
 	
 	public override function getEvent(id:String, target:Dynamic, data:Dynamic, ?params:Array<Dynamic>):Void 
 	{
-		FlxG.log.add("We went into getEvent");
 		if (params != null)
 		{
-			FlxG.log.add("id: " + id);
 			if (id == "click_button"){
 				var i:Int = cast params[0];
-				FlxG.log.add("i = " + i);
 				switch (i)
 				{
 					

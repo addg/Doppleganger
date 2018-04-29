@@ -271,6 +271,7 @@ class PlayState extends FlxState
 		Data.completedLevel[Data.currLevel] = true;
 	}
 	
+	// Creates the pause menu, sets timer to inactive and Data.paused to true
 	private function pauseMenu():Void {
 		Data.paused = true;
 		Timer.active = false;
