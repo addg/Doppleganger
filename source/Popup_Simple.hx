@@ -9,6 +9,12 @@ class Popup_Simple extends FlxUIPopup
 		//_xml_id = "default_popup";
 		super.create();
 		//_ui.setMode("IDKWhatThisDoes");
+		
+		// Records the they won
+		Main.LOGGER.logLevelEnd({win: true, level: Data.currLevel, endTime: Date.now().toString()});
+		
+		// If this gives way too much data, comment out and use the one in loadNextLevel();
+		Data.logData();
 	}
 	
 	public override function getEvent(id:String, target:Dynamic, data:Dynamic, ?params:Array<Dynamic>):Void 
@@ -47,12 +53,15 @@ class Popup_Simple extends FlxUIPopup
 	}
 	
 	private function loadCurrentLevel():Void {
+		Main.LOGGER.logLevelAction(LoggingActions.RESTART, {time: Date.now().toString(), reason: "Retrying won level"});
 		FlxG.switchState(new PlayState());
 	}
 	
 	private function loadNextLevel():Void {
-		Data.currLevel += 1;
+		//Data.logData();
 		
+		Data.currLevel += 1;
+		Main.LOGGER.logLevelStart(Data.currLevel, {Start: Date.now().toString()});
 		if (Data.currLevel > Data.amtLevels) {
 			Data.currLevel = Data.amtLevels;
 		}

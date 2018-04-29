@@ -47,13 +47,16 @@ class Player extends FlxSprite
 	private function movement():Void
 	{
 		acceleration.x = 0;
-		if (FlxG.keys.anyPressed([LEFT, A]) && !FlxG.keys.anyPressed([RIGHT,D])) {
+		if (FlxG.keys.anyPressed([LEFT, A]) && !FlxG.keys.anyPressed([RIGHT, D])) {
+			Main.LOGGER.logLevelAction(LoggingActions.PLAYER_MOVE, {direction: "left"});
 			acceleration.x = -maxVelocity.x * reverse * 10;
 		}
-		if (FlxG.keys.anyPressed([RIGHT,D]) && !FlxG.keys.anyPressed([LEFT, A])) {
+		if (FlxG.keys.anyPressed([RIGHT, D]) && !FlxG.keys.anyPressed([LEFT, A])) {
+			Main.LOGGER.logLevelAction(LoggingActions.PLAYER_MOVE, {direction: "right"});
 			acceleration.x = maxVelocity.x * reverse * 10;
 		}
 		if ((FlxG.keys.anyPressed([UP, "SPACE", W])) && isTouching(FlxObject.DOWN)) {
+			Main.LOGGER.logLevelAction(LoggingActions.PLAYER_MOVE, {direction: "jump"});
 			velocity.y = -jumpSpeed;
 		}
 	}

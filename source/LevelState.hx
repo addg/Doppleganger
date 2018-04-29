@@ -29,6 +29,7 @@ class LevelState extends FlxState
 	private function clickLevel(level:Int):Void
 	{
 		Data.currLevel = level;
+		Main.LOGGER.logLevelStart(Data.currLevel, {Start: Date.now().toString()});
 		FlxG.switchState(new PlayState());
 	}
 	

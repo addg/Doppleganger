@@ -30,6 +30,7 @@ class PlayState extends FlxState
 	
 	override public function create():Void
 	{
+		Data.incAttempt();
 		Timer = new FlxTimer();
 		FlxObject.SEPARATE_BIAS = 15;
 		FlxG.worldBounds.set(500,500);
@@ -131,6 +132,7 @@ class PlayState extends FlxState
 			currTime.text = "Current time: " + num;
 		}
 		if (FlxG.keys.justPressed.R) {
+			Main.LOGGER.logLevelAction(LoggingActions.RESTART, {time: Date.now().toString(), reason: "Manual"});
 			Data.attempts++;
 			FlxG.resetState();
 		}
@@ -142,8 +144,8 @@ class PlayState extends FlxState
 		}
 		
 		FlxG.overlap(_player, _player, blocksCollide);
-		FlxG.overlap(_player, _enemy, failed);
-		FlxG.overlap(_player, _spikes, failed);
+		FlxG.overlap(_player, _enemy, failedEnemy);
+		FlxG.overlap(_player, _spikes, failedSpike);
 		FlxG.overlap(_player, _key, playerCollideKey);
 		
 		// Collisions for the blocks
@@ -155,7 +157,9 @@ class PlayState extends FlxState
 		
 		for (blocks in _player) {
 			if (blocks.y > FlxG.height) {
-				failed();
+				Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, {time: Date.now().toString(), reason: "Fell off"});
+				Data.attempts++;
+				FlxG.resetState();
 				break;
 			}
 		}
@@ -222,8 +226,16 @@ class PlayState extends FlxState
 		}
 	}
 	
-	private function failed(?Block1:Player, ?Block2:Player):Void {
+	private function failedEnemy(?Block1:Player, ?Enemy:Player):Void {
 		// Display message here and wait for them to click retry? Maybe instantly restart?
+		Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, {time: Date.now().toString(), reason: "Enemy", enemyCoord: "" + Enemy.x + " " + Enemy.y});
+		Data.attempts++;
+		FlxG.resetState();
+	}
+	
+	private function failedSpike(?Block:Player, ?Spike:Spikes):Void {
+		// Display message here and wait for them to click retry? Maybe instantly restart?
+		Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, {time: Date.now().toString(), reason: "Spikes", spikeCoord: "" + Spike.x + " " + Spike.y});
 		Data.attempts++;
 		FlxG.resetState();
 	}
