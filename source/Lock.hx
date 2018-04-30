@@ -29,6 +29,4 @@ class Lock extends FlxSprite
 	{
 		super.update(elapsed);
 	}
-	
-	
 }

@@ -347,7 +347,7 @@ class PlayState extends FlxState
 	// Don't call this
 	private function winScreenCallback(timer:FlxTimer) {
 		beatLevelPopup = new Popup_Simple(); //create the popup
-		beatLevelPopup.quickSetup("You beat the level!", "You beat the level in " + formatTime(Timer.elapsedTime) + " seconds. Good Job!", ["Main Menu", "Retry", "Next Level"]);
+		beatLevelPopup.quickSetup("You beat the level!", "You beat the level in " + formatTime(Timer.elapsedTime) + " seconds. Good Job!", ["Main Menu [M]", "Retry [R]", "Next Level [SPACE]"]);
 		openSubState(beatLevelPopup);
 	}
 	
@@ -365,7 +365,7 @@ class PlayState extends FlxState
 		Data.paused = true;
 		Timer.active = false;
 		pauseMenuPopup = new Popup_Pause(); //create the popup
-		pauseMenuPopup.quickSetup("Pause Menu", "", ["Main Menu", "Retry", "Unpause"]);
+		pauseMenuPopup.quickSetup("Pause Menu", "", ["Main Menu [M]", "Retry [R]", "Resume [SPACE]"]);
 		openSubState(pauseMenuPopup);
 	}
 	

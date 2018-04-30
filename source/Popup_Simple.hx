@@ -48,6 +48,14 @@ class Popup_Simple extends FlxUIPopup
 			loadCurrentLevel();
 		}
 		
+		if (FlxG.keys.justPressed.M) {
+			loadMainMenu();
+		}
+		
+		if (FlxG.keys.anyJustPressed([ENTER, SPACE])) {
+			loadNextLevel();
+		}
+		
 		super.update(elapsed);
 	}
 	

@@ -40,6 +40,10 @@ class Popup_Pause extends FlxUIPopup
 			closePauseMenu();
 		}
 		
+		if (FlxG.keys.justPressed.M) {
+			loadMainMenu();
+		}
+		
 		if (FlxG.keys.justPressed.R) {
 			loadCurrentLevel();
 		}
