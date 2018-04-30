@@ -3,7 +3,7 @@ package;
 class Data 
 {
 	/* Please increment amtLevels when you create a new level! */
-	public static var amtLevels:Int = 19;
+	public static var amtLevels:Int = 25;
 	
 	public static var attempts:Int = 1;
 	public static var currLevel:Int = 1;
