@@ -311,9 +311,7 @@ class PlayState extends FlxState
 		// incase block is ontop of lock...
 		if (!player.isTouching(FlxObject.DOWN) && !lock.isTouching(FlxObject.UP)) {
 			if (player.x > lock.x) {
-				player.x = player.x + 2.5;
-			} else {
-				player.x = player.x - 2.5;
+				player.x = player.x + 1.25;
 			}
 		}
 	}

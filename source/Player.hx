@@ -49,7 +49,11 @@ class Player extends FlxSprite
 		acceleration.x = 0;
 		if (FlxG.keys.anyPressed([LEFT, A]) && !FlxG.keys.anyPressed([RIGHT, D])) {
 			Main.LOGGER.logLevelAction(LoggingActions.PLAYER_MOVE, {direction: "left"});
-			acceleration.x = -maxVelocity.x * reverse * 10;
+			if (isTouching(FlxObject.LEFT) && !isTouching(FlxObject.FLOOR)) {
+				acceleration.x = 1000;
+			} else {
+				acceleration.x = -maxVelocity.x * reverse * 10;
+			}
 		}
 		if (FlxG.keys.anyPressed([RIGHT, D]) && !FlxG.keys.anyPressed([LEFT, A])) {
 			Main.LOGGER.logLevelAction(LoggingActions.PLAYER_MOVE, {direction: "right"});

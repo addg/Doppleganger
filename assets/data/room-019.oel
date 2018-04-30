@@ -22,14 +22,14 @@
   <entities>
     <player id="0" x="525" y="350" normal="1" color="0" sleepy="0" />
     <player id="1" x="525" y="200" normal="1" color="0" sleepy="0" />
-    <lock id="2" x="450" y="350" color="2" />
-    <lock id="3" x="450" y="325" color="2" />
-    <lock id="4" x="450" y="300" color="2" />
-    <lock id="5" x="450" y="275" color="2" />
-    <lock id="6" x="450" y="250" color="2" />
-    <lock id="7" x="200" y="225" color="3" />
-    <lock id="8" x="175" y="225" color="3" />
+    <lock id="7" x="200" y="225" width="25" height="25" color="3" />
+    <lock id="8" x="175" y="225" width="25" height="25" color="3" />
     <key id="9" x="300" y="325" color="3" />
     <key id="10" x="300" y="175" color="2" />
+    <lock id="2" x="450" y="350" width="25" height="25" color="2" />
+    <lock id="3" x="450" y="325" width="25" height="25" color="2" />
+    <lock id="4" x="450" y="300" width="25" height="25" color="2" />
+    <lock id="5" x="450" y="275" width="25" height="25" color="2" />
+    <lock id="6" x="450" y="250" width="25" height="25" color="2" />
   </entities>
 </level>

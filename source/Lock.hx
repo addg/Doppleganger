@@ -20,6 +20,7 @@ class Lock extends FlxSprite
 		
 		thisColor = color;
 		immovable = true;
+		this.elasticity = 999999999;
 		loadGraphic(AssetPaths.Locks__png, true, 25, 25);
 		animation.add("type", [color], 6, false);
 		animation.play("type");
