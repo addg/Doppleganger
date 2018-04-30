@@ -1,8 +1,6 @@
 package;
 
 import flixel.FlxSprite;
-import flixel.math.FlxPoint;
-
 
 class Lock extends FlxSprite 
 {

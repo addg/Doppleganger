@@ -170,11 +170,12 @@ class PlayState extends FlxState
 		FlxG.overlap(_player, _enemy, failedEnemy);
 		FlxG.overlap(_player, _spikes, failedSpike);
 		FlxG.overlap(_player, _key, playerCollideKey);
+		FlxG.overlap(_player, _lock, playerCollideLock);
 		
 		// Collisions for the blocks
 		FlxG.collide(_mWalls, _player);
 		FlxG.collide(_mWalls, _enemy);
-		FlxG.collide(_player, _lock);
+		//FlxG.collide(_player, _lock);
 		FlxG.collide(_lock, _enemy);
 	
 		// When the player would fall off the map, this for loop
@@ -301,6 +302,19 @@ class PlayState extends FlxState
 		for (lock in _lock.members) {
 			if (lock.thisColor == keyColor) {
 				lock.destroy();
+			}
+		}
+	}
+	
+	// custom collision for blocks and locks
+	private function playerCollideLock(player:Player, lock:Lock):Void {
+		FlxObject.separate(player, lock);
+		// incase block is ontop of lock...
+		if (!player.isTouching(FlxObject.DOWN) && !lock.isTouching(FlxObject.UP)) {
+			if (player.x > lock.x) {
+				player.x = player.x + 2.50;
+			} else {
+				player.x = player.x - 2.50;
 			}
 		}
 	}
