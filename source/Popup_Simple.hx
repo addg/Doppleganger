@@ -6,6 +6,18 @@ class Popup_Simple extends FlxUIPopup
 	public override function create():Void
 	{
 		
+		// When we beat the level we come in here, so we update the save data
+		Data._gameSave.data.bestTimes[Data.currLevel] = Data.bestTimes[Data.currLevel];
+		// For this, I could have just set to true, but I always want the two values equal here so I did this to be extra safe
+		Data._gameSave.data.completedLevel[Data.currLevel] = Data.completedLevel[Data.currLevel];
+		
+		if (Data.currLevel + 1 <= Data.amtLevels) {
+			Data._gameSave.data.canPlayLevel[Data.currLevel + 1] = Data.canPlayLevel[Data.currLevel + 1];
+		}
+		
+		// Write to disk
+		Data._gameSave.flush();
+		
 		//FlxG.mouse.enabled = true;
 		FlxG.mouse.visible = true;
 		

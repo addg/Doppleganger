@@ -1,4 +1,5 @@
 package;
+import flixel.util.FlxSave;
 
 class Data 
 {
@@ -17,11 +18,53 @@ class Data
 	
 	public static var paused:Bool = false;
 	
+	// Object for local saving
+	// Currently has arrays:
+	// bestTimes
+	// canPlayLevel
+	// completedLevel
+	public static var _gameSave:FlxSave;
+	
+	public static function setUpGameSave() {
+		_gameSave = new FlxSave();
+		_gameSave.bind("gameSave");
+	}
+	
+	public static function clearSavedData() {
+		_gameSave.data.bestTimes = null;
+		_gameSave.data.canPlayLevel = null;
+		_gameSave.data.completedLevel = null;
+		loadBestTimes();
+		loadCanPlayLevel();
+		loadLevelCompletionStatus();
+		_gameSave.flush();
+	}
+	
 	// Currently called in Main.hx
 	public static function resetBestTimes() {
 		// Index 1 = level 1
 		for (i in 0...(amtLevels + 1)) {
 			bestTimes[i] = 60.00;
+		}
+	}
+	
+	public static function loadBestTimes() {
+		if (_gameSave.data.bestTimes != null) {
+			// This means we have saved data on disk
+			for (i in 0...(amtLevels + 1)) {
+				bestTimes[i] = _gameSave.data.bestTimes[i];
+			}
+		} else {
+			// Theres no save data, so the first time they have logged in
+			resetBestTimes();
+			// Now we set save data so it at least exists
+			_gameSave.data.bestTimes = new Array<Float>();
+			// Fill the array with default values
+			for (i in 0...(amtLevels + 1)) {
+				_gameSave.data.bestTimes[i] = 60;
+			}
+			// This writes to disk
+			_gameSave.flush();
 		}
 	}
 	
@@ -33,12 +76,44 @@ class Data
 		}
 	}
 	
+	public static function loadLevelCompletionStatus() {
+		if (_gameSave.data.completedLevel != null) {
+			for (i in 0...(amtLevels + 1)) {
+				completedLevel[i] = _gameSave.data.completedLevel[i];
+			}
+		} else {
+			resetLevelCompletionStatus();
+			_gameSave.data.completedLevel = new Array<Bool>();
+			for (i in 0...(amtLevels + 1)) {
+				_gameSave.data.completedLevel[i] = false;
+			}
+			_gameSave.flush();
+		}
+	}
+	
 	public static function resetCanPlayLevel() {
 		// Index 1 = level 1
 		for (i in 0...(amtLevels + 1)) {
 			canPlayLevel[i] = false;
 		}
 		canPlayLevel[1] = true;
+	}
+	
+	public static function loadCanPlayLevel() {
+		if (_gameSave.data.canPlayLevel != null) {
+			for (i in 0...(amtLevels + 1)) {
+				canPlayLevel[i] = _gameSave.data.canPlayLevel[i];
+			}
+		} else {
+			resetCanPlayLevel();
+			_gameSave.data.canPlayLevel = new Array<Bool>();
+			for (i in 0...(amtLevels + 1)) {
+				_gameSave.data.canPlayLevel[i] = false;
+			}
+			_gameSave.data.canPlayLevel[1] = true;
+			
+			_gameSave.flush();
+		}
 	}
 	
 	public static function resetAmountPlayed() {

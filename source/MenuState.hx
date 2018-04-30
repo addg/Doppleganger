@@ -69,6 +69,9 @@ class MenuState extends FlxState
 
 	override public function update(elapsed:Float):Void
 	{
+		if (FlxG.keys.justPressed.BACKSLASH) {
+			Data.clearSavedData();
+		}
 		super.update(elapsed);
 	}
 	

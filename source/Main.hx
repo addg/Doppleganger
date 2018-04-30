@@ -35,9 +35,19 @@ class Main extends Sprite
 	private function onSessionReady(sessionRecieved:Bool):Void
 	{
 		addChild(new FlxGame(700, 500, MenuState));
-		Data.resetBestTimes();
-		Data.resetLevelCompletionStatus();
-		Data.resetCanPlayLevel();
+		// These three are now being saved, so calling new functions
+		// Data.resetBestTimes();
+		// Data.resetCanPlayLevel();
+		// Data.resetLevelCompletionStatus();
+		
+		// Initializes gameSave var and sets name
+		Data.setUpGameSave();
+		
+		// These check if there is saved data, if there is, loads it in, otherwise creates saved data
+		Data.loadBestTimes();
+		Data.loadCanPlayLevel();
+		Data.loadLevelCompletionStatus();
+		
 		Data.resetAmountPlayed();
 	}
 
