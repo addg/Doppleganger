@@ -170,12 +170,12 @@ class PlayState extends FlxState
 		FlxG.overlap(_player, _enemy, failedEnemy);
 		FlxG.overlap(_player, _spikes, failedSpike);
 		FlxG.overlap(_player, _key, playerCollideKey);
-		FlxG.overlap(_player, _lock, playerCollideLock);
+		//FlxG.overlap(_player, _lock, playerCollideLock);
 		
 		// Collisions for the blocks
 		FlxG.collide(_mWalls, _player);
 		FlxG.collide(_mWalls, _enemy);
-		//FlxG.collide(_player, _lock);
+		FlxG.collide(_player, _lock);
 		FlxG.collide(_lock, _enemy);
 	
 		// When the player would fall off the map, this for loop
@@ -279,7 +279,6 @@ class PlayState extends FlxState
 	}
 	
 	private function failedSpike(?Block:Player, ?Spike:Spikes):Void {
-		FlxG.log.add("SPIKES COLLIDE");
 		var x:Float = Block.x + (Block.width / 2);
 		var y:Float = Block.y + (Block.height / 2);
 		Block.destroy();
@@ -312,9 +311,9 @@ class PlayState extends FlxState
 		// incase block is ontop of lock...
 		if (!player.isTouching(FlxObject.DOWN) && !lock.isTouching(FlxObject.UP)) {
 			if (player.x > lock.x) {
-				player.x = player.x + 2.50;
+				player.x = player.x + 2.5;
 			} else {
-				player.x = player.x - 2.50;
+				player.x = player.x - 2.5;
 			}
 		}
 	}
