@@ -28,6 +28,7 @@ class MenuState extends FlxState
 		
 		if (FlxG.sound.music == null) {
 			FlxG.sound.playMusic("assets/music/combinedsongs.ogg", 0.05, true);
+			FlxG.sound.list.maxSize = 1;
 		}
 		
 		//FlxG.mouse.enabled = true;

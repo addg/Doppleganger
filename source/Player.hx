@@ -69,4 +69,5 @@ class Player extends FlxSprite
 			_soundJump.play(true);
 		}
 	}
+	
 }
