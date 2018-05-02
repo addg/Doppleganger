@@ -186,6 +186,9 @@ class PlayState extends FlxState
 		if (!fellOffMap) {
 			for (blocks in _player) {
 				if (blocks.y > FlxG.height) {
+					// sound
+					FlxG.sound.load(AssetPaths.hurt__ogg, .25).play();
+					
 					fellOffMap = true;
 					var x:Float = blocks.x;
 					blocks.destroy();
@@ -263,6 +266,9 @@ class PlayState extends FlxState
 	
 	private function failedEnemy(?Block1:Player, ?Enemy:Player):Void {
 		
+		// sound
+		FlxG.sound.load(AssetPaths.hurt__ogg, .25).play();
+		
 		var x:Float = Block1.x;
 		var y:Float = Block1.y;
 		Block1.destroy();
@@ -280,6 +286,10 @@ class PlayState extends FlxState
 	}
 	
 	private function failedSpike(?Block:Player, ?Spike:Spikes):Void {
+		
+		// sound
+		FlxG.sound.load(AssetPaths.hurt__ogg, .25).play();
+		
 		var x:Float = Block.x + (Block.width / 2);
 		var y:Float = Block.y + (Block.height / 2);
 		Block.destroy();

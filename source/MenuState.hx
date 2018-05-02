@@ -26,6 +26,10 @@ class MenuState extends FlxState
 	override public function create():Void
 	{
 		
+		if (FlxG.sound.music == null) {
+			FlxG.sound.playMusic("assets/music/combinedsongs.ogg", 0.05, true);
+		}
+		
 		//FlxG.mouse.enabled = true;
 		FlxG.mouse.visible = true;
 		

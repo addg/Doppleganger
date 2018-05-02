@@ -3,6 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
+import flixel.system.FlxSound;
 
 
 class Player extends FlxSprite 
@@ -12,6 +13,7 @@ class Player extends FlxSprite
 	private var jumpSpeed:Int;
 	public var thisColor:Int;
 	public var movementAllowed:Bool;
+	var _soundJump:FlxSound;
 	
 	
 	public function new(?X:Float=0, ?Y:Float=0, ?R:Int=1, ?Color:Int=0, ?CanMove:Int = 1) 
@@ -19,6 +21,8 @@ class Player extends FlxSprite
 		
 		super(X, Y);
 		
+		// sound initialization
+		_soundJump = FlxG.sound.load("assets/sounds/jump.ogg", 0.20);
 		movementAllowed = CanMove == 1 ? true : false;
 		
 		thisColor = Color;
@@ -62,6 +66,7 @@ class Player extends FlxSprite
 		if ((FlxG.keys.anyJustPressed([UP, "SPACE", W])) && isTouching(FlxObject.DOWN)) {
 			Main.LOGGER.logLevelAction(LoggingActions.PLAYER_MOVE, {direction: "jump"});
 			velocity.y = -jumpSpeed;
+			_soundJump.play(true);
 		}
 	}
 }
