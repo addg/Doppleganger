@@ -126,6 +126,7 @@ class PlayState extends FlxState
 		_emitter.acceleration.start.max.y = 400;
 		_emitter.acceleration.end.min.y = 200;
 		_emitter.acceleration.end.max.y = 400;
+		_emitter.makeParticles(2, 2, FlxColor.WHITE, 200);
 		add(_emitter);
 	}
 
@@ -373,7 +374,7 @@ class PlayState extends FlxState
 	private function spawnParticles(x:Float, y:Float, ?color:FlxColor = FlxColor.WHITE):Void {
 		_emitter.x = x;
 		_emitter.y = y;
-		_emitter.makeParticles(2, 2, color, 200);
+		_emitter.color.set(color);
 		_emitter.start(true, 0.01, 0);
 	}
 	
