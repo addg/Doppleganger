@@ -47,8 +47,10 @@ class Data
 	public static function resetBestTimes() {
 		// Index 1 = level 1
 		for (i in 0...(amtLevels + 1)) {
-			bestTimes[i] = 60.00;
+			bestTimes[i] = 300.00;
 		}
+		
+		bestTimes[0] = 0;
 	}
 	
 	public static function loadBestTimes() {
