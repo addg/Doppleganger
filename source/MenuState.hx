@@ -69,7 +69,7 @@ class MenuState extends FlxState
 		_txtSubtitle.screenCenter(X);
 		add(_txtSubtitle);
 		
-		_txtRestart = new FlxText(20, 20 + offset * 7, 0, "Press R to Restart Level", font_size - 20);
+		_txtRestart = new FlxText(20, 20 + offset * 8, 0, "Press R to Restart Level", font_size - 20);
 		_txtRestart.color = _lblColor;
 		_txtRestart.screenCenter(X);
 		add(_txtRestart);
