@@ -34,7 +34,7 @@ class Main extends Sprite
 	
 	private function onSessionReady(sessionRecieved:Bool):Void
 	{
-		addChild(new FlxGame(700, 500, MenuState));
+		addChild(new FlxGame(700, 500, MenuState, 1, 60, 60, true));
 		// These three are now being saved, so calling new functions
 		// Data.resetBestTimes();
 		// Data.resetCanPlayLevel();

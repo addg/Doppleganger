@@ -21,6 +21,7 @@ class PlayState extends FlxState
 	private var _spikes:FlxTypedGroup<Spikes>;
 	private var _lock:FlxTypedGroup<Lock>;
 	private var _key:FlxTypedGroup<Key>;
+	private var _dye:FlxTypedGroup<Dye>;
 	private var _map:FlxOgmoLoader;
 	private var _mWalls:FlxTilemap;
 	private var failures:FlxText;
@@ -85,8 +86,8 @@ class PlayState extends FlxState
 		_mWalls.setTileProperties(8, FlxObject.NONE);
 		_mWalls.setTileProperties(9, FlxObject.NONE);
 		_mWalls.setTileProperties(10, FlxObject.NONE);
-		_mWalls.setTileProperties(11, FlxObject.ANY, dyeBlock, Player);
-		_mWalls.setTileProperties(12, FlxObject.ANY, dyeBlock, Player);
+		_mWalls.setTileProperties(11, FlxObject.ANY);
+		_mWalls.setTileProperties(12, FlxObject.ANY);
 		add(_mWalls);
 		
 		_player = new FlxTypedGroup<Player>();
@@ -103,6 +104,9 @@ class PlayState extends FlxState
 		
 		_key = new FlxTypedGroup<Key>();
 		add(_key);
+		
+		_dye = new FlxTypedGroup<Dye>();
+		add(_dye);
 		
 		_map.loadEntities(placeEntities, "entities");
 		
@@ -181,6 +185,7 @@ class PlayState extends FlxState
 		FlxG.overlap(_player, _spikes, failedSpike);
 		FlxG.overlap(_player, _key, playerCollideKey);
 		//FlxG.overlap(_player, _lock, playerCollideLock);
+		FlxG.overlap(_player, _dye, dyeBlock);
 		
 		// Collisions for the blocks
 		FlxG.collide(_mWalls, _player);
@@ -196,7 +201,9 @@ class PlayState extends FlxState
 			for (blocks in _player) {
 				if (blocks.y > FlxG.height) {
 					// sound
+					//#if not flash
 					FlxG.sound.load(AssetPaths.hurt__ogg, .25).play();
+					//#end
 					
 					fellOffMap = true;
 					var x:Float = blocks.x;
@@ -248,15 +255,19 @@ class PlayState extends FlxState
 		 } else if (entityName == "key") {
 			 var color:Int = Std.parseInt(entityData.get("color"));
 			 _key.add(new Key(x, y, color));
+		 } else if (entityName == "dye") {
+			 var color:Int = Std.parseInt(entityData.get("color"));
+			 _dye.add(new Dye(x, y + 22, color));
 		 }
 	}
 	
 	private function blocksCollide(Block1:Player, Block2:Player):Void {
 		if (Block1.thisColor == Block2.thisColor) {
 			// Do we have to load it each time? Could not get it working with doing this.
+			//#if not flash
 			_soundJoin = FlxG.sound.load(AssetPaths.combine__ogg, 0.20);
 			_soundJoin.play(true);
-			
+			//#end
 			
 			var x:Float = (Block1.x + Block2.x) / 2 + 12.5;
 			var y:Float = (Block1.y + Block2.y) / 2;
@@ -343,17 +354,17 @@ class PlayState extends FlxState
 	}
 	
 	// dye the block into corresponding color, only two colors for now
-	private function dyeBlock(tile:FlxObject, block:FlxObject):Void {
-		var dye:FlxTile = cast(tile, FlxTile);
-		var player:Player = cast(block, Player);
-		if (dye.index == 11 && player.thisColor != 1) {
-			player.animation.add("color_change", [player.thisColor + 2], 6, false);
-			player.animation.play("color_change");
-			player.thisColor = player.thisColor + 1;
-		} else if (dye.index == 12 && player.thisColor != 0) {
-			player.animation.add("color_change", [player.thisColor - 2], 6, false);
-			player.animation.play("color_change");
-			player.thisColor -= 1;
+	private function dyeBlock(player:Player, dye:Dye):Void {
+		if (dye.thisColor != player.thisColor) {
+			if (dye.thisColor == 0) {
+				player.animation.add("color_change", [player.thisColor - 2], 6, false);
+				player.animation.play("color_change");
+				player.thisColor -= 1;
+			} else if (dye.thisColor == 1) {
+				player.animation.add("color_change", [player.thisColor + 2], 6, false);
+				player.animation.play("color_change");
+				player.thisColor += 1;
+			}
 		}
 	}
 	
