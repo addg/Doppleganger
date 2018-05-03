@@ -5,6 +5,7 @@ import flixel.FlxObject;
 import flixel.FlxState;
 import flixel.addons.editors.ogmo.FlxOgmoLoader;
 import flixel.effects.particles.FlxEmitter;
+import flixel.system.FlxSound;
 import flixel.util.FlxColor;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
@@ -34,6 +35,8 @@ class PlayState extends FlxState
 	private var die:Bool = false;
 	
 	private var _emitter:FlxEmitter;
+	
+	var _soundJoin:FlxSound;
 	
 	override public function create():Void
 	{
@@ -246,6 +249,11 @@ class PlayState extends FlxState
 	
 	private function blocksCollide(Block1:Player, Block2:Player):Void {
 		if (Block1.thisColor == Block2.thisColor) {
+			// Do we have to load it each time? Could not get it working with doing this.
+			_soundJoin = FlxG.sound.load(AssetPaths.combine__ogg, 0.20);
+			_soundJoin.play(true);
+			
+			
 			var x:Float = (Block1.x + Block2.x) / 2 + 12.5;
 			var y:Float = (Block1.y + Block2.y) / 2;
 			Block1.destroy();

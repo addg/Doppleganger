@@ -11,7 +11,8 @@ class Spikes extends FlxSprite
 	{
 		super(X, Y);
 		loadGraphic(AssetPaths.spikes__png, true, 25, 8);
-		//offset.set(0, -17);
+		set_width(21);
+		set_height(5);
 	}
 	
 	override public function update(elapsed:Float):Void 
