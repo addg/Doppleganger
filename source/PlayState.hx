@@ -237,7 +237,8 @@ class PlayState extends FlxState
 				_enemy.add(new Player(x, y, 5));
 			}
 		 } else if (entityName == "spikes") {
-			 _spikes.add(new Spikes(x, y + 17));
+			 // X + 3 is how much lenience we want to give players to run into the spikes, 3 on both sides
+			 _spikes.add(new Spikes(x + 3, y + 17));
 		 } else if (entityName == "lock") {
 			 var color:Int = Std.parseInt(entityData.get("color"));
 			 _lock.add(new Lock(x, y, color));
