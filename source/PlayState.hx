@@ -6,6 +6,7 @@ import flixel.FlxState;
 import flixel.addons.editors.ogmo.FlxOgmoLoader;
 import flixel.effects.particles.FlxEmitter;
 import flixel.system.FlxSound;
+import flixel.tile.FlxTile;
 import flixel.util.FlxColor;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
@@ -84,6 +85,8 @@ class PlayState extends FlxState
 		_mWalls.setTileProperties(8, FlxObject.NONE);
 		_mWalls.setTileProperties(9, FlxObject.NONE);
 		_mWalls.setTileProperties(10, FlxObject.NONE);
+		_mWalls.setTileProperties(11, FlxObject.ANY, dyeBlock, Player);
+		_mWalls.setTileProperties(12, FlxObject.ANY, dyeBlock, Player);
 		add(_mWalls);
 		
 		_player = new FlxTypedGroup<Player>();
@@ -339,6 +342,21 @@ class PlayState extends FlxState
 		}
 	}
 	
+	// dye the block into corresponding color, only two colors for now
+	private function dyeBlock(tile:FlxObject, block:FlxObject):Void {
+		var dye:FlxTile = cast(tile, FlxTile);
+		var player:Player = cast(block, Player);
+		if (dye.index == 11 && player.thisColor != 1) {
+			player.animation.add("color_change", [player.thisColor + 2], 6, false);
+			player.animation.play("color_change");
+			player.thisColor = player.thisColor + 1;
+		} else if (dye.index == 12 && player.thisColor != 0) {
+			player.animation.add("color_change", [player.thisColor - 2], 6, false);
+			player.animation.play("color_change");
+			player.thisColor -= 1;
+		}
+	}
+	
 	// i SHOULD always be either -1 or 1, but you can input any value
 	// bounds checks: currLevel must be between 1 and amtLevels, inclusive on both
 	// function adds i to currLevel and then tries to load that level
@@ -394,7 +412,7 @@ class PlayState extends FlxState
 		beatLevelPopup = new Popup_WonGame(); //create the popup
 		beatLevelPopup.quickSetup("You beat the game!", "Your combined best times was " + formatTime(totalTime) + " seconds.\n" +
 								  "The total amount of attempts it took you to beat the game was " + totalAttempts + ".\n\n" +
-								  "Game made by: Add Gritman, Tony Quach, Vivian Li\n" +
+								  "Game made by: Add Gritman, Tony Quach, Vivian Liu\n" +
 								  "Music made by: OurMusicBox and Mark Sparling\n" +
 								  "Artwork made by: Kenney Vleugels\n\n" +
 								  "Thank you for playing!"

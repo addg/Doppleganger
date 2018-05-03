@@ -91,6 +91,9 @@ class MenuState extends FlxState
 		if (FlxG.keys.justPressed.BACKSLASH) {
 			Data.clearSavedData();
 		}
+		if (FlxG.keys.justPressed.SPACE) {
+			clickPlay();
+		}
 		super.update(elapsed);
 	}
 	
