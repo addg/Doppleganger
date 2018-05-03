@@ -3,10 +3,12 @@ package;
 import flixel.addons.ui.FlxUIPopup;
 import flixel.FlxG;
 
-class Popup_Simple extends FlxUIPopup
+class Popup_WonGame extends FlxUIPopup
 {
 	public override function create():Void
 	{
+		
+		_xml_id = "Popup_WinGame";
 		
 		// When we beat the level we come in here, so we update the save data
 		Data._gameSave.data.bestTimes[Data.currLevel] = Data.bestTimes[Data.currLevel];
@@ -48,11 +50,7 @@ class Popup_Simple extends FlxUIPopup
 				FlxG.log.add("i = " + i);
 				switch (i)
 				{
-					
-					// 0 is far left button, 1 middle button, 2 right button. Can only have 3 buttons max
 					case 0: loadMainMenu();
-					case 1: loadCurrentLevel();
-					case 2: loadNextLevel();
 				}
 			}
 		}
@@ -60,16 +58,8 @@ class Popup_Simple extends FlxUIPopup
 	
 	override public function update(elapsed:Float):Void {
 		
-		if (FlxG.keys.justPressed.R) {
-			loadCurrentLevel();
-		}
-		
 		if (FlxG.keys.justPressed.M) {
 			loadMainMenu();
-		}
-		
-		if (FlxG.keys.anyJustPressed([ENTER, SPACE])) {
-			loadNextLevel();
 		}
 		
 		super.update(elapsed);
@@ -78,23 +68,5 @@ class Popup_Simple extends FlxUIPopup
 	private function loadMainMenu():Void {
 		Data.attempts = 1;
 		FlxG.switchState(new MenuState());
-	}
-	
-	private function loadCurrentLevel():Void {
-		Main.LOGGER.logLevelAction(LoggingActions.RESTART, {time: Date.now().toString(), reason: "Retrying won level"});
-		FlxG.switchState(new PlayState());
-	}
-	
-	private function loadNextLevel():Void {
-		//Data.logData();
-		
-		Data.currLevel += 1;
-		Main.LOGGER.logLevelStart(Data.currLevel, {Start: Date.now().toString()});
-		if (Data.currLevel > Data.amtLevels) {
-			Data.currLevel = Data.amtLevels;
-		}
-		
-		Data.attempts = 1;
-		FlxG.switchState(new PlayState());
 	}
 }

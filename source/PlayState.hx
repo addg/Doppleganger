@@ -364,13 +364,41 @@ class PlayState extends FlxState
 		
 		stopMovement();
 		var endLevelTimer:FlxTimer = new FlxTimer();
-		endLevelTimer.start(1, winScreenCallback, 1);
+		if (Data.currLevel == Data.amtLevels) {
+			endLevelTimer.start(1, winGameCallback, 1);
+		} else {
+			endLevelTimer.start(1, winScreenCallback, 1);
+		}
 	}
 	
 	// Don't call this
 	private function winScreenCallback(timer:FlxTimer) {
 		beatLevelPopup = new Popup_Simple(); //create the popup
 		beatLevelPopup.quickSetup("You beat the level!", "You beat the level in " + formatTime(Timer.elapsedTime) + " seconds. Good Job!", ["Main Menu [M]", "Retry [R]", "Next Level [SPACE]"]);
+		openSubState(beatLevelPopup);
+	}
+	
+	private function winGameCallback(timer:FlxTimer) {
+		
+		var totalTime:Float = 0;
+		var totalAttempts:Int = 0;
+		
+		for (time in Data.bestTimes) {
+			totalTime += time;
+		}
+		
+		for (attempts in Data.amountPlayed) {
+			totalAttempts += attempts;
+		}
+		
+		beatLevelPopup = new Popup_WonGame(); //create the popup
+		beatLevelPopup.quickSetup("You beat the game!", "Your combined best times was " + formatTime(totalTime) + " seconds.\n" +
+								  "The total amount of attempts it took you to beat the game was " + totalAttempts + ".\n\n" +
+								  "Game made by: Add Gritman, Tony Quach, Vivian Li\n" +
+								  "Music made by: OurMusicBox and Mark Sparling\n" +
+								  "Artwork made by: Kenney Vleugels\n\n" +
+								  "Thank you for playing!"
+								  , ["Main Menu [M]"]);
 		openSubState(beatLevelPopup);
 	}
 	

@@ -39,6 +39,7 @@ class Main extends Sprite
 		// Data.resetBestTimes();
 		// Data.resetCanPlayLevel();
 		// Data.resetLevelCompletionStatus();
+		// Data.resetAmountPlayed();
 		
 		// Initializes gameSave var and sets name
 		Data.setUpGameSave();
@@ -47,8 +48,9 @@ class Main extends Sprite
 		Data.loadBestTimes();
 		Data.loadCanPlayLevel();
 		Data.loadLevelCompletionStatus();
+		Data.loadAmountPlayed();
 		
-		Data.resetAmountPlayed();
+		
 	}
 
 }

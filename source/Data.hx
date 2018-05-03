@@ -23,6 +23,7 @@ class Data
 	// bestTimes
 	// canPlayLevel
 	// completedLevel
+	// amountPlayed
 	public static var _gameSave:FlxSave;
 	
 	public static function setUpGameSave() {
@@ -34,9 +35,11 @@ class Data
 		_gameSave.data.bestTimes = null;
 		_gameSave.data.canPlayLevel = null;
 		_gameSave.data.completedLevel = null;
+		_gameSave.data.amountPlayed = null;
 		loadBestTimes();
 		loadCanPlayLevel();
 		loadLevelCompletionStatus();
+		loadAmountPlayed();
 		_gameSave.flush();
 	}
 	
@@ -119,6 +122,22 @@ class Data
 	public static function resetAmountPlayed() {
 		for (i in 0...(amtLevels + 1)) {
 			amountPlayed[i] = 0;
+		}
+	}
+	
+	public static function loadAmountPlayed() {
+		if (_gameSave.data.amountPlayed != null) {
+			for (i in 0...(amtLevels + 1)) {
+				amountPlayed[i] = _gameSave.data.amountPlayed[i];
+			}
+		} else {
+			resetAmountPlayed();
+			_gameSave.data.amountPlayed = new Array<Int>();
+			for (i in 0...(amtLevels + 1)) {
+				_gameSave.data.amountPlayed[i] = 0;
+			}
+			
+			_gameSave.flush();
 		}
 	}
 	
