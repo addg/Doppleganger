@@ -14,7 +14,7 @@ class Spikes extends FlxSprite
 		// Look at where we create spikes in PlayState if we want to change set_width
 		set_width(19);
 		set_height(5);
-		offset.add(3, 0);
+		offset.add(3, 1);
 	}
 	
 	override public function update(elapsed:Float):Void 
