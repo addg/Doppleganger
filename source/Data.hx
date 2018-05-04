@@ -4,7 +4,7 @@ import flixel.util.FlxSave;
 class Data 
 {
 	/* Please increment amtLevels when you create a new level! */
-	public static var amtLevels:Int = 26;
+	public static var amtLevels:Int = 27;
 	
 	public static var attempts:Int = 1;
 	public static var currLevel:Int = 1;

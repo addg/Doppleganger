@@ -225,9 +225,6 @@ class PlayState extends FlxState
 		 var x:Int = Std.parseInt(entityData.get("x"));
 		 var y:Int = Std.parseInt(entityData.get("y"));
 		 if (entityName == "player") {
-			// Creating an orange block
-			// We probably want to name the other colored block or have an value to change here
-			// Possibly var color:Int = Std.parseInt(entityData.get("color"));
 			var color:Int = Std.parseInt(entityData.get("color"));
 			var normal:Int = Std.parseInt(entityData.get("normal"));
 			var sleepy:Int = Std.parseInt(entityData.get("sleepy"));
