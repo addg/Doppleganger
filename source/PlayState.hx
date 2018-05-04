@@ -409,8 +409,8 @@ class PlayState extends FlxState
 		var totalTime:Float = 0;
 		var totalAttempts:Int = 0;
 		
-		for (time in Data.bestTimes) {
-			totalTime += time;
+		for (i in 0...(Data.amtLevels + 1)) {
+			totalTime += Data.bestTimes[i];
 		}
 		
 		for (attempts in Data.amountPlayed) {
