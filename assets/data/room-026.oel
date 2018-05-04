@@ -26,12 +26,12 @@
     <player id="0" x="225" y="325" normal="1" color="0" sleepy="0" />
     <enemy id="9" x="400" y="200" normal="1" />
     <key id="8" x="425" y="200" color="0" />
-    <dye id="1" x="300" y="275" color="1" />
-    <dye id="2" x="325" y="275" color="1" />
-    <dye id="3" x="425" y="225" color="0" />
-    <dye id="4" x="450" y="225" color="0" />
-    <dye id="5" x="475" y="225" color="0" />
-    <dye id="6" x="600" y="175" color="1" />
-    <dye id="7" x="625" y="175" color="1" />
+    <dye id="1" x="300" y="250" color="1" />
+    <dye id="2" x="325" y="250" color="1" />
+    <dye id="3" x="425" y="200" color="0" />
+    <dye id="4" x="450" y="200" color="0" />
+    <dye id="5" x="475" y="200" color="0" />
+    <dye id="6" x="600" y="150" color="1" />
+    <dye id="7" x="625" y="150" color="1" />
   </entities>
 </level>

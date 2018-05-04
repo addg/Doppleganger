@@ -24,13 +24,13 @@
     <player id="1" x="400" y="450" normal="1" color="1" sleepy="0" />
     <player id="2" x="250" y="275" normal="1" color="1" sleepy="1" />
     <player id="3" x="400" y="275" normal="1" color="1" sleepy="1" />
-    <dye id="4" x="625" y="475" color="0" />
-    <dye id="5" x="650" y="475" color="0" />
-    <dye id="6" x="625" y="300" color="0" />
-    <dye id="7" x="650" y="300" color="0" />
-    <dye id="8" x="500" y="300" color="1" />
-    <dye id="9" x="525" y="300" color="1" />
-    <dye id="10" x="500" y="475" color="1" />
-    <dye id="11" x="525" y="475" color="1" />
+    <dye id="4" x="625" y="450" color="0" />
+    <dye id="5" x="650" y="450" color="0" />
+    <dye id="6" x="625" y="275" color="0" />
+    <dye id="7" x="650" y="275" color="0" />
+    <dye id="8" x="500" y="275" color="1" />
+    <dye id="9" x="525" y="275" color="1" />
+    <dye id="10" x="500" y="450" color="1" />
+    <dye id="11" x="525" y="450" color="1" />
   </entities>
 </level>
