@@ -58,7 +58,7 @@ class MenuState extends FlxState
 		add(_btnPlay);
 		_btnPlay.screenCenter(X);
 		
-		_btnLevel = new FlxButton(0, 20 + offset * 6, "Level", clickLevel);
+		_btnLevel = new FlxButton(0, 20 + offset * 6, "Level Select", clickLevel);
 		add(_btnLevel);
 		_btnLevel.screenCenter(X);
 		
