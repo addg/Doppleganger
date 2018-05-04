@@ -10,13 +10,13 @@ class Dye extends FlxSprite
 	{
 		super(X, Y);
 		
+		// ORANGE = 0
+		// BLUE   = 1
+		
 		thisColor = color;
 		// this is just an empty image as a placeholder
 		// set both the entity(invisible) dye and walls dye in ogmo to visualize
 		loadGraphic(AssetPaths.transparent__png, false, 25, 25);
-		// width offset in case the separate method overlaps the dye and block incorrectly
-		set_width(21);
-		set_height(3);
 	}
 	
 	override public function update(elapsed:Float):Void 

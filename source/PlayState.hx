@@ -22,6 +22,7 @@ class PlayState extends FlxState
 	private var _lock:FlxTypedGroup<Lock>;
 	private var _key:FlxTypedGroup<Key>;
 	private var _dye:FlxTypedGroup<Dye>;
+	private var _colorZone:FlxTypedGroup<ColorZone>;
 	private var _map:FlxOgmoLoader;
 	private var _mWalls:FlxTilemap;
 	private var failures:FlxText;
@@ -88,6 +89,28 @@ class PlayState extends FlxState
 		_mWalls.setTileProperties(10, FlxObject.NONE);
 		_mWalls.setTileProperties(11, FlxObject.ANY);
 		_mWalls.setTileProperties(12, FlxObject.ANY);
+		
+		// These are the color zones
+		_mWalls.setTileProperties(13, FlxObject.NONE);
+		_mWalls.setTileProperties(14, FlxObject.NONE);
+		_mWalls.setTileProperties(15, FlxObject.NONE);
+		_mWalls.setTileProperties(33, FlxObject.NONE);
+		_mWalls.setTileProperties(34, FlxObject.NONE);
+		_mWalls.setTileProperties(35, FlxObject.NONE);
+		_mWalls.setTileProperties(53, FlxObject.NONE);
+		_mWalls.setTileProperties(54, FlxObject.NONE);
+		_mWalls.setTileProperties(55, FlxObject.NONE);
+		_mWalls.setTileProperties(16, FlxObject.NONE);
+		_mWalls.setTileProperties(17, FlxObject.NONE);
+		_mWalls.setTileProperties(18, FlxObject.NONE);
+		_mWalls.setTileProperties(36, FlxObject.NONE);
+		_mWalls.setTileProperties(37, FlxObject.NONE);
+		_mWalls.setTileProperties(38, FlxObject.NONE);
+		_mWalls.setTileProperties(56, FlxObject.NONE);
+		_mWalls.setTileProperties(57, FlxObject.NONE);
+		_mWalls.setTileProperties(58, FlxObject.NONE);
+		
+		
 		add(_mWalls);
 		
 		_player = new FlxTypedGroup<Player>();
@@ -107,6 +130,9 @@ class PlayState extends FlxState
 		
 		_dye = new FlxTypedGroup<Dye>();
 		add(_dye);
+		
+		_colorZone = new FlxTypedGroup<ColorZone>();
+		add(_colorZone);
 		
 		_map.loadEntities(placeEntities, "entities");
 		
@@ -186,6 +212,7 @@ class PlayState extends FlxState
 		FlxG.overlap(_player, _key, playerCollideKey);
 		//FlxG.overlap(_player, _lock, playerCollideLock);
 		FlxG.overlap(_player, _dye, dyeBlock);
+		FlxG.overlap(_player, _colorZone, blockColorZoneCollide);
 		
 		// Collisions for the blocks
 		FlxG.collide(_mWalls, _player);
@@ -255,6 +282,9 @@ class PlayState extends FlxState
 		 } else if (entityName == "dye") {
 			 var color:Int = Std.parseInt(entityData.get("color"));
 			 _dye.add(new Dye(x, y + 22, color));
+		 } else if (entityName == "colorZone") {
+			 var color:Int = Std.parseInt(entityData.get("color"));
+			 _colorZone.add(new ColorZone(x, y, color));
 		 }
 	}
 	
@@ -362,6 +392,12 @@ class PlayState extends FlxState
 				player.animation.play("color_change");
 				player.thisColor += 1;
 			}
+		}
+	}
+	
+	private function blockColorZoneCollide(player:Player, colorZone:ColorZone) {
+		if (player.thisColor != colorZone.thisColor) {
+			FlxObject.separate(player, colorZone);
 		}
 	}
 	
