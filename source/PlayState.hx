@@ -401,11 +401,11 @@ class PlayState extends FlxState
 	private function dyeBlock(player:Player, dye:Dye):Void {
 		if (dye.thisColor != player.thisColor) {
 			if (dye.thisColor == 0) {
-				player.animation.add("color_change", [player.thisColor - 2], 6, false);
+				player.animation.add("color_change", [player.reverse == 1 ? 0 : 1], 6, false);
 				player.animation.play("color_change");
 				player.thisColor -= 1;
 			} else if (dye.thisColor == 1) {
-				player.animation.add("color_change", [player.thisColor + 2], 6, false);
+				player.animation.add("color_change", [player.reverse == 1 ? 2 : 3], 6, false);
 				player.animation.play("color_change");
 				player.thisColor += 1;
 			}

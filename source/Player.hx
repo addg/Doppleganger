@@ -9,7 +9,7 @@ import flixel.system.FlxSound;
 class Player extends FlxSprite 
 {
 	//public var speed:Float = 200;
-	private var reverse:Int;
+	public var reverse:Int;
 	private var jumpSpeed:Int;
 	public var thisColor:Int;
 	public var movementAllowed:Bool;
