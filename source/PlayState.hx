@@ -91,24 +91,41 @@ class PlayState extends FlxState
 		_mWalls.setTileProperties(12, FlxObject.ANY);
 		
 		// These are the color zones
+		// BLUE
 		_mWalls.setTileProperties(13, FlxObject.NONE);
 		_mWalls.setTileProperties(14, FlxObject.NONE);
 		_mWalls.setTileProperties(15, FlxObject.NONE);
+		_mWalls.setTileProperties(19, FlxObject.NONE);
 		_mWalls.setTileProperties(33, FlxObject.NONE);
 		_mWalls.setTileProperties(34, FlxObject.NONE);
 		_mWalls.setTileProperties(35, FlxObject.NONE);
 		_mWalls.setTileProperties(53, FlxObject.NONE);
 		_mWalls.setTileProperties(54, FlxObject.NONE);
 		_mWalls.setTileProperties(55, FlxObject.NONE);
+		_mWalls.setTileProperties(73, FlxObject.NONE);
+		_mWalls.setTileProperties(74, FlxObject.NONE);
+		_mWalls.setTileProperties(75, FlxObject.NONE);
+		_mWalls.setTileProperties(93, FlxObject.NONE);
+		_mWalls.setTileProperties(94, FlxObject.NONE);
+		_mWalls.setTileProperties(95, FlxObject.NONE);
+		
+		// ORANGE
 		_mWalls.setTileProperties(16, FlxObject.NONE);
 		_mWalls.setTileProperties(17, FlxObject.NONE);
 		_mWalls.setTileProperties(18, FlxObject.NONE);
 		_mWalls.setTileProperties(36, FlxObject.NONE);
 		_mWalls.setTileProperties(37, FlxObject.NONE);
 		_mWalls.setTileProperties(38, FlxObject.NONE);
+		_mWalls.setTileProperties(39, FlxObject.NONE);
 		_mWalls.setTileProperties(56, FlxObject.NONE);
 		_mWalls.setTileProperties(57, FlxObject.NONE);
 		_mWalls.setTileProperties(58, FlxObject.NONE);
+		_mWalls.setTileProperties(76, FlxObject.NONE);
+		_mWalls.setTileProperties(77, FlxObject.NONE);
+		_mWalls.setTileProperties(78, FlxObject.NONE);
+		_mWalls.setTileProperties(96, FlxObject.NONE);
+		_mWalls.setTileProperties(97, FlxObject.NONE);
+		_mWalls.setTileProperties(98, FlxObject.NONE);
 		
 		
 		add(_mWalls);
