@@ -22,7 +22,7 @@
   <entities>
     <player id="0" x="25" y="450" normal="1" color="0" sleepy="0" />
     <player id="1" x="650" y="175" normal="0" color="0" sleepy="0" />
-    <spikes id="2" x="300" y="175" />
+    <spikes id="2" x="375" y="175" />
     <spikes id="3" x="575" y="175" />
   </entities>
 </level>

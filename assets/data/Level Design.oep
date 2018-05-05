@@ -64,7 +64,7 @@
     </Tileset>
   </Tilesets>
   <EntityDefinitions>
-    <EntityDefinition Name="player" Limit="4" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+    <EntityDefinition Name="player" Limit="6" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
         <Width>25</Width>
         <Height>25</Height>
