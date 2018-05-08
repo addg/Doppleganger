@@ -50,7 +50,7 @@ class Player extends FlxSprite
 	{
 		acceleration.x = 0;
 		if (FlxG.keys.anyPressed([LEFT, A]) && !FlxG.keys.anyPressed([RIGHT, D])) {
-			Main.LOGGER.logLevelAction(LoggingActions.PLAYER_MOVE, {direction: "left"});
+			//Main.LOGGER.logLevelAction(LoggingActions.PLAYER_MOVE, {direction: "left"});
 			if (isTouching(FlxObject.LEFT) && !isTouching(FlxObject.FLOOR)) {
 				acceleration.x = 1000;
 			} else {
@@ -58,11 +58,11 @@ class Player extends FlxSprite
 			}
 		}
 		if (FlxG.keys.anyPressed([RIGHT, D]) && !FlxG.keys.anyPressed([LEFT, A])) {
-			Main.LOGGER.logLevelAction(LoggingActions.PLAYER_MOVE, {direction: "right"});
+			//Main.LOGGER.logLevelAction(LoggingActions.PLAYER_MOVE, {direction: "right"});
 			acceleration.x = maxVelocity.x * reverse * 10;
 		}
 		if ((FlxG.keys.anyJustPressed([UP, "SPACE", W])) && isTouching(FlxObject.DOWN)) {
-			Main.LOGGER.logLevelAction(LoggingActions.PLAYER_MOVE, {direction: "jump"});
+			//Main.LOGGER.logLevelAction(LoggingActions.PLAYER_MOVE, {direction: "jump"});
 			velocity.y = -jumpSpeed;
 			// sound initialization
 			_soundJump = FlxG.sound.load("assets/sounds/jump2.ogg", 0.20);

@@ -64,10 +64,12 @@ class MenuState extends FlxState
 		
 		
 		// tips for player
+		/*
 		_txtSubtitle = new FlxText(20, 20 + offset, 0, "Join the Blocks!", font_size - 10);
 		_txtSubtitle.color = _lblColor;
 		_txtSubtitle.screenCenter(X);
 		add(_txtSubtitle);
+		*/
 		
 		_txtRestart = new FlxText(20, 20 + offset * 8, 0, "Press R to Restart Level", font_size - 20);
 		_txtRestart.color = _lblColor;

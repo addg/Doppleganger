@@ -7,6 +7,8 @@ class Popup_Simple extends FlxUIPopup
 {
 	public override function create():Void
 	{
+		_xml_id = "Popup_Simple";
+		
 		
 		// When we beat the level we come in here, so we update the save data
 		Data._gameSave.data.bestTimes[Data.currLevel] = Data.bestTimes[Data.currLevel];
@@ -31,7 +33,7 @@ class Popup_Simple extends FlxUIPopup
 		//_ui.setMode("IDKWhatThisDoes");
 		
 		// Records the they won
-		Main.LOGGER.logLevelEnd({win: true, level: Data.currLevel, endTime: Date.now().toString()});
+		Main.LOGGER.logLevelEnd({win: true, level: Data.currLevel, endTime: Date.now().toString(), attempts: Data.attempts});
 		
 		// If this gives way too much data, comment out and use the one in loadNextLevel();
 		Data.logData();

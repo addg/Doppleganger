@@ -6,7 +6,6 @@ import flixel.FlxState;
 import flixel.addons.editors.ogmo.FlxOgmoLoader;
 import flixel.effects.particles.FlxEmitter;
 import flixel.system.FlxSound;
-import flixel.tile.FlxTile;
 import flixel.util.FlxColor;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
@@ -36,6 +35,9 @@ class PlayState extends FlxState
 	
 	private var fellOffMap:Bool = false;
 	private var die:Bool = false;
+	
+	// When true, stops logging all the deaths and restarts.
+	private var reduceLogs:Bool = false;
 	
 	private var _emitter:FlxEmitter;
 	
@@ -212,7 +214,9 @@ class PlayState extends FlxState
 			currTime.text = "Current time: " + num;
 		}
 		if (FlxG.keys.justPressed.R) {
-			Main.LOGGER.logLevelAction(LoggingActions.RESTART, {time: Date.now().toString(), reason: "Manual"});
+			if (!reduceLogs) {
+				Main.LOGGER.logLevelAction(LoggingActions.RESTART, {time: Date.now().toString(), reason: "Manual"});
+			}
 			Data.attempts++;
 			FlxG.resetState();
 		}
@@ -253,7 +257,9 @@ class PlayState extends FlxState
 					var x:Float = blocks.x;
 					blocks.destroy();
 					spawnParticles(x, FlxG.height - 10, FlxColor.RED);
-					Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, {time: Date.now().toString(), reason: "Fell off"});
+					if (!reduceLogs) {
+						Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, {time: Date.now().toString(), reason: "Fell off"});
+					}
 					resetLevel();
 				}
 			}
@@ -345,7 +351,9 @@ class PlayState extends FlxState
 		spawnParticles(x, y, FlxColor.RED);
 		
 		// Display message here and wait for them to click retry? Maybe instantly restart?
-		Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, {time: Date.now().toString(), reason: "Enemy", enemyCoord: "" + Enemy.x + " " + Enemy.y});
+		if (!reduceLogs) {
+			Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, {time: Date.now().toString(), reason: "Enemy", enemyCoord: "" + Enemy.x + " " + Enemy.y});
+		}
 		if (!die) {
 			die = true;
 			resetLevel();
@@ -365,8 +373,10 @@ class PlayState extends FlxState
 		Block.destroy();
 		spawnParticles(x, y, FlxColor.RED);
 		
-		// Display message here and wait for them to click retry? Maybe instantly restart?
-		Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, {time: Date.now().toString(), reason: "Spikes", spikeCoord: "" + Spike.x + " " + Spike.y});
+		if (!reduceLogs) {
+			Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, {time: Date.now().toString(), reason: "Spikes", spikeCoord: "" + Spike.x + " " + Spike.y});
+		}
+		
 		if (!die) {
 			die = true;
 			resetLevel();
@@ -453,7 +463,8 @@ class PlayState extends FlxState
 	// Don't call this
 	private function winScreenCallback(timer:FlxTimer) {
 		beatLevelPopup = new Popup_Simple(); //create the popup
-		beatLevelPopup.quickSetup("You beat the level!", "You beat the level in " + formatTime(Timer.elapsedTime) + " seconds. Good Job!", ["Main Menu [M]", "Retry [R]", "Next Level [SPACE]"]);
+		beatLevelPopup.quickSetup("Congratulations!", "You beat the level in " + formatTime(Timer.elapsedTime) + " seconds " 
+									+ "in " + Data.attempts + (Data.attempts == 1 ? " attempt." : " attempts."), ["Main Menu [M]", "Retry [R]", "Next Level [SPACE]"]);
 		openSubState(beatLevelPopup);
 	}
 	
