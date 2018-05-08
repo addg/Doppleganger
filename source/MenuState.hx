@@ -90,8 +90,10 @@ class MenuState extends FlxState
 
 	override public function update(elapsed:Float):Void
 	{
-		if (FlxG.keys.justPressed.BACKSLASH) {
-			Data.clearSavedData();
+		if (Data.devTools) {
+			if (FlxG.keys.justPressed.BACKSLASH) {
+				Data.clearSavedData();
+			}
 		}
 		if (FlxG.keys.justPressed.SPACE) {
 			clickPlay();

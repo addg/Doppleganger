@@ -191,12 +191,14 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		
-		if (FlxG.keys.justPressed.O) {
-			updateLevel(-1);	
-		}
-		
-		if (FlxG.keys.justPressed.P) {
-			updateLevel(1);
+		if (Data.devTools) {
+			if (FlxG.keys.justPressed.O) {
+				updateLevel(-1);	
+			}
+			
+			if (FlxG.keys.justPressed.P) {
+				updateLevel(1);
+			}
 		}
 		
 		if (FlxG.keys.justPressed.ESCAPE) {
