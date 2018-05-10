@@ -14,17 +14,20 @@
 		<anchor x="back.left" x-flush="left" y="title.bottom" y-flush="top"/>		
 	</text>
 	
-	<button id="btn0" y="-5" label="$POPUP_YES">
+	<button id="btn0" y="-5" label="$POPUP_YES" height="30">
+		<text use_def="sans14c"/>
 		<anchor y="back.bottom" y-flush="bottom"/>
 		<param type="int" value="0"/>		
 	</button>
 	
-	<button id="btn1" label="$POPUP_NO">
+	<button id="btn1" label="$POPUP_NO" height="30">
+		<text use_def="sans14c"/>
 		<anchor y="btn0.top" y-flush="top"/>
 		<param type="int" value="1"/>
 	</button>
 		
-	<button id="btn2" label="$POPUP_CANCEL">
+	<button id="btn2" label="$POPUP_CANCEL" height="30">
+		<text use_def="sans14c"/>
 		<anchor y="btn0.top" y-flush="top"/>		
 		<param type="int" value="2"/>
 	</button>
