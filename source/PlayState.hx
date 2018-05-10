@@ -35,6 +35,7 @@ class PlayState extends FlxState
 	
 	private var fellOffMap:Bool = false;
 	private var die:Bool = false;
+	private var oldTime:Float;
 	
 	// When true, stops logging all the deaths and restarts.
 	private var reduceLogs:Bool = false;
@@ -275,6 +276,7 @@ class PlayState extends FlxState
 			if (_player.countLiving() == 0) {
 				Timer.cancel();
 				var num = formatTime(Timer.elapsedTime);
+				oldTime = Data.bestTimes[Data.currLevel];
 				Data.bestTimes[Data.currLevel] = Math.min(num, Data.bestTimes[Data.currLevel]);
 				bestTime.text = "Best time: " + Data.bestTimes[Data.currLevel];
 				winScreen();
@@ -411,8 +413,9 @@ class PlayState extends FlxState
 	// Don't call this
 	private function winScreenCallback(timer:FlxTimer) {
 		beatLevelPopup = new Popup_Simple(); //create the popup
-		beatLevelPopup.quickSetup("Congratulations!", "You beat the level in " + formatTime(Timer.elapsedTime) + " seconds " 
-									+ "in " + Data.attempts + (Data.attempts == 1 ? " attempt." : " attempts."), ["Main Menu [M]", "Retry [R]", "Next Level [SPACE]"]);
+		var header:String = oldTime < Timer.elapsedTime ? "Congratulations!" : "NEW RECORD!";
+		beatLevelPopup.quickSetup(header, (oldTime < Timer.elapsedTime ? "" : ("Previous best time was " + formatTime(oldTime) + " seconds. \n")) + "You beat the level in " + formatTime(Timer.elapsedTime) +
+				" seconds in " + Data.attempts + (Data.attempts == 1 ? " attempt." : " attempts."), ["Main Menu [M]", "Retry [R]", "Next Level [SPACE]"]);
 		openSubState(beatLevelPopup);
 	}
 	
