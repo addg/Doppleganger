@@ -36,7 +36,7 @@ class Popup_Pause extends FlxUIPopup
 	}
 	
 	override public function update(elapsed:Float):Void {
-		if (FlxG.keys.justPressed.ESCAPE) {
+		if (FlxG.keys.anyJustPressed([ESCAPE, SPACE])) {
 			closePauseMenu();
 		}
 		
