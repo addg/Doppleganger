@@ -29,10 +29,10 @@
     <lock id="6" x="500" y="425" color="0" />
     <lock id="7" x="500" y="450" color="0" />
     <key id="8" x="550" y="100" color="0" />
-    <player id="9" x="100" y="450" normal="1" color="0" sleepy="0" />
+    <player id="9" x="25" y="450" normal="1" color="0" sleepy="0" />
     <player id="10" x="650" y="450" normal="1" color="0" sleepy="1" />
     <player id="11" x="25" y="50" normal="1" color="1" sleepy="1" />
-    <player id="12" x="100" y="425" normal="1" color="1" sleepy="0" />
+    <player id="12" x="25" y="400" normal="1" color="1" sleepy="0" />
     <lock id="13" x="25" y="75" color="0" />
     <lock id="14" x="50" y="75" color="0" />
     <lock id="15" x="50" y="50" color="0" />

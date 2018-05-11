@@ -18,7 +18,7 @@ class Main extends Sprite
 		var gameKey:String = "64ec54af9a931c49fa3e60232910fa65";
 		var gameName:String = "costume";
 		// when you release it to family/friends set it to 2, when you release it to a public website set it to 3
-		var categoryId:Int = -3;
+		var categoryId:Int = 1;
 		var useDev:Bool = true;
 		Main.LOGGER = new CapstoneLogger(gameId, gameName, gameKey, categoryId, useDev);
 		

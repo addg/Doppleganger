@@ -24,7 +24,6 @@
     <lock id="15" x="625" y="150" color="0" />
     <lock id="16" x="650" y="125" color="0" />
     <player id="0" x="225" y="325" normal="1" color="0" sleepy="0" />
-    <enemy id="9" x="425" y="200" normal="1" />
     <key id="8" x="450" y="200" color="0" />
     <dye id="1" x="300" y="250" color="1" />
     <dye id="2" x="325" y="250" color="1" />
