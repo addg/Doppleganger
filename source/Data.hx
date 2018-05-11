@@ -22,7 +22,7 @@ class Data
 	public static var paused:Bool = false;
 	
 	// Set to true if you want O, P, and \ commands active
-	public static var devTools:Bool = true;
+	public static var devTools:Bool = false;
 	
 	// Object for local saving
 	// Currently has arrays:
