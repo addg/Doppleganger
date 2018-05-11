@@ -164,7 +164,7 @@ class PlayState extends FlxState
 		}
 		if (FlxG.keys.justPressed.R) {
 			if (!reduceLogs) {
-				Main.LOGGER.logLevelAction(LoggingActions.RESTART, {reason: "Manual"});
+				Main.LOGGER.logLevelAction(LoggingActions.RESTART, "Manual");
 			}
 			Data.attempts++;
 			FlxG.resetState();
@@ -207,7 +207,7 @@ class PlayState extends FlxState
 					blocks.destroy();
 					spawnParticles(x, FlxG.height - 10, FlxColor.RED);
 					if (!reduceLogs) {
-						Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, {reason: "Fell off"});
+						Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, "Fell off");
 					}
 					resetLevel();
 				}
@@ -302,7 +302,7 @@ class PlayState extends FlxState
 		
 		// Display message here and wait for them to click retry? Maybe instantly restart?
 		if (!reduceLogs) {
-			Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, {reason: "Enemy", enemyCoord: "" + Enemy.x + " " + Enemy.y});
+			Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, "Enemy " + Enemy.x + " " + Enemy.y);
 		}
 		if (!die) {
 			die = true;
@@ -324,7 +324,7 @@ class PlayState extends FlxState
 		spawnParticles(x, y, FlxColor.RED);
 		
 		if (!reduceLogs) {
-			Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, {reason: "Spikes", spikeCoord: "" + Spike.x + " " + Spike.y});
+			Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, "Spikes " + Spike.x + " " + Spike.y);
 		}
 		
 		if (!die) {

@@ -33,7 +33,7 @@ class Popup_WonGame extends FlxUIPopup
 		//_ui.setMode("IDKWhatThisDoes");
 		
 		// Records the they won
-		Main.LOGGER.logLevelEnd({attempts: Data.attempts});
+		Main.LOGGER.logLevelEnd(Data.attempts);
 		
 		// If this gives way too much data, comment out and use the one in loadNextLevel();
 		Data.logData();

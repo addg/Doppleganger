@@ -60,7 +60,7 @@ class Popup_Pause extends FlxUIPopup
 	
 	// Hitting retry adds 1 to attempts
 	private function loadCurrentLevel():Void {
-		Main.LOGGER.logLevelAction(LoggingActions.RESTART, {reason: "Manual"});
+		Main.LOGGER.logLevelAction(LoggingActions.RESTART, "Manual");
 		Data.paused = false;
 		Data.attempts += 1;
 		FlxG.mouse.visible = false;

@@ -33,7 +33,7 @@ class Popup_Simple extends FlxUIPopup
 		//_ui.setMode("IDKWhatThisDoes");
 		
 		// Records the they won
-		Main.LOGGER.logLevelEnd({attempts: Data.attempts});
+		Main.LOGGER.logLevelEnd(Data.attempts);
 		
 		// If this gives way too much data, comment out and use the one in loadNextLevel();
 		Data.logData();
@@ -83,7 +83,7 @@ class Popup_Simple extends FlxUIPopup
 	}
 	
 	private function loadCurrentLevel():Void {
-		Main.LOGGER.logLevelAction(LoggingActions.RESTART, {reason: "Retrying won level"});
+		Main.LOGGER.logLevelAction(LoggingActions.RESTART, "Retrying won level");
 		Main.LOGGER.logLevelStart(Data.currLevel);
 		FlxG.switchState(new PlayState());
 	}
