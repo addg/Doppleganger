@@ -20,6 +20,7 @@ class MenuState extends FlxState
 	private var _sprRight:FlxSprite;
 	private var _btnPlay:FlxButton;
 	private var _btnLevel:FlxButton;
+	private var _btnResetData:FlxButton;
 	private var _lblColor:FlxColor = FlxColor.BLACK;
 	
 	private var offset = 50; // same as the pixel size of the square
@@ -62,6 +63,9 @@ class MenuState extends FlxState
 		add(_btnLevel);
 		_btnLevel.screenCenter(X);
 		
+		_btnResetData = new FlxButton(FlxG.width - 85, FlxG.height - 25, "Clear Save", Data.clearSavedData);
+		add(_btnResetData);
+		
 		
 		// tips for player
 		/*
@@ -93,12 +97,13 @@ class MenuState extends FlxState
 	}
 
 	override public function update(elapsed:Float):Void
-	{
+	{	/*
 		if (Data.devTools) {
 			if (FlxG.keys.justPressed.BACKSLASH) {
 				Data.clearSavedData();
 			}
 		}
+		*/
 		if (FlxG.keys.justPressed.SPACE) {
 			clickPlay();
 		}
