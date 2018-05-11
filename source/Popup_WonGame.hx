@@ -41,13 +41,10 @@ class Popup_WonGame extends FlxUIPopup
 	
 	public override function getEvent(id:String, target:Dynamic, data:Dynamic, ?params:Array<Dynamic>):Void 
 	{
-		FlxG.log.add("We went into getEvent");
 		if (params != null)
 		{
-			FlxG.log.add("id: " + id);
 			if (id == "click_button"){
 				var i:Int = cast params[0];
-				FlxG.log.add("i = " + i);
 				switch (i)
 				{
 					case 0: loadMainMenu();

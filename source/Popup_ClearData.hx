@@ -5,7 +5,7 @@ import flixel.FlxG;
 // Popup for a pause menu. Currently the body is empty, if we want to write anything there we can.
 // To write to the body you have to edit PlayState.hx near where this class is instantiated in the quicksetup method.
 
-class Popup_Pause extends FlxUIPopup
+class Popup_ClearData extends FlxUIPopup
 {
 	public override function create():Void
 	{
@@ -27,49 +27,22 @@ class Popup_Pause extends FlxUIPopup
 				{
 					
 					// 0 is far left button, 1 middle button, 2 right button. Can only have 3 buttons max
-					case 0: loadMainMenu();
-					case 1: loadCurrentLevel();
-					case 2: closePauseMenu();
+					case 0: deleteSave();
+					case 1: close();
 				}
 			}
 		}
 	}
 	
 	override public function update(elapsed:Float):Void {
-		if (FlxG.keys.anyJustPressed([ESCAPE, SPACE])) {
-			closePauseMenu();
+		if (FlxG.keys.justPressed.ESCAPE) {
+			close();
 		}
-		
-		if (FlxG.keys.justPressed.M) {
-			loadMainMenu();
-		}
-		
-		if (FlxG.keys.justPressed.R) {
-			loadCurrentLevel();
-		}
-		
 		super.update(elapsed);
 	}
 	
-	private function loadMainMenu():Void {
-		Data.paused = false;
-		Data.attempts = 1;
-		FlxG.switchState(new MenuState());
-		//Main.LOGGER.logLevelEnd({attempts: Data.attempts});
-	}
-	
-	// Hitting retry adds 1 to attempts
-	private function loadCurrentLevel():Void {
-		Main.LOGGER.logLevelAction(LoggingActions.RESTART, "Manual");
-		Data.paused = false;
-		Data.attempts += 1;
-		FlxG.mouse.visible = false;
-		FlxG.switchState(new PlayState());
-	}
-	
-	private function closePauseMenu() {
-		Data.paused = false;
-		FlxG.mouse.visible = false;
+	private function deleteSave():Void {
+		Data.clearSavedData();
 		close();
 	}
 }

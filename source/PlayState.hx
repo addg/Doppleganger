@@ -413,8 +413,8 @@ class PlayState extends FlxState
 	// Don't call this
 	private function winScreenCallback(timer:FlxTimer) {
 		beatLevelPopup = new Popup_Simple(); //create the popup
-		var header:String = oldTime < Timer.elapsedTime ? "Congratulations!" : "NEW RECORD!";
-		beatLevelPopup.quickSetup(header, (oldTime < Timer.elapsedTime ? "" : ("Previous best time was " + formatTime(oldTime) + " seconds. \n")) + "You beat the level in " + formatTime(Timer.elapsedTime) +
+		var header:String = (oldTime < Timer.elapsedTime || oldTime == 300) ? "Congratulations!" : "NEW RECORD!";
+		beatLevelPopup.quickSetup(header, ((oldTime < Timer.elapsedTime || oldTime == 300) ? "" : ("Previous best time was " + formatTime(oldTime) + " seconds. \n")) + "You beat the level in " + formatTime(Timer.elapsedTime) +
 				" seconds in " + Data.attempts + (Data.attempts == 1 ? " attempt." : " attempts."), ["Main Menu [M]", "Retry [R]", "Next Level [SPACE]"]);
 		openSubState(beatLevelPopup);
 	}
@@ -434,7 +434,7 @@ class PlayState extends FlxState
 		
 		beatLevelPopup = new Popup_WonGame(); //create the popup
 		beatLevelPopup.quickSetup("You beat the game!", "Your combined best times was " + formatTime(totalTime) + " seconds.\n" +
-								  "The total amount of attempts it took you to beat the game was " + totalAttempts + ".\n\n" +
+								  "Your total attempts to beat the game was " + totalAttempts + ".\n\n" +
 								  "Game made by: Add Gritman, Tony Quach, Vivian Liu\n" +
 								  "Music made by: OurMusicBox and Mark Sparling\n" +
 								  "Artwork made by: Kenney Vleugels\n\n" +

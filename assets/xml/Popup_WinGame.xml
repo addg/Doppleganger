@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<data>	
+<data>		
+	<include id="_ui_globals"/>
+
 	<sprite id="black" x="0" y="0" width="100%" height="100%" color="0x88000000"/>
 	
-	<chrome id="back" center_x="true" center_y="true" width="400" height="150"/>		
+	<chrome id="back" center_x="true" center_y="true" width="400" height="250"/>		
 	
-	<text id="title" x="0" y="5" width="back.width" text="$POPUP_TITLE_DEFAULT" align="center">
+	<text id="title" use_def="sans20c" x="0" y="5" width="back.width" text="$POPUP_TITLE_DEFAULT" align="center">
 		<anchor x="back.left" x-flush="left" y="back.top" y-flush="top"/>		
 	</text>
 	
-	<text id="body" x="5" y="5" width="back.width-10" text="$POPUP_BODY_DEFAULT" align="left">
+	<text id="body" use_def="sans16c" x="5" y="5" width="back.width-10" text="$POPUP_BODY_DEFAULT" align="left">
 		<anchor x="back.left" x-flush="left" y="title.bottom" y-flush="top"/>		
 	</text>
 	
-	<button id="btn0" y="-5" label="$POPUP_YES">
+	<button id="btn0" y="-5" label="$POPUP_YES" height="30">
+		<text use_def="sans14c"/>
 		<anchor y="back.bottom" y-flush="bottom"/>
 		<param type="int" value="0"/>		
 	</button>
 	
-	<button id="btn1" label="$POPUP_NO">
+	<button id="btn1" label="$POPUP_NO" height="30">
+		<text use_def="sans14c"/>
 		<anchor y="btn0.top" y-flush="top"/>
 		<param type="int" value="1"/>
 	</button>
 		
-	<button id="btn2" label="$POPUP_CANCEL">
+	<button id="btn2" label="$POPUP_CANCEL" height="30">
+		<text use_def="sans14c"/>
 		<anchor y="btn0.top" y-flush="top"/>		
 		<param type="int" value="2"/>
 	</button>
@@ -40,7 +45,7 @@
 		<show id="btn0,btn1"/>
 		<hide id="btn2"/>
 		<align axis="horizontal" spacing="10" resize="true">
-			<bounds left="back.left" right="back.right-10"/>		
+			<bounds left="back.left+10" right="back.right-10"/>		
 			<objects value="btn0,btn1"/>
 		</align>
 		<change id="btn0" label="$POPUP_OK"/>

@@ -6,6 +6,7 @@ import flixel.text.FlxText;
 import flixel.FlxSprite;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
+import flixel.addons.ui.FlxUIPopup;
 
 class MenuState extends FlxState
 {
@@ -21,6 +22,7 @@ class MenuState extends FlxState
 	private var _btnPlay:FlxButton;
 	private var _btnLevel:FlxButton;
 	private var _btnResetData:FlxButton;
+	private var clearDataPopup:FlxUIPopup;
 	private var _lblColor:FlxColor = FlxColor.BLACK;
 	
 	private var offset = 50; // same as the pixel size of the square
@@ -63,7 +65,7 @@ class MenuState extends FlxState
 		add(_btnLevel);
 		_btnLevel.screenCenter(X);
 		
-		_btnResetData = new FlxButton(FlxG.width - 85, FlxG.height - 25, "Clear Save", Data.clearSavedData);
+		_btnResetData = new FlxButton(FlxG.width - 85, FlxG.height - 25, "Clear Save", clearSavePopup);
 		add(_btnResetData);
 		
 		
@@ -119,5 +121,11 @@ class MenuState extends FlxState
 	private function clickLevel():Void
 	{
 		FlxG.switchState(new LevelState());
+	}
+	
+	private function clearSavePopup():Void {
+		clearDataPopup = new Popup_ClearData(); //create the popup
+		clearDataPopup.quickSetup("Are you sure you want to delete your save data?", "Once the data is deleted, you cannot get it back.", ["Yes", "No"]);
+		openSubState(clearDataPopup);
 	}
 }
