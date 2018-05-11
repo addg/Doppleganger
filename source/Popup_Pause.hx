@@ -55,12 +55,12 @@ class Popup_Pause extends FlxUIPopup
 		Data.paused = false;
 		Data.attempts = 1;
 		FlxG.switchState(new MenuState());
-		Main.LOGGER.logLevelEnd({win: false, level: Data.currLevel, endTime: Date.now().toString()});
+		//Main.LOGGER.logLevelEnd({attempts: Data.attempts});
 	}
 	
 	// Hitting retry adds 1 to attempts
 	private function loadCurrentLevel():Void {
-		Main.LOGGER.logLevelAction(LoggingActions.RESTART, {time: Date.now().toString(), reason: "Manual"});
+		Main.LOGGER.logLevelAction(LoggingActions.RESTART, {reason: "Manual"});
 		Data.paused = false;
 		Data.attempts += 1;
 		FlxG.mouse.visible = false;

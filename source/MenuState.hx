@@ -107,7 +107,7 @@ class MenuState extends FlxState
 	
 	private function clickPlay():Void
 	{
-		Main.LOGGER.logLevelStart(Data.currLevel, {Start: Date.now().toString()});
+		Main.LOGGER.logLevelStart(Data.currLevel);
 		FlxG.switchState(new PlayState());
 	}
 	
