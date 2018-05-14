@@ -22,7 +22,7 @@ class Main extends Sprite
 		// FIRST RELEASE ID: 10 -> after first release dont use this again
 		// MAKE SURE TO CHANGE THIS IF YOU WANT TO PLAY THE GAME YOURSELF, WE DON'T WANT ANY DATA LOGGED FROM US PLAYING
 		// USE NEGATIVE NUMBERS FOR OUR TESTING
-		var categoryId:Int = 10;
+		var categoryId:Int = 1;
 		var useDev:Bool = true;
 		Main.LOGGER = new CapstoneLogger(gameId, gameName, gameKey, categoryId, useDev);
 		
