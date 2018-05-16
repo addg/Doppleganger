@@ -196,16 +196,17 @@ class PlayState extends FlxState
 		// falls off, this stops getting run through
 		if (!fellOffMap) {
 			for (blocks in _player) {
-				if (blocks.y > FlxG.height) {
+				if (blocks.y > FlxG.height || blocks.x < -25 || blocks.x > FlxG.width) {
 					// sound
 					//#if not flash
 					FlxG.sound.load(AssetPaths.hurt__ogg, .25).play();
 					//#end
 					
 					fellOffMap = true;
-					var x:Float = blocks.x;
+					var x:Float = (blocks.x < -25) ? 5 : FlxG.width - 5;
+					var y:Float = blocks.y;
 					blocks.destroy();
-					spawnParticles(x, FlxG.height - 10, FlxColor.RED);
+					spawnParticles(x, y - 10, FlxColor.RED);
 					if (!reduceLogs) {
 						Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, "Fell off");
 					}
