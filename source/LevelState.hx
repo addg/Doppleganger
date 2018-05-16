@@ -70,10 +70,6 @@ class LevelState extends FlxState
 	
 	private function clickLevel(level:Int):Void
 	{
-		if (FlxG.sound.music == null) {
-			FlxG.sound.playMusic("assets/music/combinedsongs.ogg", 0.05, true);
-			FlxG.sound.list.maxSize = 1;
-		}
 		Data.currLevel = level;
 		Main.LOGGER.logLevelStart(Data.currLevel);
 		FlxG.switchState(new PlayState());

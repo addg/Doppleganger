@@ -35,6 +35,10 @@ class MenuState extends FlxState
 	{
 		//FlxG.mouse.enabled = true;
 		FlxG.mouse.visible = true;
+			if (FlxG.sound.music == null) {
+			FlxG.sound.playMusic("assets/music/combinedsongs.ogg", 0.05, true);
+			FlxG.sound.list.maxSize = 1;
+		}
 		
 		_backgroundColor = new FlxSprite();
 		_backgroundColor.loadGraphic(AssetPaths.bg_color__jpg);
@@ -111,14 +115,6 @@ class MenuState extends FlxState
 	
 	private function clickPlay():Void
 	{
-		//#if not flash
-		_soundSelect = FlxG.sound.load(AssetPaths.combine__ogg, 0.20);
-		_soundSelect.play(true);
-		//#end
-		if (FlxG.sound.music == null) {
-			FlxG.sound.playMusic("assets/music/combinedsongs.ogg", 0.05, true);
-			FlxG.sound.list.maxSize = 1;
-		}
 		Main.LOGGER.logLevelStart(Data.currLevel);
 		FlxG.switchState(new PlayState());
 	}
