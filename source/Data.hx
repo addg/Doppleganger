@@ -173,6 +173,6 @@ class Data
 		
 		Main.LOGGER.logActionWithNoLevel(LoggingActions.BEST_TOTAL_TIME, totalTime);
 		Main.LOGGER.logActionWithNoLevel(LoggingActions.TOTAL_ATTEMPTS, totalAttempts);
-		Main.LOGGER.logActionWithNoLevel(LoggingActions.BEST_PAIR, "" + totalTime + " " + totalAttempts);
+		Main.LOGGER.logActionWithNoLevel(LoggingActions.BEST_PAIR, "" + totalTime + "," + totalAttempts);
 	}
 }
