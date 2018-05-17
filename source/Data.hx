@@ -157,4 +157,21 @@ class Data
 		Main.LOGGER.logActionWithNoLevel(LoggingActions.BEST_TIMES, bestTimes.toString());
 		Main.LOGGER.logActionWithNoLevel(LoggingActions.ATTEMPTS, amountPlayed.toString());
 	}
+	
+	public static function logHighscore() {
+		var totalTime:Float = 0;
+		var totalAttempts:Int = 0;
+		
+		for (i in 0...(Data.amtLevels + 1)) {
+			totalTime += Data.bestTimes[i];
+		}
+		
+		for (attempts in Data.amountPlayed) {
+			totalAttempts += attempts;
+		}
+		
+		
+		Main.LOGGER.logActionWithNoLevel(LoggingActions.BEST_TOTAL_TIME, totalTime);
+		Main.LOGGER.logActionWithNoLevel(LoggingActions.TOTAL_ATTEMPTS, totalAttempts);
+	}
 }

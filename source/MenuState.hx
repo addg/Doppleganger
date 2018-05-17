@@ -22,8 +22,10 @@ class MenuState extends FlxState
 	private var _sprRight:FlxSprite;
 	private var _btnPlay:FlxButton;
 	private var _btnLevel:FlxButton;
+	private var _btnHighscore:FlxButton;
 	private var _btnResetData:FlxButton;
 	private var clearDataPopup:FlxUIPopup;
+	private var highScorePopup:FlxUIPopup;
 	private var _lblColor:FlxColor = FlxColor.BLACK;
 	
 	private var offset = 50; // same as the pixel size of the square
@@ -65,6 +67,10 @@ class MenuState extends FlxState
 		_btnLevel = new FlxButton(0, 20 + offset * 6, "Level Select", clickLevel);
 		add(_btnLevel);
 		_btnLevel.screenCenter(X);
+		
+		_btnHighscore = new FlxButton(0, 20 + offset * 8, "Leaderboard", clickHighscore);
+		add(_btnHighscore);
+		_btnHighscore.screenCenter(X);
 		
 		_btnResetData = new FlxButton(FlxG.width - 85, FlxG.height - 25, "Clear Save", clearSavePopup);
 		add(_btnResetData);
@@ -122,6 +128,13 @@ class MenuState extends FlxState
 	private function clickLevel():Void
 	{
 		FlxG.switchState(new LevelState());
+	}
+	
+	private function clickHighscore():Void {
+		highScorePopup = new Popup_Highscore(); //create the popup
+		// We would have to periodically update this leaderboard which and replace the middle string.
+		highScorePopup.quickSetup("Best game completion time, updated daily!", "First: 543.21s in 123 attempts \nSecond: 544.44 in 321 attempts", ["Close"]);
+		openSubState(highScorePopup);
 	}
 	
 	private function clearSavePopup():Void {

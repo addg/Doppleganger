@@ -37,6 +37,7 @@ class Popup_WonGame extends FlxUIPopup
 		
 		// If this gives way too much data, comment out and use the one in loadNextLevel();
 		Data.logData();
+		Data.logHighscore();
 	}
 	
 	public override function getEvent(id:String, target:Dynamic, data:Dynamic, ?params:Array<Dynamic>):Void 
