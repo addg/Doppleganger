@@ -17,6 +17,7 @@ class MenuState extends FlxState
 	private var _txtSubtitle:FlxText;
 	private var _txtRestart:FlxText;
 	private var _txtControls:FlxText;
+	private var _txtPlay:FlxText;
 	private var _sprUp:FlxSprite;
 	private var _sprLeft:FlxSprite;
 	private var _sprRight:FlxSprite;
@@ -37,7 +38,7 @@ class MenuState extends FlxState
 	{
 		//FlxG.mouse.enabled = true;
 		FlxG.mouse.visible = true;
-			if (FlxG.sound.music == null) {
+		if (FlxG.sound.music == null) {
 			FlxG.sound.playMusic("assets/music/combinedsongs.ogg", 0.05, true);
 			FlxG.sound.list.maxSize = 1;
 		}
@@ -57,18 +58,30 @@ class MenuState extends FlxState
 		add(_txtTitle);
 		
 		// buttons
-		_btnPlay = new FlxButton(0, FlxG.height/3, "Play", clickPlay);
-		_btnPlay.loadGraphic(AssetPaths.btn_play__png, true, 150, 50);
-		_btnPlay.label.setFormat(_txtTitle.font, font_size - 10, _lblColor, CENTER);
-		_btnPlay.label.offset.x += offset;
+		_btnPlay = new FlxButton(0, FlxG.height/3, "", clickPlay);
+		_btnPlay.loadGraphic(AssetPaths.btn_play_new__png, true, 150, 50);
+		//_btnPlay.label.setFormat(_txtTitle.font, font_size - 10, _lblColor, CENTER);
+		//_btnPlay.label.offset.x += offset;
 		add(_btnPlay);
 		_btnPlay.screenCenter(X);
 		
+		_txtPlay = new FlxText(0, FlxG.height/3, "Play", font_size - 10);
+		_txtPlay.color = _lblColor;
+		_txtPlay.alignment = CENTER;
+		_txtPlay.screenCenter(X);
+		_txtPlay.offset.x += 23;
+		_txtPlay.offset.y -= 8;
+		add(_txtPlay);
+		
 		_btnLevel = new FlxButton(0, 20 + offset * 6, "Level Select", clickLevel);
+		_btnLevel.label.setFormat(_txtTitle.font, 10, _lblColor, CENTER);
+		_btnLevel.scale.set(1.5, 1.5);
 		add(_btnLevel);
 		_btnLevel.screenCenter(X);
 		
 		_btnHighscore = new FlxButton(0, 20 + offset * 8, "Leaderboard", clickHighscore);
+		_btnHighscore.label.setFormat(_txtTitle.font, 10, _lblColor, CENTER);
+		_btnHighscore.scale.set(1.5, 1.5);
 		add(_btnHighscore);
 		_btnHighscore.screenCenter(X);
 		
