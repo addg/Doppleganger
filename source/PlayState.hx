@@ -203,7 +203,13 @@ class PlayState extends FlxState
 					//#end
 					
 					fellOffMap = true;
-					var x:Float = (blocks.x < -25) ? 5 : FlxG.width - 5;
+					
+					var x:Float;
+					if (blocks.y > FlxG.height) {
+						x = blocks.x;
+					} else {
+						x = (blocks.x < -25) ? 5 : FlxG.width - 5;
+					}
 					var y:Float = blocks.y;
 					blocks.destroy();
 					spawnParticles(x, y - 10, FlxColor.RED);
