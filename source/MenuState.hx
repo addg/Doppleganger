@@ -65,7 +65,7 @@ class MenuState extends FlxState
 		add(_btnPlay);
 		_btnPlay.screenCenter(X);
 		
-		_txtPlay = new FlxText(0, FlxG.height/3, "Play", font_size - 10);
+		_txtPlay = new FlxText(0, FlxG.height / 3, "Play", font_size - 10);
 		_txtPlay.color = _lblColor;
 		_txtPlay.alignment = CENTER;
 		_txtPlay.screenCenter(X);
