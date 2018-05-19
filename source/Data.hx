@@ -47,6 +47,7 @@ class Data
 		loadLevelCompletionStatus();
 		loadAmountPlayed();
 		_gameSave.flush();
+		currLevel = 1;
 	}
 	
 	// Currently called in Main.hx
@@ -174,5 +175,14 @@ class Data
 		Main.LOGGER.logActionWithNoLevel(LoggingActions.BEST_TOTAL_TIME, totalTime);
 		Main.LOGGER.logActionWithNoLevel(LoggingActions.TOTAL_ATTEMPTS, totalAttempts);
 		Main.LOGGER.logActionWithNoLevel(LoggingActions.BEST_PAIR, "" + totalTime + "," + totalAttempts);
+	}
+	
+	public static function checkGameId(gameId:Int):Bool {
+		if (_gameSave.data.gameId == null || _gameSave.data.gameId != gameId) {
+			clearSavedData();
+			_gameSave.data.gameId = gameId;
+			return true;
+		}
+		return false;
 	}
 }
