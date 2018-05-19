@@ -37,16 +37,26 @@ class PlayState extends FlxState
 	private var die:Bool = false;
 	private var oldTime:Float;
 	
+	private var orange:FlxColor;
+	private var blue:FlxColor;
+	
 	// When true, stops logging all the deaths and restarts.
 	private var reduceLogs:Bool = false;
 	
 	private var _emitter:FlxEmitter;
+	private var _emitterCombine:FlxEmitter;
 	
 	var _soundJoin:FlxSound;
 	
 	override public function create():Void
 	{
 		super.create();
+		
+		orange = new FlxColor(1);
+		orange.setRGB(255, 178, 127, 255);
+		
+		blue = new FlxColor(1);
+		blue.setRGB(0, 148, 255, 255);
 		
 		//FlxG.mouse.enabled = false;
 		FlxG.mouse.visible = false;
@@ -129,14 +139,27 @@ class PlayState extends FlxState
 		add(levelCount);
 
 		
-		_emitter = new FlxEmitter(FlxG.width / 2, FlxG.height / 2, 200);
-		_emitter.lifespan.set(0.1, 0.8);
+		_emitterCombine = new FlxEmitter(FlxG.width / 2, FlxG.height / 2, 100);
+		_emitterCombine.lifespan.set(0.4, 0.8);
+		_emitterCombine.launchAngle.set(-150, -30);
+		_emitterCombine.acceleration.start.min.y = 200;
+		_emitterCombine.acceleration.start.max.y = 300;
+		_emitterCombine.acceleration.end.min.y = 400;
+		_emitterCombine.acceleration.end.max.y = 500;
+		_emitterCombine.makeParticles(2, 2, FlxColor.WHITE, 100);
+		_emitterCombine.color.set(FlxColor.RED, FlxColor.PINK, FlxColor.BLUE, FlxColor.CYAN);
+		add(_emitterCombine);
+		
+		_emitter = new FlxEmitter(FlxG.width / 2, FlxG.height / 2, 20);
+		_emitter.scale.set(0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25);
+		_emitter.lifespan.set(0.4, 0.8);
 		_emitter.launchAngle.set(-150, -30);
 		_emitter.acceleration.start.min.y = 200;
-		_emitter.acceleration.start.max.y = 400;
-		_emitter.acceleration.end.min.y = 200;
-		_emitter.acceleration.end.max.y = 400;
-		_emitter.makeParticles(2, 2, FlxColor.WHITE, 200);
+		_emitter.acceleration.start.max.y = 300;
+		_emitter.acceleration.end.min.y = 400;
+		_emitter.acceleration.end.max.y = 500;
+		//_emitter.makeParticles(8, 8, FlxColor.WHITE, 20);
+		//_emitter.loadParticles(AssetPaths.orangeParticle__png, 20);
 		add(_emitter);
 	}
 
@@ -216,8 +239,9 @@ class PlayState extends FlxState
 						x = (blocks.x < -25) ? 5 : FlxG.width - 5;
 					}
 					var y:Float = blocks.y;
+					var color:FlxColor = blocks.thisColor == 0 ? orange : blue;
 					blocks.destroy();
-					spawnParticles(x, y - 10, FlxColor.RED);
+					spawnParticles(x, y - 10, color);
 					if (!reduceLogs) {
 						Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, "Fell off");
 					}
@@ -280,11 +304,13 @@ class PlayState extends FlxState
 			_soundJoin.play(true);
 			//#end
 			
+
+			
 			var x:Float = (Block1.x + Block2.x) / 2 + 12.5;
 			var y:Float = (Block1.y + Block2.y) / 2;
 			Block1.destroy();
 			Block2.destroy();
-			spawnParticles(x, y, FlxColor.YELLOW);
+			spawnParticlesCombine(x, y);
 			if (_player.countLiving() == 0) {
 				Timer.cancel();
 				var num = formatTime(Timer.elapsedTime);
@@ -309,8 +335,11 @@ class PlayState extends FlxState
 		
 		var x:Float = Block1.x;
 		var y:Float = Block1.y;
+		var color:FlxColor = Block1.thisColor == 0 ? orange : blue;
+		
 		Block1.destroy();
-		spawnParticles(x, y, FlxColor.RED);
+		
+		spawnParticles(x, y, color);
 		
 		// Display message here and wait for them to click retry? Maybe instantly restart?
 		if (!reduceLogs) {
@@ -332,8 +361,9 @@ class PlayState extends FlxState
 		
 		var x:Float = Block.x + (Block.width / 2);
 		var y:Float = Block.y + (Block.height / 2);
+		var color:FlxColor = Block.thisColor == 0 ? orange : blue;
 		Block.destroy();
-		spawnParticles(x, y, FlxColor.RED);
+		spawnParticles(x, y, color);
 		
 		if (!reduceLogs) {
 			Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, "Spikes " + Spike.x + " " + Spike.y);
@@ -477,8 +507,20 @@ class PlayState extends FlxState
 	private function spawnParticles(x:Float, y:Float, ?color:FlxColor = FlxColor.WHITE):Void {
 		_emitter.x = x;
 		_emitter.y = y;
-		_emitter.color.set(color);
+		//_emitter.color.set(color);
+		if (color == orange) {
+			_emitter.loadParticles(AssetPaths.orangeParticle__png, 20);
+		} else {
+			_emitter.loadParticles(AssetPaths.blueParticle__png, 20);
+		}
+		
 		_emitter.start(true, 0.01, 0);
+	}
+	
+	private function spawnParticlesCombine(x:Float, y:Float):Void {
+		_emitterCombine.x = x;
+		_emitterCombine.y = y;
+		_emitterCombine.start(true, 0.01, 0);
 	}
 	
 	// Call when you want to reset the level, 0.5 sec delay

@@ -9,6 +9,7 @@ class Main extends Sprite
 	// A bit of an ugly hack, basically using a global variable so it can be
 	// fetched in any arbitrary class.
 	public static var LOGGER:CapstoneLogger;
+	private static var categoryId:Int = 2;
 	
 	public function new()
 	{
@@ -20,10 +21,12 @@ class Main extends Sprite
 		// when you release it to family/friends set it to 2, when you release it to a public website set it to 3
 		
 		// FIRST RELEASE ID: 10 -> after first release dont use this again
+		// SECOND RELEASE ID: 20 -> after release dont use this again
 		// MAKE SURE TO CHANGE THIS IF YOU WANT TO PLAY THE GAME YOURSELF, WE DON'T WANT ANY DATA LOGGED FROM US PLAYING
 		// USE NEGATIVE NUMBERS FOR OUR TESTING
-		var categoryId:Int = 1;
-		var useDev:Bool = true;
+		
+		// Set to false when you are ready for a major release of your game
+		var useDev:Bool = false;
 		Main.LOGGER = new CapstoneLogger(gameId, gameName, gameKey, categoryId, useDev);
 		
 		// Retrieve the user (saved in local storage for later)
@@ -53,6 +56,8 @@ class Main extends Sprite
 		Data.loadCanPlayLevel();
 		Data.loadLevelCompletionStatus();
 		Data.loadAmountPlayed();
+		
+		Data.checkCategoryId(categoryId);
 	}
 
 }

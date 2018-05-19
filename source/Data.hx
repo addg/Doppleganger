@@ -22,7 +22,7 @@ class Data
 	public static var paused:Bool = false;
 	
 	// Set to true if you want O, P, and \ commands active
-	public static var devTools:Bool = true;
+	public static var devTools:Bool = false;
 	
 	// Object for local saving
 	// Currently has arrays:
@@ -177,10 +177,10 @@ class Data
 		Main.LOGGER.logActionWithNoLevel(LoggingActions.BEST_PAIR, "" + totalTime + "," + totalAttempts);
 	}
 	
-	public static function checkGameId(gameId:Int):Bool {
-		if (_gameSave.data.gameId == null || _gameSave.data.gameId != gameId) {
+	public static function checkCategoryId(categoryId:Int):Bool {
+		if (_gameSave.data.categoryId == null || _gameSave.data.categoryId != categoryId) {
 			clearSavedData();
-			_gameSave.data.gameId = gameId;
+			_gameSave.data.categoryId = categoryId;
 			return true;
 		}
 		return false;

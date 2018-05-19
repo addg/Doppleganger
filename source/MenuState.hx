@@ -173,7 +173,7 @@ class MenuState extends FlxState
 	
 	private function clickABS():Void {
 		absPopup= new Popup_Highscore(); //create the popup
-		absPopup.quickSetup("Thanks you ABS!", "Given permission to be hosted by albinoblacksheep.com!", ["Close [ESC]"]);
+		absPopup.quickSetup("Thank you ABS!", "Given permission to be hosted by albinoblacksheep.com!", ["Close [ESC]"]);
 		openSubState(absPopup);
 	}
 	
