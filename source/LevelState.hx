@@ -35,6 +35,7 @@ class LevelState extends FlxState
 		add(_backgroundBlock);
 		
 		_txtLevel = new FlxText(0, 0, 0, "Choose A Level", 35);
+		_txtLevel.setFormat(AssetPaths.Unlock__ttf, 35);
 		_txtLevel.color = _lblColor;
 		_txtLevel.screenCenter(X);
 		add(_txtLevel);
@@ -57,6 +58,7 @@ class LevelState extends FlxState
 				add(_btnSprite);
 				//_txtCannotPlay = new FlxText(offset * (i % lvl_per_row * 1.25 + 3.25) + 5, offset * (Std.int(i / lvl_per_row) * 1.25 + 2) + 5, offset, i + 1 + "", 15);
 				_txtCannotPlay = new FlxText(offset * (i % lvl_per_row * 1.25 + 3), offset * (Std.int(i / lvl_per_row) * 1.25 + 2), offset, i + 1 + "", 15);
+				_txtCannotPlay.setFormat(AssetPaths.Unlock__ttf, 15);
 				_txtCannotPlay.alignment = "center";
 				add(_txtCannotPlay);
 			}

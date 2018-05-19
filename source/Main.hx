@@ -53,8 +53,6 @@ class Main extends Sprite
 		Data.loadCanPlayLevel();
 		Data.loadLevelCompletionStatus();
 		Data.loadAmountPlayed();
-		
-		
 	}
 
 }

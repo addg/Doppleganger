@@ -30,19 +30,21 @@ class MenuState extends FlxState
 	private var _lblColor:FlxColor = FlxColor.BLACK;
 	
 	private var _btnAlbinoBlackSheep:FlxButton;
+	private var absPopup:FlxUIPopup;
 	
 	private var offset = 50; // same as the pixel size of the square
-	private var font_size = 35;
+	private var font_size = 50;
 	
 	var _soundSelect:FlxSound;
 	
 	override public function create():Void
-	{
-		//FlxG.mouse.enabled = true;
+	{	
 		FlxG.mouse.visible = true;
 		if (FlxG.sound.music == null) {
+			//#if not flash
 			FlxG.sound.playMusic("assets/music/combinedsongs.ogg", 0.05, true);
 			FlxG.sound.list.maxSize = 1;
+			//#end
 		}
 		
 		_backgroundColor = new FlxSprite();
@@ -54,6 +56,7 @@ class MenuState extends FlxState
 		add(_backgroundBlock);
 		
 		_txtTitle = new FlxText(20, 20, 0, "Too Many Blocks!", font_size);
+		_txtTitle.setFormat(AssetPaths.Unlock__ttf, font_size);
 		_txtTitle.color = _lblColor;
 		_txtTitle.alignment = CENTER;
 		_txtTitle.screenCenter(X);
@@ -67,25 +70,29 @@ class MenuState extends FlxState
 		add(_btnPlay);
 		_btnPlay.screenCenter(X);
 		
-		_txtPlay = new FlxText(0, FlxG.height / 3, "Play", font_size - 10);
+		_txtPlay = new FlxText(0, FlxG.height / 3, "Play", font_size - 20);
+		_txtPlay.setFormat(_txtTitle.font, font_size - 20);
 		_txtPlay.color = _lblColor;
 		_txtPlay.alignment = CENTER;
 		_txtPlay.screenCenter(X);
-		_txtPlay.offset.x += 23;
-		_txtPlay.offset.y -= 8;
+		_txtPlay.offset.x += 25;
+		_txtPlay.offset.y -= 5;
 		add(_txtPlay);
 		
 		_btnLevel = new FlxButton(0, 20 + offset * 6, "Level Select", clickLevel);
-		_btnLevel.label.setFormat(_txtTitle.font, 10, _lblColor, CENTER);
 		_btnLevel.scale.set(1.5, 1.5);
+		_btnLevel.label.fieldWidth = 100;
+		_btnLevel.label.setFormat(_txtTitle.font, 14, _lblColor, CENTER);
+		_btnLevel.label.offset.x += 10;
+		_btnLevel.label.offset.y += 3;
 		add(_btnLevel);
 		_btnLevel.screenCenter(X);
 		
 		
 		_btnAlbinoBlackSheep = new FlxButton(0, FlxG.height - 25, "ABS!", clickABS);
 		_btnAlbinoBlackSheep.loadGraphic(AssetPaths.btn_abs__png, false, 75, 25);
-		_btnAlbinoBlackSheep.label.setFormat(_txtTitle.font, font_size - 20, _lblColor, CENTER);
-		_btnAlbinoBlackSheep.label.offset.x += 10;
+		_btnAlbinoBlackSheep.label.setFormat(_txtTitle.font, 15, _lblColor, CENTER);
+		_btnAlbinoBlackSheep.label.offset.x += 11;
 		//_btnAlbinoBlackSheep.label.offset.y -= 8;
 		add(_btnAlbinoBlackSheep);
 		
@@ -99,7 +106,7 @@ class MenuState extends FlxState
 		_btnHighscore.screenCenter(X);
 		*/
 		
-		_btnResetData = new FlxButton(FlxG.width - 85, FlxG.height - 25, "Clear Save", clearSavePopup);
+		_btnResetData = new FlxButton(FlxG.width - 80, FlxG.height - 20, "Clear Save", clearSavePopup);
 		add(_btnResetData);
 		
 		
@@ -118,8 +125,8 @@ class MenuState extends FlxState
 		add(_txtRestart);
 		*/
 		
-		_txtControls = new FlxText(_btnPlay.x - offset * 0.25, 20 + offset * 4.5, 0, "Jump: \nMove: ", font_size - 15);
-		_txtControls.color = _lblColor;
+		_txtControls = new FlxText(_btnPlay.x, 20 + offset * 4.5, 0, "Jump: \nMove: ", font_size - 30);
+		_txtControls.setFormat(_txtTitle.font, font_size - 30, _lblColor);
 		_sprUp = new FlxSprite(_btnPlay.x + offset * 2.25, 20 + offset * 4.5, AssetPaths.up_arrow__png);
 		_sprLeft = new FlxSprite(_btnPlay.x + offset * 2, 20 + offset * 5.0, AssetPaths.left_arrow__png);
 		_sprRight = new FlxSprite(_btnPlay.x + offset * 2.5, 20 + offset * 5.0, AssetPaths.right_arrow__png);
@@ -165,9 +172,9 @@ class MenuState extends FlxState
 	}
 	
 	private function clickABS():Void {
-		highScorePopup = new Popup_Highscore(); //create the popup
-		highScorePopup.quickSetup("Thanks you ABS!", "Given permission to be hosted by albinoblacksheep.com!", ["Close [ESC]"]);
-		openSubState(highScorePopup);
+		absPopup= new Popup_Highscore(); //create the popup
+		absPopup.quickSetup("Thanks you ABS!", "Given permission to be hosted by albinoblacksheep.com!", ["Close [ESC]"]);
+		openSubState(absPopup);
 	}
 	
 	private function clearSavePopup():Void {

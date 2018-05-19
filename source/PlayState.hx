@@ -103,13 +103,15 @@ class PlayState extends FlxState
 		_map.loadEntities(placeEntities, "entities");
 		
 		failures = new FlxText(2, 2, 200);
-		failures.size = 16;
+		failures.setFormat(AssetPaths.Unlock__ttf);
+		failures.size = 20;
 		failures.text = "Attempts: " + Data.attempts;
 		add(failures);
 		
-		currTime = new FlxText(FlxG.width - 200, 2, 200);
-		currTime.size = 16;
-		currTime.text = "Current time: " + 0.00;
+		currTime = new FlxText(FlxG.width - 210, 2, 250);
+		currTime.setFormat(AssetPaths.Unlock__ttf);
+		currTime.size = 20;
+		currTime.text = "Elasped time: " + 0.00;
 		add(currTime);
 		
 		/*
@@ -119,8 +121,9 @@ class PlayState extends FlxState
 		add(bestTime);
 		*/
 		
-		levelCount = new FlxText(0, 2, 200);
-		levelCount.size = 16;
+		levelCount = new FlxText(0, 2, 100);
+		levelCount.setFormat(AssetPaths.Unlock__ttf);
+		levelCount.size = 20;
 		levelCount.screenCenter(X);
 		levelCount.text = "Level " + Data.currLevel;
 		add(levelCount);
@@ -156,13 +159,13 @@ class PlayState extends FlxState
 		
 		if (FlxG.keys.anyJustPressed([UP, LEFT, RIGHT, W, A, D, SPACE]) && !started) {
 			started = true;
-			Timer.start(100, null, 0);
+			Timer.start(1000, null, 0);
 		}
 		if (started) {
 			var num = Timer.elapsedTime;
 			num = num * Math.pow(10, 2);
 			num = Math.round(num) / Math.pow(10, 2);
-			currTime.text = "Current time: " + num;
+			currTime.text = "Elasped time: " + num;
 		}
 		if (FlxG.keys.justPressed.R) {
 			if (!reduceLogs) {
