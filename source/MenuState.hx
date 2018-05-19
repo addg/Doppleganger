@@ -29,6 +29,8 @@ class MenuState extends FlxState
 	private var highScorePopup:FlxUIPopup;
 	private var _lblColor:FlxColor = FlxColor.BLACK;
 	
+	private var _btnAlbinoBlackSheep:FlxButton;
+	
 	private var offset = 50; // same as the pixel size of the square
 	private var font_size = 35;
 	
@@ -79,11 +81,23 @@ class MenuState extends FlxState
 		add(_btnLevel);
 		_btnLevel.screenCenter(X);
 		
+		
+		_btnAlbinoBlackSheep = new FlxButton(0, FlxG.height - 25, "ABS!", clickABS);
+		_btnAlbinoBlackSheep.loadGraphic(AssetPaths.btn_abs__png, false, 75, 25);
+		_btnAlbinoBlackSheep.label.setFormat(_txtTitle.font, font_size - 20, _lblColor, CENTER);
+		_btnAlbinoBlackSheep.label.offset.x += 10;
+		//_btnAlbinoBlackSheep.label.offset.y -= 8;
+		add(_btnAlbinoBlackSheep);
+		
+		/*
+		 * 
+		 * To be implemented, leaderboard for users to see the best time to complete the game
 		_btnHighscore = new FlxButton(0, 20 + offset * 8, "Leaderboard", clickHighscore);
 		_btnHighscore.label.setFormat(_txtTitle.font, 10, _lblColor, CENTER);
 		_btnHighscore.scale.set(1.5, 1.5);
 		add(_btnHighscore);
 		_btnHighscore.screenCenter(X);
+		*/
 		
 		_btnResetData = new FlxButton(FlxG.width - 85, FlxG.height - 25, "Clear Save", clearSavePopup);
 		add(_btnResetData);
@@ -147,6 +161,12 @@ class MenuState extends FlxState
 		highScorePopup = new Popup_Highscore(); //create the popup
 		// We would have to periodically update this leaderboard which and replace the middle string.
 		highScorePopup.quickSetup("Best game completion time, updated daily!", "First: 543.21s in 123 attempts \nSecond: 544.44 in 321 attempts", ["Close"]);
+		openSubState(highScorePopup);
+	}
+	
+	private function clickABS():Void {
+		highScorePopup = new Popup_Highscore(); //create the popup
+		highScorePopup.quickSetup("Thanks you ABS!", "Given permission to be hosted by albinoblacksheep.com!", ["Close [ESC]"]);
 		openSubState(highScorePopup);
 	}
 	

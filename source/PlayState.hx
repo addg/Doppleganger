@@ -107,15 +107,17 @@ class PlayState extends FlxState
 		failures.text = "Attempts: " + Data.attempts;
 		add(failures);
 		
-		currTime = new FlxText(FlxG.width - 200, 2 + 25, 200);
+		currTime = new FlxText(FlxG.width - 200, 2, 200);
 		currTime.size = 16;
 		currTime.text = "Current time: " + 0.00;
 		add(currTime);
 		
+		/*
 		bestTime = new FlxText(FlxG.width - 200, 2, 200);
 		bestTime.size = 16;
 		bestTime.text = "Best time: " + Data.bestTimes[Data.currLevel];
 		add(bestTime);
+		*/
 		
 		levelCount = new FlxText(0, 2, 200);
 		levelCount.size = 16;
@@ -285,11 +287,11 @@ class PlayState extends FlxState
 				var num = formatTime(Timer.elapsedTime);
 				oldTime = Data.bestTimes[Data.currLevel];
 				Data.bestTimes[Data.currLevel] = Math.min(num, Data.bestTimes[Data.currLevel]);
-				bestTime.text = "Best time: " + Data.bestTimes[Data.currLevel];
+				// bestTime.text = "Best time: " + Data.bestTimes[Data.currLevel];
 				winScreen();
 			}
 		} else {
-			if (Block1.exists && Block2.exists) {
+			if (Block1.exists && Block2.exists) { //0.611
 				FlxObject.separate(Block1, Block2);
 				Block1.setPosition(Block1.x, Math.ffloor(Block1.y) + 0.611);
 				Block2.setPosition(Block2.x, Math.ffloor(Block2.y) + 0.611);
@@ -420,9 +422,9 @@ class PlayState extends FlxState
 	// Don't call this
 	private function winScreenCallback(timer:FlxTimer) {
 		beatLevelPopup = new Popup_Simple(); //create the popup
-		var header:String = (oldTime < Timer.elapsedTime || oldTime == 300) ? "Congratulations!" : "NEW RECORD!";
-		beatLevelPopup.quickSetup(header, ((oldTime < Timer.elapsedTime || oldTime == 300) ? "" : ("Previous best time was " + formatTime(oldTime) + " seconds. \n")) + "You beat the level in " + formatTime(Timer.elapsedTime) +
-				" seconds in " + Data.attempts + (Data.attempts == 1 ? " attempt." : " attempts."), ["Main Menu [M]", "Retry [R]", "Next Level [SPACE]"]);
+		var header:String = oldTime < Timer.elapsedTime ? "Congratulations!" : "NEW RECORD!";
+		beatLevelPopup.quickSetup(header, "You beat the level in " + formatTime(Timer.elapsedTime) + " seconds in " + Data.attempts + (Data.attempts == 1 ? " attempt." : " attempts.")
+			+ "\nYour best time is " + (oldTime < Timer.elapsedTime ? "" : "now ") + formatTime(Data.bestTimes[Data.currLevel]) + " seconds.", ["Main Menu [M]", "Retry [R]", "Next Level [SPACE]"]);
 		openSubState(beatLevelPopup);
 	}
 	
