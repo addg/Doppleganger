@@ -9,6 +9,7 @@ import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import flixel.addons.ui.FlxUIPopup;
 
+
 class MenuState extends FlxState
 {
 	private var _backgroundColor:FlxSprite;
@@ -38,7 +39,7 @@ class MenuState extends FlxState
 	var _soundSelect:FlxSound;
 	
 	override public function create():Void
-	{	
+	{
 		FlxG.mouse.visible = true;
 		if (FlxG.sound.music == null) {
 			//#if not flash
@@ -88,13 +89,14 @@ class MenuState extends FlxState
 		add(_btnLevel);
 		_btnLevel.screenCenter(X);
 		
-		
+		/*
 		_btnAlbinoBlackSheep = new FlxButton(0, FlxG.height - 25, "ABS!", clickABS);
 		_btnAlbinoBlackSheep.loadGraphic(AssetPaths.btn_abs__png, false, 75, 25);
 		_btnAlbinoBlackSheep.label.setFormat(_txtTitle.font, 15, _lblColor, CENTER);
 		_btnAlbinoBlackSheep.label.offset.x += 11;
 		//_btnAlbinoBlackSheep.label.offset.y -= 8;
 		add(_btnAlbinoBlackSheep);
+		*/
 		
 		/*
 		 * 

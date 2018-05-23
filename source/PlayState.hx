@@ -13,6 +13,7 @@ import flixel.tile.FlxTilemap;
 import flixel.util.FlxTimer;
 import flixel.addons.ui.FlxUIPopup;
 
+
 class PlayState extends FlxState
 {
 	private var _player:FlxTypedGroup<Player>;
@@ -45,6 +46,9 @@ class PlayState extends FlxState
 	
 	private var _emitter:FlxEmitter;
 	private var _emitterCombine:FlxEmitter;
+	
+	static var recording:Bool = false;
+	static var replaying:Bool = false;
 	
 	var _soundJoin:FlxSound;
 	
@@ -161,6 +165,8 @@ class PlayState extends FlxState
 		//_emitter.makeParticles(8, 8, FlxColor.WHITE, 20);
 		//_emitter.loadParticles(AssetPaths.orangeParticle__png, 20);
 		add(_emitter);
+		
+		init();
 	}
 
 	override public function update(elapsed:Float):Void
@@ -174,6 +180,21 @@ class PlayState extends FlxState
 			if (FlxG.keys.justPressed.P) {
 				updateLevel(1);
 			}
+		}
+		
+		if (!recording && !replaying)
+		{
+			startRecording();
+		}
+		
+		/**
+		 * Notice that I add "&& recording", because recording will recording every input
+		 * so R key for replay will also be recorded and be triggered at replaying
+		 * Please pay attention to the inputs that are not supposed to be recorded
+		 */
+		if (FlxG.keys.justPressed.H && recording)
+		{
+			loadReplay();
 		}
 		
 		if (FlxG.keys.justPressed.ESCAPE) {
@@ -553,6 +574,58 @@ class PlayState extends FlxState
 			}
 		}
 	}
+	
+	function loadReplay():Void 
+	{
+		replaying = true;
+		recording = false;
+		
+		/**
+		 * Here we get a string from stopRecoding()
+		 * which records all the input during recording
+		 * Then we load the save
+		 */
+
+		var save:String = FlxG.vcr.stopRecording(false);
+		FlxG.log.add(save);
+		FlxG.vcr.loadReplay(save, new PlayState(), ["ANY", "MOUSE"], 0, startRecording);
+	}
+	
+	function startRecording():Void 
+	{
+		recording = true;
+		replaying = false;
+		
+		/**
+		 * Note FlxG.recordReplay will restart the game or state
+		 * This function will trigger a flag in FlxGame
+		 * and let the internal FlxReplay to record input on every frame
+		 */
+		FlxG.vcr.startRecording(false);
+	}
+
+	function init():Void
+	{
+		if (recording) 
+		{
+			for (players in _player) {
+				players.alpha = 1;
+			}
+			for (enemies in _enemy) {
+				enemies.alpha = 1;
+			}
+		}
+		else if (replaying) 
+		{
+			for (players in _player) {
+				players.alpha = 0.5;
+			}
+			for (enemies in _enemy) {
+				enemies.alpha = 0.5;
+			}
+		}
+	}
+	
 	
 	private function loadMap():Void {
 		_mWalls = _map.loadTilemap(AssetPaths.tiles3__png, 25, 25, "walls");
