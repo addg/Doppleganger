@@ -12,6 +12,7 @@ import flixel.text.FlxText;
 import flixel.tile.FlxTilemap;
 import flixel.util.FlxTimer;
 import flixel.addons.ui.FlxUIPopup;
+// import sys.io.File;
 
 
 class PlayState extends FlxState
@@ -587,7 +588,11 @@ class PlayState extends FlxState
 		 */
 
 		var save:String = FlxG.vcr.stopRecording(false);
-		FlxG.log.add(save);
+		/*
+		var f = File.append("./test.txt");
+		f.writeString(save);
+		f.close();
+		*/
 		FlxG.vcr.loadReplay(save, new PlayState(), ["ANY", "MOUSE"], 0, startRecording);
 	}
 	
