@@ -24,8 +24,8 @@
     <player id="1" x="575" y="325" normal="1" color="0" sleepy="0" />
     <lock id="7" x="425" y="300" color="3" />
     <lock id="8" x="400" y="300" color="3" />
-    <key id="9" x="200" y="175" color="3" />
-    <key id="10" x="350" y="375" color="2" />
+    <key id="9" x="275" y="375" color="3" />
+    <key id="10" x="200" y="175" color="2" />
     <lock id="2" x="200" y="425" color="2" />
     <lock id="3" x="200" y="400" color="2" />
     <lock id="4" x="200" y="375" color="2" />
