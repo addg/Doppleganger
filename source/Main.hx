@@ -2,6 +2,7 @@ package;
 
 import cse481d.logging.CapstoneLogger;
 import flixel.FlxGame;
+import flixel.math.FlxRandom;
 import openfl.display.Sprite;
 
 class Main extends Sprite
@@ -11,9 +12,21 @@ class Main extends Sprite
 	public static var LOGGER:CapstoneLogger;
 	public static var categoryId:Int = 2;
 	
+	private static var random:FlxRandom;
+	
+	public static var haveHints:Bool;
+	
 	public function new()
 	{
 		super();
+		
+		random = new FlxRandom();
+		
+		haveHints = random.bool();
+		
+		if (!haveHints) {
+			categoryId++;
+		}
 		
 		var gameId:Int = 1801;
 		var gameKey:String = "64ec54af9a931c49fa3e60232910fa65";
@@ -21,7 +34,11 @@ class Main extends Sprite
 		// when you release it to family/friends set it to 2, when you release it to a public website set it to 3
 		
 		// FIRST RELEASE ID: 10 -> after first release dont use this again
-		// SECOND RELEASE ID: 20 -> after release dont use this again, 20 FOR ABS, 21 FOR NEWGROUNDS
+		// SECOND RELEASE ID: 20 -> after release dont use this again, old 20 FOR ABS, 21 FOR NEWGROUNDS
+		
+		// THIRD RELEASE ID: 30/31 -> ABS, 32/33 -> Kongregate
+		//					EVEN: WITH HINTS, ODD : WITHOUT HINTS
+		
 		// MAKE SURE TO CHANGE THIS IF YOU WANT TO PLAY THE GAME YOURSELF, WE DON'T WANT ANY DATA LOGGED FROM US PLAYING
 		// USE NEGATIVE NUMBERS FOR OUR TESTING
 		

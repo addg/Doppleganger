@@ -53,6 +53,8 @@ class PlayState extends FlxState
 	
 	var _soundJoin:FlxSound;
 	
+	var _hintText:FlxText;
+	
 	override public function create():Void
 	{
 		super.create();
@@ -142,7 +144,16 @@ class PlayState extends FlxState
 		levelCount.screenCenter(X);
 		levelCount.text = "Level " + Data.currLevel;
 		add(levelCount);
-
+		
+		if (Main.haveHints) {
+			_hintText = new FlxText(0, FlxG.height - 25, -1);
+			_hintText.setFormat(AssetPaths.Unlock__ttf);
+			_hintText.size = 20;
+			_hintText.color = FlxColor.BLACK;
+			//_hintText.screenCenter(X);
+			_hintText.text = "Press \"H\" for a hint!";
+			add(_hintText);
+		}
 		
 		_emitterCombine = new FlxEmitter(FlxG.width / 2, FlxG.height / 2, 100);
 		_emitterCombine.lifespan.set(0.4, 0.8);
@@ -195,6 +206,7 @@ class PlayState extends FlxState
 		 */
 		if (FlxG.keys.justPressed.H && recording)
 		{
+			Main.LOGGER.logLevelAction(LoggingActions.HINT, Data.currLevel);
 			loadReplay();
 		}
 		
@@ -587,7 +599,7 @@ class PlayState extends FlxState
 		 * Then we load the save
 		 */
 
-		var save:String = FlxG.vcr.stopRecording(false);
+		FlxG.vcr.stopRecording(false);
 		/*
 		var f = File.write("./test.txt");
 		f.writeString(save);

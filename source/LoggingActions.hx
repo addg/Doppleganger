@@ -10,6 +10,7 @@ class LoggingActions
 	public static var BEST_TOTAL_TIME = 6;
 	public static var TOTAL_ATTEMPTS = 7;
 	public static var BEST_PAIR = 8;
+	public static var HINT = 9;
 	
 	public function new() 
 	{
