@@ -4,7 +4,7 @@ import flixel.util.FlxSave;
 class Data 
 {
 	/* Please increment amtLevels when you create a new level! */
-	public static var amtLevels:Int = 34;
+	public static var amtLevels:Int = 35;
 	// This is used so our saved data doesn't produce NaNs when we add levels.
 	// If amtLevels > maxLevels, update maxLevels to a higher number.
 	public static var maxLevels:Int = 100;
