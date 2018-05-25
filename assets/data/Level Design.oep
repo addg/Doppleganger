@@ -16,7 +16,7 @@
     <Width>700</Width>
     <Height>500</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\addgr\Desktop\CSE481\Game2\assets\data\Level Design.oep</Filename>
+  <Filename>C:\Users\Tony\Documents\too-many-blocks\assets\data\Level Design.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>false</CameraEnabled>
   <CameraSize>
@@ -179,7 +179,7 @@
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions>
-        <ValueDefinition xsi:type="IntValueDefinition" Name="color" Default="0" Min="0" Max="4" ShowSlider="false" />
+        <ValueDefinition xsi:type="IntValueDefinition" Name="color" Default="1" Min="0" Max="4" ShowSlider="false" />
       </ValueDefinitions>
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>
