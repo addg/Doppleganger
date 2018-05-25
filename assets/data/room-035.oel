@@ -1,315 +1,188 @@
 <level width="700" height="500" room="0">
   <walls tileset="tiles" exportMode="CSV">1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2
-3,1,1,1,1,1,16,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,18,2,1,1,1,3
-3,1,1,1,1,16,37,37,57,57,57,57,57,57,57,57,57,57,57,57,37,37,38,3,1,1,1,3
-3,1,1,1,1,36,37,58,13,14,14,14,14,14,14,14,14,14,14,15,36,37,38,3,1,1,1,3
-3,2,2,1,1,36,38,13,34,34,54,54,54,54,54,54,54,54,34,35,36,37,38,3,1,1,1,3
-3,1,1,1,1,36,38,33,34,35,16,17,17,17,17,17,17,18,33,35,36,37,38,3,1,1,1,3
-3,1,1,1,1,36,38,33,34,35,56,57,57,57,57,57,37,38,33,35,36,37,38,3,1,1,1,3
-3,1,1,2,2,36,38,53,34,34,14,14,14,14,14,15,36,38,33,35,36,37,38,3,1,1,1,3
-3,1,1,1,1,36,37,18,53,54,54,54,54,54,54,55,36,38,33,35,36,37,38,3,1,1,1,3
-3,1,1,1,1,36,37,37,17,17,17,17,17,17,17,17,37,38,33,35,36,37,38,3,1,1,1,3
-3,2,2,1,1,56,57,57,57,57,57,57,57,57,57,57,57,58,33,35,36,37,38,3,1,1,1,3
-3,3,3,1,1,13,14,14,14,14,14,14,14,14,14,14,14,14,34,35,36,37,38,3,1,1,1,3
-3,3,3,1,1,53,54,54,54,54,54,54,54,54,54,54,54,54,54,55,36,37,38,3,1,1,1,3
-3,3,3,2,2,16,17,17,17,17,17,17,17,17,17,17,17,17,17,17,37,37,38,3,1,1,1,3
-3,1,1,1,1,56,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,58,3,1,1,1,3
-3,1,1,1,1,13,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,15,1,1,1,2,3
-3,1,1,1,1,53,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,55,1,1,2,3,3
-3,11,11,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3
-3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3</walls>
+7,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,6,1,1,1,1,1,1,1,1,1,1
+2,1,1,1,16,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,18,2
+3,1,1,1,97,1,1,1,1,1,4,1,1,1,1,1,1,1,1,1,1,1,5,6,1,1,97,3
+3,1,1,1,76,5,6,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,97,3
+3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,12,97,3
+3,1,1,19,1,1,1,1,1,1,1,1,1,16,98,18,1,1,1,1,1,1,1,1,1,1,97,3
+3,1,1,1,1,74,95,95,95,95,95,95,75,97,1,97,1,1,1,1,1,1,1,1,1,1,97,3
+3,1,1,1,16,98,98,98,98,98,98,98,98,57,98,57,98,98,98,98,98,98,78,1,1,1,97,3
+3,19,1,1,97,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,1,1,1,1,1,97,3
+3,1,1,1,97,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,97,3
+3,1,1,1,97,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,16,38,3
+3,74,95,75,97,74,95,95,75,1,1,1,1,1,1,1,1,74,95,95,95,95,75,1,1,36,38,3
+3,1,1,1,97,1,1,1,1,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,57,58,3
+3,1,1,1,97,1,1,1,1,1,74,95,95,95,95,75,1,1,1,1,1,1,1,74,95,95,75,3
+3,1,1,1,97,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3
+3,1,1,1,36,17,18,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3
+3,1,1,1,36,37,38,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3
+3,1,1,7,56,57,57,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,78,1,1,1,3
+3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,11,11,11,3</walls>
   <entities>
-    <player id="0" x="375" y="225" normal="0" color="1" sleepy="0" />
-    <player id="1" x="250" y="175" normal="1" color="0" sleepy="0" />
-    <colorZone id="3" x="150" y="50" color="0" />
-    <colorZone id="4" x="175" y="50" color="0" />
-    <colorZone id="5" x="200" y="50" color="0" />
-    <colorZone id="6" x="225" y="50" color="0" />
-    <colorZone id="7" x="250" y="50" color="0" />
-    <colorZone id="8" x="300" y="50" color="0" />
-    <colorZone id="9" x="275" y="50" color="0" />
-    <colorZone id="10" x="325" y="50" color="0" />
-    <colorZone id="11" x="350" y="50" color="0" />
-    <colorZone id="12" x="375" y="50" color="0" />
-    <colorZone id="13" x="400" y="50" color="0" />
-    <colorZone id="14" x="425" y="50" color="0" />
-    <colorZone id="15" x="450" y="50" color="0" />
-    <colorZone id="16" x="475" y="50" color="0" />
-    <colorZone id="17" x="500" y="50" color="0" />
-    <colorZone id="18" x="525" y="50" color="0" />
-    <colorZone id="19" x="125" y="75" color="0" />
-    <colorZone id="20" x="150" y="75" color="0" />
-    <colorZone id="21" x="175" y="75" color="0" />
-    <colorZone id="22" x="200" y="75" color="0" />
-    <colorZone id="23" x="225" y="75" color="0" />
-    <colorZone id="24" x="250" y="75" color="0" />
-    <colorZone id="25" x="300" y="75" color="0" />
-    <colorZone id="26" x="275" y="75" color="0" />
-    <colorZone id="27" x="325" y="75" color="0" />
-    <colorZone id="28" x="350" y="75" color="0" />
-    <colorZone id="29" x="375" y="75" color="0" />
-    <colorZone id="30" x="400" y="75" color="0" />
-    <colorZone id="31" x="425" y="75" color="0" />
-    <colorZone id="32" x="450" y="75" color="0" />
-    <colorZone id="33" x="475" y="75" color="0" />
-    <colorZone id="34" x="500" y="75" color="0" />
-    <colorZone id="35" x="525" y="75" color="0" />
-    <colorZone id="36" x="125" y="100" color="0" />
-    <colorZone id="37" x="150" y="100" color="0" />
-    <colorZone id="38" x="125" y="125" color="0" />
-    <colorZone id="39" x="150" y="125" color="0" />
-    <colorZone id="40" x="125" y="150" color="0" />
-    <colorZone id="41" x="150" y="150" color="0" />
-    <colorZone id="42" x="125" y="175" color="0" />
-    <colorZone id="43" x="150" y="175" color="0" />
-    <colorZone id="44" x="125" y="200" color="0" />
-    <colorZone id="45" x="150" y="200" color="0" />
-    <colorZone id="46" x="125" y="225" color="0" />
-    <colorZone id="47" x="150" y="225" color="0" />
-    <colorZone id="48" x="125" y="250" color="0" />
-    <colorZone id="49" x="150" y="250" color="0" />
-    <colorZone id="50" x="125" y="275" color="0" />
-    <colorZone id="51" x="150" y="275" color="0" />
-    <colorZone id="52" x="175" y="250" color="0" />
-    <colorZone id="53" x="200" y="250" color="0" />
-    <colorZone id="54" x="175" y="275" color="0" />
-    <colorZone id="55" x="200" y="275" color="0" />
-    <colorZone id="56" x="225" y="250" color="0" />
-    <colorZone id="57" x="250" y="250" color="0" />
-    <colorZone id="58" x="225" y="275" color="0" />
-    <colorZone id="59" x="250" y="275" color="0" />
-    <colorZone id="60" x="275" y="250" color="0" />
-    <colorZone id="61" x="300" y="250" color="0" />
-    <colorZone id="62" x="275" y="275" color="0" />
-    <colorZone id="63" x="300" y="275" color="0" />
-    <colorZone id="64" x="325" y="250" color="0" />
-    <colorZone id="65" x="350" y="250" color="0" />
-    <colorZone id="66" x="325" y="275" color="0" />
-    <colorZone id="67" x="350" y="275" color="0" />
-    <colorZone id="68" x="375" y="250" color="0" />
-    <colorZone id="69" x="400" y="250" color="0" />
-    <colorZone id="70" x="375" y="275" color="0" />
-    <colorZone id="71" x="400" y="275" color="0" />
-    <colorZone id="72" x="400" y="200" color="0" />
-    <colorZone id="73" x="425" y="200" color="0" />
-    <colorZone id="74" x="400" y="225" color="0" />
-    <colorZone id="75" x="425" y="225" color="0" />
-    <colorZone id="76" x="400" y="150" color="0" />
-    <colorZone id="77" x="425" y="150" color="0" />
-    <colorZone id="78" x="400" y="175" color="0" />
-    <colorZone id="79" x="425" y="175" color="0" />
-    <colorZone id="80" x="350" y="150" color="0" />
-    <colorZone id="81" x="375" y="150" color="0" />
-    <colorZone id="82" x="350" y="175" color="0" />
-    <colorZone id="83" x="375" y="175" color="0" />
-    <colorZone id="84" x="300" y="150" color="0" />
-    <colorZone id="85" x="325" y="150" color="0" />
-    <colorZone id="86" x="300" y="175" color="0" />
-    <colorZone id="87" x="325" y="175" color="0" />
-    <colorZone id="88" x="250" y="150" color="0" />
-    <colorZone id="89" x="275" y="150" color="0" />
-    <colorZone id="90" x="250" y="175" color="0" />
-    <colorZone id="91" x="275" y="175" color="0" />
-    <colorZone id="92" x="125" y="350" color="0" />
-    <colorZone id="93" x="150" y="350" color="0" />
-    <colorZone id="94" x="125" y="375" color="0" />
-    <colorZone id="95" x="150" y="375" color="0" />
-    <colorZone id="96" x="175" y="350" color="0" />
-    <colorZone id="97" x="200" y="350" color="0" />
-    <colorZone id="98" x="175" y="375" color="0" />
-    <colorZone id="99" x="200" y="375" color="0" />
-    <colorZone id="100" x="225" y="350" color="0" />
-    <colorZone id="101" x="250" y="350" color="0" />
-    <colorZone id="102" x="225" y="375" color="0" />
-    <colorZone id="103" x="250" y="375" color="0" />
-    <colorZone id="104" x="275" y="350" color="0" />
-    <colorZone id="105" x="300" y="350" color="0" />
-    <colorZone id="106" x="275" y="375" color="0" />
-    <colorZone id="107" x="300" y="375" color="0" />
-    <colorZone id="108" x="325" y="350" color="0" />
-    <colorZone id="109" x="350" y="350" color="0" />
-    <colorZone id="110" x="325" y="375" color="0" />
-    <colorZone id="111" x="350" y="375" color="0" />
-    <colorZone id="112" x="375" y="350" color="0" />
-    <colorZone id="113" x="400" y="350" color="0" />
-    <colorZone id="114" x="375" y="375" color="0" />
-    <colorZone id="115" x="400" y="375" color="0" />
-    <colorZone id="116" x="425" y="350" color="0" />
-    <colorZone id="117" x="450" y="350" color="0" />
-    <colorZone id="118" x="425" y="375" color="0" />
-    <colorZone id="119" x="450" y="375" color="0" />
-    <colorZone id="120" x="500" y="350" color="0" />
-    <colorZone id="121" x="525" y="350" color="0" />
-    <colorZone id="122" x="500" y="375" color="0" />
-    <colorZone id="123" x="525" y="375" color="0" />
-    <colorZone id="124" x="500" y="300" color="0" />
-    <colorZone id="125" x="525" y="300" color="0" />
-    <colorZone id="126" x="500" y="325" color="0" />
-    <colorZone id="127" x="525" y="325" color="0" />
-    <colorZone id="128" x="500" y="250" color="0" />
-    <colorZone id="129" x="525" y="250" color="0" />
-    <colorZone id="130" x="500" y="275" color="0" />
-    <colorZone id="131" x="525" y="275" color="0" />
-    <colorZone id="132" x="500" y="200" color="0" />
-    <colorZone id="133" x="525" y="200" color="0" />
-    <colorZone id="134" x="500" y="225" color="0" />
-    <colorZone id="135" x="525" y="225" color="0" />
-    <colorZone id="136" x="500" y="150" color="0" />
-    <colorZone id="137" x="525" y="150" color="0" />
-    <colorZone id="138" x="500" y="175" color="0" />
-    <colorZone id="139" x="525" y="175" color="0" />
-    <colorZone id="140" x="500" y="100" color="0" />
-    <colorZone id="141" x="525" y="100" color="0" />
-    <colorZone id="142" x="500" y="125" color="0" />
-    <colorZone id="143" x="525" y="125" color="0" />
-    <colorZone id="144" x="475" y="350" color="0" />
-    <colorZone id="145" x="475" y="375" color="0" />
-    <colorZone id="146" x="425" y="250" color="0" />
-    <colorZone id="147" x="425" y="275" color="0" />
-    <colorZone id="148" x="175" y="225" color="0" />
-    <colorZone id="149" x="175" y="100" color="0" />
-    <colorZone id="150" x="375" y="200" color="1" />
-    <colorZone id="151" x="375" y="225" color="1" />
-    <colorZone id="152" x="350" y="200" color="1" />
-    <colorZone id="153" x="350" y="225" color="1" />
-    <colorZone id="154" x="325" y="200" color="1" />
-    <colorZone id="155" x="325" y="225" color="1" />
-    <colorZone id="156" x="300" y="200" color="1" />
-    <colorZone id="157" x="300" y="225" color="1" />
-    <colorZone id="158" x="275" y="200" color="1" />
-    <colorZone id="159" x="275" y="225" color="1" />
-    <colorZone id="160" x="250" y="200" color="1" />
-    <colorZone id="161" x="250" y="225" color="1" />
-    <colorZone id="162" x="225" y="200" color="1" />
-    <colorZone id="163" x="225" y="225" color="1" />
-    <colorZone id="164" x="200" y="200" color="1" />
-    <colorZone id="165" x="200" y="225" color="1" />
-    <colorZone id="166" x="225" y="150" color="1" />
-    <colorZone id="167" x="225" y="175" color="1" />
-    <colorZone id="168" x="200" y="150" color="1" />
-    <colorZone id="169" x="200" y="175" color="1" />
-    <colorZone id="170" x="175" y="175" color="1" />
-    <colorZone id="171" x="175" y="200" color="1" />
-    <colorZone id="172" x="175" y="125" color="1" />
-    <colorZone id="173" x="175" y="150" color="1" />
-    <colorZone id="174" x="200" y="100" color="1" />
-    <colorZone id="175" x="200" y="125" color="1" />
-    <colorZone id="176" x="225" y="100" color="1" />
-    <colorZone id="177" x="225" y="125" color="1" />
-    <colorZone id="178" x="250" y="100" color="1" />
-    <colorZone id="179" x="250" y="125" color="1" />
-    <colorZone id="180" x="275" y="100" color="1" />
-    <colorZone id="181" x="275" y="125" color="1" />
-    <colorZone id="182" x="300" y="100" color="1" />
-    <colorZone id="183" x="300" y="125" color="1" />
-    <colorZone id="184" x="325" y="100" color="1" />
-    <colorZone id="185" x="325" y="125" color="1" />
-    <colorZone id="186" x="350" y="100" color="1" />
-    <colorZone id="187" x="350" y="125" color="1" />
-    <colorZone id="188" x="375" y="100" color="1" />
-    <colorZone id="189" x="375" y="125" color="1" />
-    <colorZone id="190" x="400" y="100" color="1" />
-    <colorZone id="191" x="400" y="125" color="1" />
-    <colorZone id="192" x="425" y="100" color="1" />
-    <colorZone id="193" x="425" y="125" color="1" />
-    <colorZone id="194" x="450" y="100" color="1" />
-    <colorZone id="195" x="450" y="125" color="1" />
-    <colorZone id="196" x="475" y="100" color="1" />
-    <colorZone id="197" x="475" y="125" color="1" />
-    <colorZone id="198" x="450" y="150" color="1" />
-    <colorZone id="199" x="450" y="175" color="1" />
-    <colorZone id="200" x="475" y="150" color="1" />
-    <colorZone id="201" x="475" y="175" color="1" />
-    <colorZone id="202" x="450" y="200" color="1" />
-    <colorZone id="203" x="450" y="225" color="1" />
-    <colorZone id="204" x="475" y="200" color="1" />
-    <colorZone id="205" x="475" y="225" color="1" />
-    <colorZone id="206" x="450" y="250" color="1" />
-    <colorZone id="207" x="450" y="275" color="1" />
-    <colorZone id="208" x="475" y="250" color="1" />
-    <colorZone id="209" x="475" y="275" color="1" />
-    <colorZone id="210" x="450" y="300" color="1" />
-    <colorZone id="211" x="450" y="325" color="1" />
-    <colorZone id="212" x="475" y="300" color="1" />
-    <colorZone id="213" x="475" y="325" color="1" />
-    <colorZone id="214" x="400" y="300" color="1" />
-    <colorZone id="215" x="400" y="325" color="1" />
-    <colorZone id="216" x="425" y="300" color="1" />
-    <colorZone id="217" x="425" y="325" color="1" />
-    <colorZone id="218" x="350" y="300" color="1" />
-    <colorZone id="219" x="350" y="325" color="1" />
-    <colorZone id="220" x="375" y="300" color="1" />
-    <colorZone id="221" x="375" y="325" color="1" />
-    <colorZone id="222" x="300" y="300" color="1" />
-    <colorZone id="223" x="300" y="325" color="1" />
-    <colorZone id="224" x="325" y="300" color="1" />
-    <colorZone id="225" x="325" y="325" color="1" />
-    <colorZone id="226" x="250" y="300" color="1" />
-    <colorZone id="227" x="250" y="325" color="1" />
-    <colorZone id="228" x="275" y="300" color="1" />
-    <colorZone id="229" x="275" y="325" color="1" />
-    <colorZone id="230" x="200" y="300" color="1" />
-    <colorZone id="231" x="200" y="325" color="1" />
-    <colorZone id="232" x="225" y="300" color="1" />
-    <colorZone id="233" x="225" y="325" color="1" />
-    <colorZone id="234" x="175" y="300" color="1" />
-    <colorZone id="235" x="175" y="325" color="1" />
-    <colorZone id="236" x="125" y="300" color="1" />
-    <colorZone id="237" x="125" y="325" color="1" />
-    <colorZone id="238" x="150" y="300" color="1" />
-    <colorZone id="239" x="150" y="325" color="1" />
-    <colorZone id="240" x="450" y="400" color="1" />
-    <colorZone id="241" x="450" y="425" color="1" />
-    <colorZone id="242" x="475" y="400" color="1" />
-    <colorZone id="243" x="475" y="425" color="1" />
-    <colorZone id="244" x="400" y="400" color="1" />
-    <colorZone id="245" x="400" y="425" color="1" />
-    <colorZone id="246" x="425" y="400" color="1" />
-    <colorZone id="247" x="425" y="425" color="1" />
-    <colorZone id="248" x="350" y="400" color="1" />
-    <colorZone id="249" x="350" y="425" color="1" />
-    <colorZone id="250" x="375" y="400" color="1" />
-    <colorZone id="251" x="375" y="425" color="1" />
-    <colorZone id="252" x="300" y="400" color="1" />
-    <colorZone id="253" x="300" y="425" color="1" />
-    <colorZone id="254" x="325" y="400" color="1" />
-    <colorZone id="255" x="325" y="425" color="1" />
-    <colorZone id="256" x="250" y="400" color="1" />
-    <colorZone id="257" x="250" y="425" color="1" />
-    <colorZone id="258" x="275" y="400" color="1" />
-    <colorZone id="259" x="275" y="425" color="1" />
-    <colorZone id="260" x="200" y="400" color="1" />
-    <colorZone id="261" x="200" y="425" color="1" />
-    <colorZone id="262" x="225" y="400" color="1" />
-    <colorZone id="263" x="225" y="425" color="1" />
-    <colorZone id="264" x="175" y="400" color="1" />
-    <colorZone id="265" x="175" y="425" color="1" />
-    <colorZone id="266" x="125" y="400" color="1" />
-    <colorZone id="267" x="125" y="425" color="1" />
-    <colorZone id="268" x="150" y="400" color="1" />
-    <colorZone id="269" x="150" y="425" color="1" />
-    <colorZone id="270" x="500" y="400" color="1" />
-    <colorZone id="271" x="500" y="425" color="1" />
-    <colorZone id="272" x="525" y="400" color="1" />
-    <colorZone id="273" x="525" y="425" color="1" />
-    <colorZone id="274" x="550" y="200" color="0" />
-    <colorZone id="275" x="550" y="375" color="0" />
-    <colorZone id="276" x="550" y="400" color="1" />
-    <colorZone id="277" x="550" y="425" color="1" />
-    <colorZone id="278" x="550" y="50" color="0" />
-    <colorZone id="279" x="550" y="300" color="0" />
-    <colorZone id="280" x="550" y="325" color="0" />
-    <colorZone id="281" x="550" y="250" color="0" />
-    <colorZone id="282" x="550" y="275" color="0" />
-    <colorZone id="283" x="550" y="225" color="0" />
-    <colorZone id="284" x="550" y="150" color="0" />
-    <colorZone id="285" x="550" y="175" color="0" />
-    <colorZone id="286" x="550" y="100" color="0" />
-    <colorZone id="287" x="550" y="125" color="0" />
-    <colorZone id="288" x="550" y="75" color="0" />
-    <dye id="289" x="25" y="425" color="1" />
-    <colorZone id="290" x="550" y="350" color="0" />
-    <dye id="291" x="50" y="425" color="1" />
+    <player id="0" x="25" y="450" normal="1" color="1" sleepy="1" />
+    <player id="1" x="75" y="450" normal="1" color="0" sleepy="0" />
+    <colorZone id="2" x="100" y="450" color="0" />
+    <colorZone id="3" x="125" y="450" color="0" />
+    <colorZone id="4" x="150" y="450" color="0" />
+    <colorZone id="5" x="175" y="450" color="0" />
+    <colorZone id="6" x="200" y="450" color="0" />
+    <colorZone id="7" x="225" y="450" color="0" />
+    <colorZone id="8" x="250" y="450" color="0" />
+    <colorZone id="9" x="275" y="450" color="0" />
+    <colorZone id="10" x="300" y="450" color="0" />
+    <colorZone id="11" x="325" y="450" color="0" />
+    <colorZone id="12" x="350" y="450" color="0" />
+    <colorZone id="13" x="375" y="450" color="0" />
+    <colorZone id="14" x="400" y="450" color="0" />
+    <colorZone id="15" x="425" y="450" color="0" />
+    <colorZone id="16" x="450" y="450" color="0" />
+    <colorZone id="17" x="475" y="450" color="0" />
+    <colorZone id="18" x="500" y="450" color="0" />
+    <colorZone id="19" x="525" y="450" color="0" />
+    <colorZone id="20" x="550" y="450" color="0" />
+    <colorZone id="21" x="575" y="450" color="0" />
+    <colorZone id="22" x="150" y="425" color="0" />
+    <colorZone id="23" x="150" y="400" color="0" />
+    <colorZone id="24" x="125" y="400" color="0" />
+    <colorZone id="25" x="125" y="425" color="0" />
+    <colorZone id="26" x="100" y="425" color="0" />
+    <colorZone id="27" x="100" y="400" color="0" />
+    <colorZone id="28" x="100" y="375" color="0" />
+    <colorZone id="29" x="100" y="350" color="0" />
+    <colorZone id="30" x="100" y="325" color="0" />
+    <colorZone id="31" x="100" y="300" color="0" />
+    <colorZone id="32" x="100" y="275" color="0" />
+    <colorZone id="33" x="100" y="250" color="0" />
+    <colorZone id="34" x="100" y="225" color="0" />
+    <colorZone id="35" x="100" y="200" color="0" />
+    <colorZone id="36" x="150" y="200" color="0" />
+    <colorZone id="37" x="125" y="200" color="0" />
+    <colorZone id="38" x="175" y="200" color="0" />
+    <colorZone id="39" x="200" y="200" color="0" />
+    <colorZone id="40" x="225" y="200" color="0" />
+    <colorZone id="41" x="250" y="200" color="0" />
+    <colorZone id="42" x="300" y="200" color="0" />
+    <colorZone id="43" x="275" y="200" color="0" />
+    <colorZone id="44" x="325" y="200" color="0" />
+    <colorZone id="45" x="325" y="175" color="0" />
+    <colorZone id="46" x="325" y="150" color="0" />
+    <colorZone id="47" x="350" y="150" color="0" />
+    <colorZone id="48" x="375" y="150" color="0" />
+    <colorZone id="49" x="375" y="175" color="0" />
+    <colorZone id="50" x="375" y="200" color="0" />
+    <colorZone id="51" x="350" y="200" color="0" />
+    <colorZone id="52" x="400" y="200" color="0" />
+    <colorZone id="53" x="425" y="200" color="0" />
+    <colorZone id="54" x="450" y="200" color="0" />
+    <colorZone id="55" x="475" y="200" color="0" />
+    <colorZone id="56" x="500" y="200" color="0" />
+    <colorZone id="57" x="525" y="200" color="0" />
+    <colorZone id="58" x="550" y="200" color="0" />
+    <colorZone id="59" x="225" y="325" color="0" />
+    <colorZone id="60" x="250" y="325" color="0" />
+    <colorZone id="61" x="275" y="325" color="0" />
+    <colorZone id="62" x="300" y="325" color="0" />
+    <colorZone id="63" x="325" y="325" color="0" />
+    <colorZone id="64" x="350" y="325" color="0" />
+    <colorZone id="65" x="375" y="325" color="0" />
+    <colorZone id="66" x="400" y="325" color="0" />
+    <colorZone id="67" x="425" y="325" color="0" />
+    <colorZone id="68" x="450" y="325" color="0" />
+    <colorZone id="69" x="475" y="325" color="0" />
+    <colorZone id="70" x="500" y="325" color="0" />
+    <colorZone id="71" x="525" y="325" color="0" />
+    <colorZone id="72" x="550" y="325" color="0" />
+    <colorZone id="73" x="575" y="325" color="0" />
+    <colorZone id="74" x="625" y="325" color="0" />
+    <colorZone id="75" x="600" y="325" color="0" />
+    <colorZone id="76" x="650" y="325" color="0" />
+    <colorZone id="77" x="650" y="300" color="0" />
+    <colorZone id="78" x="625" y="300" color="0" />
+    <colorZone id="79" x="625" y="275" color="0" />
+    <colorZone id="80" x="650" y="275" color="0" />
+    <colorZone id="81" x="650" y="250" color="0" />
+    <colorZone id="82" x="650" y="225" color="0" />
+    <colorZone id="83" x="650" y="200" color="0" />
+    <colorZone id="84" x="650" y="175" color="0" />
+    <colorZone id="85" x="650" y="150" color="0" />
+    <colorZone id="86" x="650" y="125" color="0" />
+    <colorZone id="87" x="650" y="100" color="0" />
+    <colorZone id="88" x="650" y="75" color="0" />
+    <colorZone id="89" x="650" y="50" color="0" />
+    <colorZone id="90" x="625" y="50" color="0" />
+    <colorZone id="91" x="600" y="50" color="0" />
+    <colorZone id="92" x="575" y="50" color="0" />
+    <colorZone id="93" x="550" y="50" color="0" />
+    <colorZone id="94" x="475" y="50" color="0" />
+    <colorZone id="95" x="525" y="50" color="0" />
+    <colorZone id="96" x="500" y="50" color="0" />
+    <colorZone id="97" x="450" y="50" color="0" />
+    <colorZone id="98" x="425" y="50" color="0" />
+    <colorZone id="99" x="400" y="50" color="0" />
+    <colorZone id="100" x="375" y="50" color="0" />
+    <colorZone id="101" x="350" y="50" color="0" />
+    <colorZone id="102" x="325" y="50" color="0" />
+    <colorZone id="103" x="300" y="50" color="0" />
+    <colorZone id="104" x="275" y="50" color="0" />
+    <colorZone id="105" x="250" y="50" color="0" />
+    <colorZone id="106" x="225" y="50" color="0" />
+    <colorZone id="107" x="200" y="50" color="0" />
+    <colorZone id="108" x="175" y="50" color="0" />
+    <colorZone id="109" x="150" y="50" color="0" />
+    <colorZone id="110" x="125" y="50" color="0" />
+    <colorZone id="111" x="100" y="50" color="0" />
+    <colorZone id="112" x="100" y="75" color="0" />
+    <colorZone id="113" x="100" y="100" color="0" />
+    <lock id="114" x="100" y="125" color="0" />
+    <lock id="115" x="100" y="150" color="0" />
+    <lock id="116" x="100" y="175" color="0" />
+    <key id="117" x="350" y="175" color="0" />
+    <colorZone id="118" x="125" y="175" color="1" />
+    <colorZone id="120" x="175" y="175" color="1" />
+    <colorZone id="121" x="200" y="175" color="1" />
+    <colorZone id="122" x="225" y="175" color="1" />
+    <colorZone id="123" x="250" y="175" color="1" />
+    <colorZone id="124" x="125" y="300" color="1" />
+    <colorZone id="125" x="150" y="300" color="1" />
+    <colorZone id="126" x="175" y="300" color="1" />
+    <colorZone id="127" x="200" y="300" color="1" />
+    <colorZone id="128" x="275" y="350" color="1" />
+    <colorZone id="129" x="300" y="350" color="1" />
+    <colorZone id="130" x="325" y="350" color="1" />
+    <colorZone id="131" x="350" y="350" color="1" />
+    <colorZone id="132" x="425" y="300" color="1" />
+    <colorZone id="133" x="450" y="300" color="1" />
+    <colorZone id="134" x="475" y="300" color="1" />
+    <colorZone id="135" x="500" y="300" color="1" />
+    <colorZone id="136" x="575" y="350" color="1" />
+    <colorZone id="137" x="600" y="350" color="1" />
+    <colorZone id="138" x="625" y="350" color="1" />
+    <colorZone id="139" x="650" y="350" color="1" />
+    <dye id="140" x="600" y="450" color="1" />
+    <dye id="141" x="625" y="450" color="1" />
+    <dye id="142" x="650" y="450" color="1" />
+    <dye id="143" x="625" y="100" color="0" />
+    <spikes id="145" x="475" y="425" />
+    <spikes id="146" x="475" y="300" />
+    <spikes id="147" x="325" y="300" />
+    <spikes id="148" x="300" y="300" />
+    <spikes id="149" x="275" y="425" />
+    <colorZone id="150" x="375" y="350" color="1" />
+    <colorZone id="151" x="250" y="350" color="1" />
+    <spikes id="144" x="475" y="175" />
+    <spikes id="152" x="225" y="175" />
+    <spikes id="153" x="200" y="175" />
+    <colorZone id="119" x="525" y="300" color="1" />
+    <colorZone id="154" x="150" y="175" color="1" />
+    <colorZone id="155" x="275" y="175" color="1" />
+    <colorZone id="156" x="300" y="175" color="1" />
+    <colorZone id="157" x="25" y="300" color="1" />
+    <colorZone id="158" x="50" y="300" color="1" />
+    <colorZone id="159" x="75" y="300" color="1" />
+    <colorZone id="160" x="75" y="150" color="1" />
+    <colorZone id="161" x="25" y="225" color="1" />
+    <spikes id="162" x="500" y="300" />
+    <colorZone id="163" x="550" y="300" color="1" />
   </entities>
 </level>
