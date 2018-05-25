@@ -33,6 +33,8 @@ class MenuState extends FlxState
 	private var _btnAlbinoBlackSheep:FlxButton;
 	private var absPopup:FlxUIPopup;
 	
+	private var _btnMute:FlxButton;
+	
 	private var offset = 50; // same as the pixel size of the square
 	private var font_size = 50;
 	
@@ -56,7 +58,7 @@ class MenuState extends FlxState
 		_backgroundBlock.loadGraphic(AssetPaths.menu_bg__png);
 		add(_backgroundBlock);
 		
-		_txtTitle = new FlxText(20, 20, 0, "Too Many Blocks!", font_size);
+		_txtTitle = new FlxText(20, 20, 0, "Doppelgänger", font_size);
 		_txtTitle.setFormat(AssetPaths.Unlock__ttf, font_size);
 		_txtTitle.color = _lblColor;
 		_txtTitle.alignment = CENTER;
@@ -88,6 +90,15 @@ class MenuState extends FlxState
 		_btnLevel.label.offset.y += 3;
 		add(_btnLevel);
 		_btnLevel.screenCenter(X);
+		
+		_btnMute = new FlxButton(0, 20 + offset * 6.65, "Sound ON", soundToggle);
+		if (FlxG.sound.muted) {
+			_btnMute.text = "Sound OFF";
+		} else {
+			_btnMute.text = "Sound ON";
+		}
+		add(_btnMute);
+		_btnMute.screenCenter(X);
 		
 		/*
 		_btnAlbinoBlackSheep = new FlxButton(0, FlxG.height - 25, "ABS!", clickABS);
@@ -183,5 +194,15 @@ class MenuState extends FlxState
 		clearDataPopup = new Popup_ClearData(); //create the popup
 		clearDataPopup.quickSetup("Are you sure you want to delete your save data?", "Once the data is deleted, you cannot get it back.", ["Yes", "No"]);
 		openSubState(clearDataPopup);
+	}
+	
+	private function soundToggle():Void {
+		FlxG.sound.toggleMuted();
+		
+		if (FlxG.sound.muted) {
+			_btnMute.text = "Sound OFF";
+		} else {
+			_btnMute.text = "Sound ON";
+		}
 	}
 }

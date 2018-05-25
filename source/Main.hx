@@ -9,7 +9,7 @@ class Main extends Sprite
 	// A bit of an ugly hack, basically using a global variable so it can be
 	// fetched in any arbitrary class.
 	public static var LOGGER:CapstoneLogger;
-	private static var categoryId:Int = 2;
+	public static var categoryId:Int = 2;
 	
 	public function new()
 	{
