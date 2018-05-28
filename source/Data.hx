@@ -178,12 +178,14 @@ class Data
 	}
 	
 	public static function checkCategoryId(categoryId:Int):Bool {
-		if (_gameSave.data.categoryId == null || _gameSave.data.categoryId != categoryId) {
+		var range:Int = 3;
+		if (_gameSave.data.categoryId != null && _gameSave.data.categoryId >= categoryId - range && _gameSave.data.categoryId <= categoryId + range) {
+			return false;
+		} else {
 			clearSavedData();
 			_gameSave.data.categoryId = categoryId;
 			return true;
 		}
-		return false;
 	}
 	
 	public static var levelHints:Array<String> = ["", "458437703

@@ -100,14 +100,14 @@ class MenuState extends FlxState
 		add(_btnMute);
 		_btnMute.screenCenter(X);
 		
-		
+		/*
 		_btnAlbinoBlackSheep = new FlxButton(0, FlxG.height - 25, "ABS!", clickABS);
 		_btnAlbinoBlackSheep.loadGraphic(AssetPaths.btn_abs__png, false, 75, 25);
 		_btnAlbinoBlackSheep.label.setFormat(_txtTitle.font, 15, _lblColor, CENTER);
 		_btnAlbinoBlackSheep.label.offset.x += 11;
 		//_btnAlbinoBlackSheep.label.offset.y -= 8;
 		add(_btnAlbinoBlackSheep);
-		
+		*/
 		
 		/*
 		 * 
