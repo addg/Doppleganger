@@ -155,14 +155,14 @@ class PlayState extends FlxState
 			add(_hintText);
 		}
 		
-		_emitterCombine = new FlxEmitter(FlxG.width / 2, FlxG.height / 2, 50);
+		_emitterCombine = new FlxEmitter(FlxG.width / 2, FlxG.height / 2, 20);
 		_emitterCombine.lifespan.set(0.4, 0.8);
 		_emitterCombine.launchAngle.set(-150, -30);
 		_emitterCombine.acceleration.start.min.y = 200;
 		_emitterCombine.acceleration.start.max.y = 300;
 		_emitterCombine.acceleration.end.min.y = 400;
 		_emitterCombine.acceleration.end.max.y = 500;
-		_emitterCombine.makeParticles(4, 4, FlxColor.WHITE, 50);
+		_emitterCombine.makeParticles(4, 4, FlxColor.WHITE, 20);
 		_emitterCombine.color.set(FlxColor.RED, FlxColor.PINK, FlxColor.BLUE, FlxColor.CYAN);
 		add(_emitterCombine);
 		
