@@ -21,6 +21,8 @@ class Data
 	
 	public static var paused:Bool = false;
 	
+	public static var useParticles = true;
+	
 	// Set to true if you want O, P, and \ commands active
 	public static var devTools:Bool = false;
 	

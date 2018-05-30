@@ -34,6 +34,7 @@ class MenuState extends FlxState
 	private var absPopup:FlxUIPopup;
 	
 	private var _btnMute:FlxButton;
+	private var _btnToggleParticles:FlxButton;
 	
 	private var offset = 50; // same as the pixel size of the square
 	private var font_size = 50;
@@ -66,14 +67,14 @@ class MenuState extends FlxState
 		add(_txtTitle);
 		
 		// buttons
-		_btnPlay = new FlxButton(0, FlxG.height/3, "", clickPlay);
+		_btnPlay = new FlxButton(0, FlxG.height/3 - 30, "", clickPlay);
 		_btnPlay.loadGraphic(AssetPaths.btn_play_new__png, true, 150, 50);
 		//_btnPlay.label.setFormat(_txtTitle.font, font_size - 10, _lblColor, CENTER);
 		//_btnPlay.label.offset.x += offset;
 		add(_btnPlay);
 		_btnPlay.screenCenter(X);
 		
-		_txtPlay = new FlxText(0, FlxG.height / 3, "Play", font_size - 20);
+		_txtPlay = new FlxText(0, FlxG.height / 3 - 30, "Play", font_size - 20);
 		_txtPlay.setFormat(_txtTitle.font, font_size - 20);
 		_txtPlay.color = _lblColor;
 		_txtPlay.alignment = CENTER;
@@ -82,7 +83,7 @@ class MenuState extends FlxState
 		_txtPlay.offset.y -= 5;
 		add(_txtPlay);
 		
-		_btnLevel = new FlxButton(0, 20 + offset * 6, "Level Select", clickLevel);
+		_btnLevel = new FlxButton(0, 30 + offset * 5, "Level Select", clickLevel);
 		_btnLevel.scale.set(1.5, 1.5);
 		_btnLevel.label.fieldWidth = 100;
 		_btnLevel.label.setFormat(_txtTitle.font, 14, _lblColor, CENTER);
@@ -91,7 +92,7 @@ class MenuState extends FlxState
 		add(_btnLevel);
 		_btnLevel.screenCenter(X);
 		
-		_btnMute = new FlxButton(0, 20 + offset * 6.65, "Sound ON", soundToggle);
+		_btnMute = new FlxButton(0, 40 + offset * 5.65, "Sound ON", soundToggle);
 		if (FlxG.sound.muted) {
 			_btnMute.text = "Sound OFF";
 		} else {
@@ -99,6 +100,15 @@ class MenuState extends FlxState
 		}
 		add(_btnMute);
 		_btnMute.screenCenter(X);
+		
+		_btnToggleParticles = new FlxButton(0, 65 + offset * 5.65, "Particles ON", particleToggle);
+		if (Data.useParticles) {
+			_btnToggleParticles.text = "Particles ON";
+		} else {
+			_btnToggleParticles.text = "Particles OFF";
+		}
+		add(_btnToggleParticles);
+		_btnToggleParticles.screenCenter(X);
 		
 		/*
 		_btnAlbinoBlackSheep = new FlxButton(0, FlxG.height - 25, "ABS!", clickABS);
@@ -138,11 +148,11 @@ class MenuState extends FlxState
 		add(_txtRestart);
 		*/
 		
-		_txtControls = new FlxText(_btnPlay.x, 20 + offset * 4.5, 0, "Jump: \nMove: ", font_size - 30);
+		_txtControls = new FlxText(_btnPlay.x, -10 + offset * 4.5, 0, "Jump: \nMove: ", font_size - 30);
 		_txtControls.setFormat(_txtTitle.font, font_size - 30, _lblColor);
-		_sprUp = new FlxSprite(_btnPlay.x + offset * 2.25, 20 + offset * 4.5, AssetPaths.up_arrow__png);
-		_sprLeft = new FlxSprite(_btnPlay.x + offset * 2, 20 + offset * 5.0, AssetPaths.left_arrow__png);
-		_sprRight = new FlxSprite(_btnPlay.x + offset * 2.5, 20 + offset * 5.0, AssetPaths.right_arrow__png);
+		_sprUp = new FlxSprite(_btnPlay.x + offset * 2.25, -10 + offset * 4.5, AssetPaths.up_arrow__png);
+		_sprLeft = new FlxSprite(_btnPlay.x + offset * 2, -10 + offset * 5.0, AssetPaths.left_arrow__png);
+		_sprRight = new FlxSprite(_btnPlay.x + offset * 2.5, -10 + offset * 5.0, AssetPaths.right_arrow__png);
 		add(_txtControls);
 		add(_sprUp);
 		add(_sprLeft);
@@ -203,6 +213,16 @@ class MenuState extends FlxState
 			_btnMute.text = "Sound OFF";
 		} else {
 			_btnMute.text = "Sound ON";
+		}
+	}
+	
+	private function particleToggle():Void {
+		Data.useParticles = !Data.useParticles;
+		
+		if (Data.useParticles) {
+			_btnToggleParticles.text = "Particles ON";
+		} else {
+			_btnToggleParticles.text = "Particles OFF";
 		}
 	}
 }

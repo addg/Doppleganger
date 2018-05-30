@@ -155,28 +155,31 @@ class PlayState extends FlxState
 			add(_hintText);
 		}
 		
-		_emitterCombine = new FlxEmitter(FlxG.width / 2, FlxG.height / 2, 20);
-		_emitterCombine.lifespan.set(0.4, 0.8);
-		_emitterCombine.launchAngle.set(-150, -30);
-		_emitterCombine.acceleration.start.min.y = 200;
-		_emitterCombine.acceleration.start.max.y = 300;
-		_emitterCombine.acceleration.end.min.y = 400;
-		_emitterCombine.acceleration.end.max.y = 500;
-		_emitterCombine.makeParticles(4, 4, FlxColor.WHITE, 20);
-		_emitterCombine.color.set(FlxColor.RED, FlxColor.PINK, FlxColor.BLUE, FlxColor.CYAN);
-		add(_emitterCombine);
-		
-		_emitter = new FlxEmitter(FlxG.width / 2, FlxG.height / 2, 20);
-		_emitter.scale.set(0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25);
-		_emitter.lifespan.set(0.4, 0.8);
-		_emitter.launchAngle.set(-150, -30);
-		_emitter.acceleration.start.min.y = 200;
-		_emitter.acceleration.start.max.y = 300;
-		_emitter.acceleration.end.min.y = 400;
-		_emitter.acceleration.end.max.y = 500;
-		//_emitter.makeParticles(8, 8, FlxColor.WHITE, 20);
-		//_emitter.loadParticles(AssetPaths.orangeParticle__png, 20);
-		add(_emitter);
+		if (Data.useParticles) {
+			
+			_emitterCombine = new FlxEmitter(FlxG.width / 2, FlxG.height / 2, 20);
+			_emitterCombine.lifespan.set(0.4, 0.8);
+			_emitterCombine.launchAngle.set(-150, -30);
+			_emitterCombine.acceleration.start.min.y = 200;
+			_emitterCombine.acceleration.start.max.y = 300;
+			_emitterCombine.acceleration.end.min.y = 400;
+			_emitterCombine.acceleration.end.max.y = 500;
+			_emitterCombine.makeParticles(4, 4, FlxColor.WHITE, 20);
+			_emitterCombine.color.set(FlxColor.RED, FlxColor.PINK, FlxColor.BLUE, FlxColor.CYAN);
+			add(_emitterCombine);
+			
+			_emitter = new FlxEmitter(FlxG.width / 2, FlxG.height / 2, 20);
+			_emitter.scale.set(0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25);
+			_emitter.lifespan.set(0.4, 0.8);
+			_emitter.launchAngle.set(-150, -30);
+			_emitter.acceleration.start.min.y = 200;
+			_emitter.acceleration.start.max.y = 300;
+			_emitter.acceleration.end.min.y = 400;
+			_emitter.acceleration.end.max.y = 500;
+			//_emitter.makeParticles(8, 8, FlxColor.WHITE, 20);
+			//_emitter.loadParticles(AssetPaths.orangeParticle__png, 20);
+			add(_emitter);
+		}
 		
 		init();
 	}
@@ -539,6 +542,11 @@ class PlayState extends FlxState
 	
 	// Spawns particles at x, y
 	private function spawnParticles(x:Float, y:Float, ?color:FlxColor = FlxColor.WHITE):Void {
+		
+		if (!Data.useParticles) {
+			return;
+		}
+		
 		_emitter.x = x;
 		_emitter.y = y;
 		//_emitter.color.set(color);
@@ -552,6 +560,9 @@ class PlayState extends FlxState
 	}
 	
 	private function spawnParticlesCombine(x:Float, y:Float):Void {
+		if (!Data.useParticles) {
+			return;
+		}
 		_emitterCombine.x = x;
 		_emitterCombine.y = y;
 		_emitterCombine.start(true, 0.01, 0);
