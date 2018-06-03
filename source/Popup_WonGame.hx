@@ -23,21 +23,8 @@ class Popup_WonGame extends FlxUIPopup
 		
 		// Write to disk
 		Data._gameSave.flush();
-		
-		//FlxG.mouse.enabled = true;
 		FlxG.mouse.visible = true;
-		
-		// These do unneccessary things
-		//_xml_id = "default_popup";
 		super.create();
-		//_ui.setMode("IDKWhatThisDoes");
-		
-		// Records the they won
-		Main.LOGGER.logLevelEnd(Data.attempts);
-		
-		// If this gives way too much data, comment out and use the one in loadNextLevel();
-		Data.logData();
-		Data.logHighscore();
 	}
 	
 	public override function getEvent(id:String, target:Dynamic, data:Dynamic, ?params:Array<Dynamic>):Void 

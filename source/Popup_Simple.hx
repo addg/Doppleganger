@@ -23,20 +23,8 @@ class Popup_Simple extends FlxUIPopup
 		
 		// Write to disk
 		Data._gameSave.flush();
-		
-		//FlxG.mouse.enabled = true;
 		FlxG.mouse.visible = true;
-		
-		// These do unneccessary things
-		//_xml_id = "default_popup";
 		super.create();
-		//_ui.setMode("IDKWhatThisDoes");
-		
-		// Records the they won
-		Main.LOGGER.logLevelEnd(Data.attempts);
-		
-		// If this gives way too much data, comment out and use the one in loadNextLevel();
-		Data.logData();
 	}
 	
 	public override function getEvent(id:String, target:Dynamic, data:Dynamic, ?params:Array<Dynamic>):Void 
@@ -83,16 +71,11 @@ class Popup_Simple extends FlxUIPopup
 	}
 	
 	private function loadCurrentLevel():Void {
-		Main.LOGGER.logLevelAction(LoggingActions.RESTART, "Retrying won level");
-		Main.LOGGER.logLevelStart(Data.currLevel);
 		FlxG.switchState(new PlayState());
 	}
 	
 	private function loadNextLevel():Void {
-		//Data.logData();
-		
 		Data.currLevel += 1;
-		Main.LOGGER.logLevelStart(Data.currLevel);
 		if (Data.currLevel > Data.amtLevels) {
 			Data.currLevel = Data.amtLevels;
 		}

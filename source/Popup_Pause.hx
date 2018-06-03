@@ -25,8 +25,6 @@ class Popup_Pause extends FlxUIPopup
 				var i:Int = cast params[0];
 				switch (i)
 				{
-					
-					// 0 is far left button, 1 middle button, 2 right button. Can only have 3 buttons max
 					case 0: loadMainMenu();
 					case 1: loadCurrentLevel();
 					case 2: closePauseMenu();
@@ -55,12 +53,10 @@ class Popup_Pause extends FlxUIPopup
 		Data.paused = false;
 		Data.attempts = 1;
 		FlxG.switchState(new MenuState());
-		//Main.LOGGER.logLevelEnd({attempts: Data.attempts});
 	}
 	
 	// Hitting retry adds 1 to attempts
 	private function loadCurrentLevel():Void {
-		Main.LOGGER.logLevelAction(LoggingActions.RESTART, "Manual");
 		Data.paused = false;
 		Data.attempts += 1;
 		FlxG.mouse.visible = false;

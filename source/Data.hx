@@ -24,7 +24,7 @@ class Data
 	public static var useParticles = true;
 	
 	// Set to true if you want O, P, and \ commands active
-	public static var devTools:Bool = false;
+	public static var devTools:Bool = true;
 	
 	// Object for local saving
 	// Currently has arrays:
@@ -156,29 +156,7 @@ class Data
 		amountPlayed[currLevel]++;
 	}
 	
-	public static function logData() {
-		Main.LOGGER.logActionWithNoLevel(LoggingActions.BEST_TIMES, bestTimes.toString());
-		Main.LOGGER.logActionWithNoLevel(LoggingActions.ATTEMPTS, amountPlayed.toString());
-	}
-	
-	public static function logHighscore() {
-		var totalTime:Float = 0;
-		var totalAttempts:Int = 0;
-		
-		for (i in 0...(Data.amtLevels + 1)) {
-			totalTime += Data.bestTimes[i];
-		}
-		
-		for (attempts in Data.amountPlayed) {
-			totalAttempts += attempts;
-		}
-		
-		
-		Main.LOGGER.logActionWithNoLevel(LoggingActions.BEST_TOTAL_TIME, totalTime);
-		Main.LOGGER.logActionWithNoLevel(LoggingActions.TOTAL_ATTEMPTS, totalAttempts);
-		Main.LOGGER.logActionWithNoLevel(LoggingActions.BEST_PAIR, "" + totalTime + "," + totalAttempts);
-	}
-	
+	// NOT USED ANYMORE: WAS USED WHEN LOGGING
 	public static function checkCategoryId(categoryId:Int):Bool {
 		var range:Int = 3;
 		if (_gameSave.data.categoryId != null && _gameSave.data.categoryId >= categoryId - range && _gameSave.data.categoryId <= categoryId + range) {

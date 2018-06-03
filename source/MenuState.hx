@@ -133,21 +133,6 @@ class MenuState extends FlxState
 		add(_btnResetData);
 		
 		
-		// tips for player
-		/*
-		_txtSubtitle = new FlxText(20, 20 + offset, 0, "Join the Blocks!", font_size - 10);
-		_txtSubtitle.color = _lblColor;
-		_txtSubtitle.screenCenter(X);
-		add(_txtSubtitle);
-		*/
-		
-		/*
-		_txtRestart = new FlxText(20, 20 + offset * 8, 0, "Press R to Restart Level", font_size - 20);
-		_txtRestart.color = _lblColor;
-		_txtRestart.screenCenter(X);
-		add(_txtRestart);
-		*/
-		
 		_txtControls = new FlxText(_btnPlay.x, -10 + offset * 4.5, 0, "Jump: \nMove: ", font_size - 30);
 		_txtControls.setFormat(_txtTitle.font, font_size - 30, _lblColor);
 		_sprUp = new FlxSprite(_btnPlay.x + offset * 2.25, -10 + offset * 4.5, AssetPaths.up_arrow__png);
@@ -157,7 +142,6 @@ class MenuState extends FlxState
 		add(_sprUp);
 		add(_sprLeft);
 		add(_sprRight);
-		
 		
 		super.create();
 	}
@@ -178,7 +162,6 @@ class MenuState extends FlxState
 	
 	private function clickPlay():Void
 	{
-		Main.LOGGER.logLevelStart(Data.currLevel);
 		FlxG.switchState(new PlayState());
 	}
 	

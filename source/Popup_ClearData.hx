@@ -9,12 +9,9 @@ class Popup_ClearData extends FlxUIPopup
 {
 	public override function create():Void
 	{
-		//FlxG.mouse.enabled = true;
 		FlxG.mouse.visible = true;
-		// These do unneccessary things
 		_xml_id = "Popup_Simple";
 		super.create();
-		//_ui.setMode("IDKWhatThisDoes");
 	}
 	
 	public override function getEvent(id:String, target:Dynamic, data:Dynamic, ?params:Array<Dynamic>):Void 

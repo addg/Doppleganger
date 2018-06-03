@@ -12,7 +12,6 @@ import flixel.text.FlxText;
 import flixel.tile.FlxTilemap;
 import flixel.util.FlxTimer;
 import flixel.addons.ui.FlxUIPopup;
-// import sys.io.File;
 
 
 class PlayState extends FlxState
@@ -42,9 +41,6 @@ class PlayState extends FlxState
 	private var orange:FlxColor;
 	private var blue:FlxColor;
 	
-	// When true, stops logging all the deaths and restarts.
-	private var reduceLogs:Bool = false;
-	
 	private var _emitter:FlxEmitter;
 	private var _emitterCombine:FlxEmitter;
 	
@@ -65,7 +61,6 @@ class PlayState extends FlxState
 		blue = new FlxColor(1);
 		blue.setRGB(0, 148, 255, 255);
 		
-		//FlxG.mouse.enabled = false;
 		FlxG.mouse.visible = false;
 		
 		Data.incAttempt();
@@ -73,14 +68,7 @@ class PlayState extends FlxState
 		Timer = new FlxTimer();
 		FlxObject.SEPARATE_BIAS = 15;
 		FlxG.worldBounds.set(500,500);
-		// Old way
-		// Change to your level here by editing this value
-		//                                           |
-		//                                           V
-		// _map = new FlxOgmoLoader(AssetPaths.room_001__oel);
-		
-		// Since we are using a string instead of AssetPaths.blabla,
-		// we have to give the file path as a string
+
 		var _roomNumber:String = "assets/data/room-";
 		
 		// This just figures out how many 0's we need for our level
@@ -145,15 +133,12 @@ class PlayState extends FlxState
 		levelCount.text = "Level " + Data.currLevel;
 		add(levelCount);
 		
-		if (Main.haveHints) {
-			_hintText = new FlxText(0, FlxG.height - 25, -1);
-			_hintText.setFormat(AssetPaths.Unlock__ttf);
-			_hintText.size = 20;
-			_hintText.color = FlxColor.BLACK;
-			//_hintText.screenCenter(X);
-			_hintText.text = "Press \"H\" for a hint!";
-			add(_hintText);
-		}
+		_hintText = new FlxText(0, FlxG.height - 25, -1);
+		_hintText.setFormat(AssetPaths.Unlock__ttf);
+		_hintText.size = 20;
+		_hintText.color = FlxColor.BLACK;
+		_hintText.text = "Press \"H\" for a hint!";
+		add(_hintText);
 		
 		if (Data.useParticles) {
 			
@@ -176,8 +161,6 @@ class PlayState extends FlxState
 			_emitter.acceleration.start.max.y = 300;
 			_emitter.acceleration.end.min.y = 400;
 			_emitter.acceleration.end.max.y = 500;
-			//_emitter.makeParticles(8, 8, FlxColor.WHITE, 20);
-			//_emitter.loadParticles(AssetPaths.orangeParticle__png, 20);
 			add(_emitter);
 		}
 		
@@ -209,7 +192,6 @@ class PlayState extends FlxState
 		 */
 		if (FlxG.keys.justPressed.H && recording)
 		{
-			Main.LOGGER.logLevelAction(LoggingActions.HINT, Data.currLevel);
 			loadReplay();
 		}
 		
@@ -228,9 +210,6 @@ class PlayState extends FlxState
 			currTime.text = "Elasped time: " + num;
 		}
 		if (FlxG.keys.justPressed.R) {
-			if (!reduceLogs) {
-				Main.LOGGER.logLevelAction(LoggingActions.RESTART, "Manual");
-			}
 			Data.attempts++;
 			FlxG.resetState();
 		}
@@ -245,7 +224,6 @@ class PlayState extends FlxState
 		FlxG.overlap(_player, _enemy, failedEnemy);
 		FlxG.overlap(_player, _spikes, failedSpike);
 		FlxG.overlap(_player, _key, playerCollideKey);
-		//FlxG.overlap(_player, _lock, playerCollideLock);
 		FlxG.overlap(_player, _dye, dyeBlock);
 		FlxG.overlap(_player, _colorZone, blockColorZoneCollide);
 		
@@ -262,10 +240,8 @@ class PlayState extends FlxState
 		if (!fellOffMap) {
 			for (blocks in _player) {
 				if (blocks.y > FlxG.height || blocks.x < -25 || blocks.x > FlxG.width) {
-					// sound
-					//#if not flash
+
 					FlxG.sound.load(AssetPaths.hurt__ogg, .25).play();
-					//#end
 					
 					fellOffMap = true;
 					
@@ -279,9 +255,6 @@ class PlayState extends FlxState
 					var color:FlxColor = blocks.thisColor == 0 ? orange : blue;
 					blocks.destroy();
 					spawnParticles(x, y - 10, color);
-					if (!reduceLogs) {
-						Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, "Fell off");
-					}
 					resetLevel();
 				}
 			}
@@ -353,7 +326,6 @@ class PlayState extends FlxState
 				var num = formatTime(Timer.elapsedTime);
 				oldTime = Data.bestTimes[Data.currLevel];
 				Data.bestTimes[Data.currLevel] = Math.min(num, Data.bestTimes[Data.currLevel]);
-				// bestTime.text = "Best time: " + Data.bestTimes[Data.currLevel];
 				winScreen();
 			}
 		} else {
@@ -378,17 +350,10 @@ class PlayState extends FlxState
 		
 		spawnParticles(x, y, color);
 		
-		// Display message here and wait for them to click retry? Maybe instantly restart?
-		if (!reduceLogs) {
-			Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, "Enemy " + Enemy.x + " " + Enemy.y);
-		}
 		if (!die) {
 			die = true;
 			resetLevel();
 		}
-		
-		//Data.attempts++;
-		//FlxG.resetState();
 	}
 	
 	private function failedSpike(?Block:Player, ?Spike:Spikes):Void {
@@ -402,16 +367,11 @@ class PlayState extends FlxState
 		Block.destroy();
 		spawnParticles(x, y, color);
 		
-		if (!reduceLogs) {
-			Main.LOGGER.logLevelAction(LoggingActions.PLAYER_DIE, "Spikes " + Spike.x + " " + Spike.y);
-		}
 		
 		if (!die) {
 			die = true;
 			resetLevel();
 		}
-		//Data.attempts++;
-		//FlxG.resetState();
 	}
 	
 	// Stores the key's color, then destroys the key and all locks with the same color
@@ -514,8 +474,8 @@ class PlayState extends FlxState
 		beatLevelPopup = new Popup_WonGame(); //create the popup
 		beatLevelPopup.quickSetup("You beat the game!", "Your combined best times was " + formatTime(totalTime) + " seconds.\n" +
 								  "Your total attempts to beat the game was " + totalAttempts + ".\n\n" +
-								  "Game made by: Add Gritman, Tony Quach, Vivian Liu\n" +
-								  "Music made by: OurMusicBox and Mark Sparling\n" +
+								  "Game made by: Add Gritman & Tony Quach\n" +
+								  "Music made by: OurMusicBox & Mark Sparling\n" +
 								  "Artwork made by: Kenney Vleugels\n\n" +
 								  "Thank you for playing!"
 								  , ["Main Menu [M]"]);
@@ -736,8 +696,7 @@ class PlayState extends FlxState
 		_mWalls.setTileProperties(83, FlxObject.NONE);
 		_mWalls.setTileProperties(84, FlxObject.NONE);
 		_mWalls.setTileProperties(85, FlxObject.NONE);
-		_mWalls.setTileProperties(86, FlxObject.NONE);
-		
+		_mWalls.setTileProperties(86, FlxObject.NONE);	
 		
 		add(_mWalls);
 	}

@@ -9,7 +9,6 @@ class Popup_Highscore extends FlxUIPopup
 {
 	public override function create():Void
 	{
-		//FlxG.mouse.enabled = true;
 		FlxG.mouse.visible = true;
 		// These do unneccessary things
 		_xml_id = "Popup_Simple";
@@ -24,8 +23,6 @@ class Popup_Highscore extends FlxUIPopup
 				var i:Int = cast params[0];
 				switch (i)
 				{
-					
-					// 0 is far left button, 1 middle button, 2 right button. Can only have 3 buttons max
 					case 0: close();
 				}
 			}
