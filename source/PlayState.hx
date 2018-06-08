@@ -12,6 +12,7 @@ import flixel.text.FlxText;
 import flixel.tile.FlxTilemap;
 import flixel.util.FlxTimer;
 import flixel.addons.ui.FlxUIPopup;
+import flixel.addons.api.FlxKongregate;
 
 
 class PlayState extends FlxState
@@ -116,7 +117,7 @@ class PlayState extends FlxState
 		currTime = new FlxText(FlxG.width - 210, 2, 250);
 		currTime.setFormat(AssetPaths.Unlock__ttf);
 		currTime.size = 20;
-		currTime.text = "Elasped time: " + 0.00;
+		currTime.text = "Elapsed time: " + 0.00;
 		add(currTime);
 		
 		/*
@@ -201,13 +202,13 @@ class PlayState extends FlxState
 		
 		if (FlxG.keys.anyJustPressed([UP, LEFT, RIGHT, W, A, D, SPACE]) && !started) {
 			started = true;
-			Timer.start(1000, null, 0);
+			Timer.start(9999999, null, 0);
 		}
 		if (started) {
 			var num = Timer.elapsedTime;
 			num = num * Math.pow(10, 2);
 			num = Math.round(num) / Math.pow(10, 2);
-			currTime.text = "Elasped time: " + num;
+			currTime.text = "Elapsed time: " + num;
 		}
 		if (FlxG.keys.justPressed.R) {
 			Data.attempts++;
@@ -323,9 +324,19 @@ class PlayState extends FlxState
 			spawnParticlesCombine(x, y);
 			if (_player.countLiving() == 0) {
 				Timer.cancel();
+				updateCompletedLevel();
 				var num = formatTime(Timer.elapsedTime);
 				oldTime = Data.bestTimes[Data.currLevel];
 				Data.bestTimes[Data.currLevel] = Math.min(num, Data.bestTimes[Data.currLevel]);
+				
+				if (Data.gameBeaten() && num < oldTime) {
+					var totalTime:Float = 0;
+					for (i in 0...(Data.amtLevels + 1)) {
+						totalTime += Data.bestTimes[i];
+					}
+					FlxKongregate.submitStats("Fastest Time", formatTime(totalTime));
+				}
+				
 				winScreen();
 			}
 		} else {
@@ -438,10 +449,10 @@ class PlayState extends FlxState
 	}
 	
 	private function winScreen() {
-		updateCompletedLevel();
 		
 		stopMovement();
 		var endLevelTimer:FlxTimer = new FlxTimer();
+
 		if (Data.currLevel == Data.amtLevels) {
 			endLevelTimer.start(1, winGameCallback, 1);
 		} else {
@@ -470,6 +481,7 @@ class PlayState extends FlxState
 		for (attempts in Data.amountPlayed) {
 			totalAttempts += attempts;
 		}
+		
 		
 		beatLevelPopup = new Popup_WonGame(); //create the popup
 		beatLevelPopup.quickSetup("You beat the game!", "Your combined best times was " + formatTime(totalTime) + " seconds.\n" +

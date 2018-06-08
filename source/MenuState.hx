@@ -8,6 +8,7 @@ import flixel.FlxSprite;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import flixel.addons.ui.FlxUIPopup;
+import flixel.addons.api.FlxKongregate;
 
 
 class MenuState extends FlxState
@@ -74,7 +75,7 @@ class MenuState extends FlxState
 		add(_btnPlay);
 		_btnPlay.screenCenter(X);
 		
-		_txtPlay = new FlxText(0, FlxG.height / 3 - 30, "Play", font_size - 20);
+		_txtPlay = new FlxText(0, FlxG.height / 3 - 30, -1 ,"Play", font_size - 20, false);
 		_txtPlay.setFormat(_txtTitle.font, font_size - 20);
 		_txtPlay.color = _lblColor;
 		_txtPlay.alignment = CENTER;
@@ -143,9 +144,17 @@ class MenuState extends FlxState
 		add(_sprLeft);
 		add(_sprRight);
 		
+		
+		FlxKongregate.init(loadCallback);
 		super.create();
 	}
+	
+	private function loadCallback():Void
+	{
+		FlxKongregate.connect();
+	}
 
+	
 	override public function update(elapsed:Float):Void
 	{	/*
 		if (Data.devTools) {

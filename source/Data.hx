@@ -39,6 +39,11 @@ class Data
 		_gameSave.bind("gameSave");
 	}
 	
+	// Checks whether user has beaten the game or not
+	public static function gameBeaten():Bool {
+		return completedLevel[amtLevels];
+	}
+	
 	public static function clearSavedData() {
 		_gameSave.data.bestTimes = null;
 		_gameSave.data.canPlayLevel = null;
