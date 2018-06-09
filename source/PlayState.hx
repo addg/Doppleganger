@@ -242,7 +242,7 @@ class PlayState extends FlxState
 			for (blocks in _player) {
 				if (blocks.y > FlxG.height || blocks.x < -25 || blocks.x > FlxG.width) {
 
-					FlxG.sound.load(AssetPaths.hurt__ogg, .25).play();
+					FlxG.sound.load(AssetPaths.hurt__mp3, .25).play();
 					
 					fellOffMap = true;
 					
@@ -311,7 +311,7 @@ class PlayState extends FlxState
 		if (Block1.thisColor == Block2.thisColor) {
 			// Do we have to load it each time? Could not get it working with doing this.
 			//#if not flash
-			_soundJoin = FlxG.sound.load(AssetPaths.combine__ogg, 0.20);
+			_soundJoin = FlxG.sound.load(AssetPaths.combine__mp3, 0.20);
 			_soundJoin.play(true);
 			//#end
 			
@@ -351,7 +351,7 @@ class PlayState extends FlxState
 	private function failedEnemy(?Block1:Player, ?Enemy:Player):Void {
 		
 		// sound
-		FlxG.sound.load(AssetPaths.hurt__ogg, .25).play();
+		FlxG.sound.load(AssetPaths.hurt__mp3, .25).play();
 		
 		var x:Float = Block1.x;
 		var y:Float = Block1.y;
@@ -370,7 +370,7 @@ class PlayState extends FlxState
 	private function failedSpike(?Block:Player, ?Spike:Spikes):Void {
 		
 		// sound
-		FlxG.sound.load(AssetPaths.hurt__ogg, .25).play();
+		FlxG.sound.load(AssetPaths.hurt__mp3, .25).play();
 		
 		var x:Float = Block.x + (Block.width / 2);
 		var y:Float = Block.y + (Block.height / 2);
@@ -484,13 +484,20 @@ class PlayState extends FlxState
 		
 		
 		beatLevelPopup = new Popup_WonGame(); //create the popup
-		beatLevelPopup.quickSetup("You beat the game!", "Your combined best times was " + formatTime(totalTime) + " seconds.\n" +
+		/*beatLevelPopup.quickSetup("You beat the game!", "Your combined best times was " + formatTime(totalTime) + " seconds.\n" +
 								  "Your total attempts to beat the game was " + totalAttempts + ".\n\n" +
 								  "Game made by: Add Gritman & Tony Quach\n" +
 								  "Music made by: OurMusicBox & Mark Sparling\n" +
 								  "Artwork made by: Kenney Vleugels\n\n" +
 								  "Thank you for playing!"
-								  , ["Main Menu [M]"]);
+								  , ["Main Menu [M]"]); */
+		beatLevelPopup.quickSetup("You beat the game!", "Your combined best times was " + formatTime(totalTime) + " seconds in " + totalAttempts + " attempts.\n" +
+						  "Game made by: Add Gritman & Tony Quach\n" +
+						  "Music made by: OurMusicBox & Mark Sparling\n" +
+						  "Artwork made by: Kenney Vleugels\n\n" +
+						  "Thank you for playing!"
+						  , ["Main Menu [M]"]);
+
 		openSubState(beatLevelPopup);
 	}
 	

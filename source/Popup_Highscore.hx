@@ -11,7 +11,7 @@ class Popup_Highscore extends FlxUIPopup
 	{
 		FlxG.mouse.visible = true;
 		// These do unneccessary things
-		_xml_id = "Popup_Simple";
+		//_xml_id = "Popup_Simple";
 		super.create();
 	}
 	

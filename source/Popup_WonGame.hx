@@ -8,7 +8,7 @@ class Popup_WonGame extends FlxUIPopup
 	public override function create():Void
 	{
 		
-		_xml_id = "Popup_WinGame";
+		//_xml_id = "Popup_WinGame";
 		
 		// When we beat the level we come in here, so we update the save data
 		Data._gameSave.data.bestTimes[Data.currLevel] = Data.bestTimes[Data.currLevel];

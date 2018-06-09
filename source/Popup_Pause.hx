@@ -12,7 +12,7 @@ class Popup_Pause extends FlxUIPopup
 		//FlxG.mouse.enabled = true;
 		FlxG.mouse.visible = true;
 		// These do unneccessary things
-		_xml_id = "Popup_Simple";
+		//_xml_id = "Popup_Simple";
 		super.create();
 		//_ui.setMode("IDKWhatThisDoes");
 	}

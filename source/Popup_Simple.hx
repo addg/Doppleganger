@@ -7,7 +7,7 @@ class Popup_Simple extends FlxUIPopup
 {
 	public override function create():Void
 	{
-		_xml_id = "Popup_Simple";
+		//_xml_id = "Popup_Simple";
 		
 		
 		// When we beat the level we come in here, so we update the save data

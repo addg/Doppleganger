@@ -21,7 +21,6 @@ class Main extends Sprite
 		super();
 		
 		addChild(new FlxGame(700, 500, MenuState, 1, 60, 60, true));
-
 		Data.setUpGameSave();
 		Data.loadBestTimes();
 		Data.loadCanPlayLevel();

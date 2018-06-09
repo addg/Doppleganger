@@ -47,7 +47,7 @@ class MenuState extends FlxState
 		FlxG.mouse.visible = true;
 		if (FlxG.sound.music == null) {
 			//#if not flash
-			FlxG.sound.playMusic("assets/music/combinedsongs.ogg", 0.05, true);
+			FlxG.sound.playMusic("assets/music/combinedsongs.mp3", 0.05, true);
 			FlxG.sound.list.maxSize = 1;
 			//#end
 		}
