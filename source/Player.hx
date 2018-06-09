@@ -65,7 +65,7 @@ class Player extends FlxSprite
 			//Main.LOGGER.logLevelAction(LoggingActions.PLAYER_MOVE, {direction: "jump"});
 			velocity.y = -jumpSpeed;
 			// sound initialization
-			_soundJump = FlxG.sound.load("assets/sounds/jump2.ogg", 0.20);
+			_soundJump = FlxG.sound.load(AssetPaths.jump2__mp3, 0.20);
 			_soundJump.play(true);
 		}
 	}
