@@ -19,8 +19,8 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
-		
-		addChild(new FlxGame(700, 500, MenuState, 1, 60, 60, true));
+
+		addChild(new FlxGame(0, 0, MenuState, 2, 60, 60, true));
 		Data.setUpGameSave();
 		Data.loadBestTimes();
 		Data.loadCanPlayLevel();

@@ -5,18 +5,18 @@
   <BackgroundColor A="255" R="125" G="160" B="255" />
   <GridColor A="255" R="255" G="240" B="90" />
   <LevelDefaultSize>
-    <Width>800</Width>
-    <Height>600</Height>
+    <Width>700</Width>
+    <Height>500</Height>
   </LevelDefaultSize>
   <LevelMinimumSize>
-    <Width>800</Width>
-    <Height>600</Height>
+    <Width>700</Width>
+    <Height>500</Height>
   </LevelMinimumSize>
   <LevelMaximumSize>
-    <Width>800</Width>
-    <Height>600</Height>
+    <Width>700</Width>
+    <Height>500</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\Tony\Documents\too-many-blocks\assets\data\Level Design.oep</Filename>
+  <Filename>C:\Users\addgr\Desktop\CSE481\Game2\assets\data\Level Design.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>false</CameraEnabled>
   <CameraSize>
